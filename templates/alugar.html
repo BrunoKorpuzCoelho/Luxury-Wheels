@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>Reservar | Luxury Wheels Portugal</title>
+    <style>
+        body{
+            font-family: Georgia;
+        }
+        /* Header */
+        .container {
+            width: 100%;
+            height: 96px;
+            top: 0;
+            left: 0;
+            background-color: #fff;
+            z-index: 1000;
+            border-bottom: #d6b884 solid 5px;
+        }
+        .logo-botao {
+            background-color: transparent;
+            border: #d6b884 solid 1px;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            transition: .5s;
+        }
+        .logo-botao:hover {
+            background-color: #d6b884;
+        }
+        .menu {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            height: 100%;
+            padding: 0 20px;
+            margin-left: 30px;
+            margin-right: 50px;
+        }
+        .menu div {
+            display: inline-block;
+        }
+        .menu div:not(:last-child) {
+            margin-right: 2%;
+        }
+        .menu div:last-child {
+            margin-right: 0;
+            margin-left: auto;
+        }
+        #btn-menu {
+            font-family: Georgia;
+            text-decoration: none;
+            font-size: 22px;
+            color: #d6b884;
+            padding: 20px;
+            border-radius: 5px;
+            transition: .85s;
+        }
+        #btn-menu:hover {
+            color: #fff;
+            background-color: #631726;
+        }
+        .dropdown {
+        position: relative;
+        display: inline-block;
+        }
+        .dropbtn {
+            font-family: Georgia;
+            color: #d6b884;
+            background-color: #fff;
+            padding: 12px;
+            font-size: 22px;
+            border: none;
+            cursor: pointer;
+        }
+        .dropbtn:hover{
+            background-color: #631726;
+            color: #fff;
+            border-radius: 5px;
+        }
+        .dropdown-content {
+            font-family: Georgia;
+            font-size: 18px;
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            z-index: 1;
+            right: 0;
+        }
+        .dropdown-content a {
+            color: #d6b884;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {
+            background-color: #631726;
+            color: #fff;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .dropdown-content button {
+            display: none;
+        }
+        .dropdown:hover .dropdown-content button {
+            display: inline-block;
+        }
+        #botaoTopo {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 50px;
+            background-color: transparent;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            z-index: 99;
+        }
+        #botaoTopo::before {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 40px;
+            background-image: url('https://i.postimg.cc/RZjDHfyJ/up-arrow-4889419.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        ::-webkit-scrollbar {
+            width: 5px; 
+        }
+        ::-webkit-scrollbar-track {
+            background:#fff; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background:#d6b884; 
+            border-radius: 5px; 
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555; 
+        }
+        scrollbar {
+            width: 5px; 
+        }
+        scrollbar-track {
+            background: #fff; 
+        }
+        scrollbar-thumb {
+            background: #d6b884; 
+            border-radius: 5px; 
+        }
+        scrollbar-thumb:hover {
+            background: #555; 
+        }
+        /* Header */
+        /* Body */
+        .titulo{
+            text-align: center;
+            justify-content: center;
+            color: #d6b884;
+            width: fit-content;
+            text-decoration: underline;
+            margin: 0 auto;
+            padding: 20px;
+            margin-top: 1%;
+        }
+        .veiculo-container{
+            display: flex;
+            margin-left: 5%;
+            align-items: center;
+            justify-content: center;
+        }
+        .fotografia-principal img{
+            max-width: 950px;
+            height: auto;
+            margin-bottom: 20px;
+            margin-right: 20px;
+            padding: 5px;
+            border-radius: 15px;
+        }
+        .aluguer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            border: #631726 2px solid;
+            border-radius: 15px;
+            height: auto;
+            padding: 10px;
+        }
+        .input-label {
+            padding: 5px;
+            flex-basis: 45%; 
+        }
+
+        .input-container {
+            display: flex;
+            align-items: center;
+        }
+        .input-container label{
+            width: 300px;
+            margin-right: 10px;
+            padding: 5px;
+            font-size: 1rem;
+            color: #d6b884;
+        }
+        .input-container input,
+        .input-container output,
+        select
+         {
+            font-family: Georgia;
+            text-align: center;
+            margin-right: 10px;
+            padding: 5px;
+            font-size: 1rem;
+            border-radius: 5px;
+            border: #631726 2px solid;
+        }
+        input[type="date"],
+        input[type="text"],
+        input[type="number"],
+        output,
+        select {
+            width: 100%; 
+        }
+        .btn-enviar{
+            background-color: #631726;
+            color: #fff;
+            font-size: 1rem;
+            border-radius: 5px;
+            width: 30%;
+            display: flex;
+            padding: 10px;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-left: 50%;
+            margin-top: 2%;
+            margin-bottom: 2%;
+            cursor: pointer;
+            transition: 1s;
+        }
+        .btn-enviar:hover{
+            background-color: #d6b884;
+            transform: scale(1.2, 1.2);
+        }
+        .car-details{
+            width: 45%;
+            margin-left: 5%;
+            margin-bottom: 20px;
+            padding: 20px;
+        }
+        .car-details h5{
+            font-size: 1.6rem;
+            color: #631726;
+            text-decoration: underline;
+            font-weight: bold;
+            margin-left: 5%;
+        }
+        .car-details p{
+            font-size: 1.3rem;
+                        
+
+        }
+        .paragrafos p {
+            display: inline-block;
+            width: 40%;
+            margin-right: 5%;
+            vertical-align: top;
+            font-size: 1.3rem;
+            
+        }
+        .paragrafos p:nth-child(odd) {
+            font-weight: bold;
+            color: #d6b884;   
+            margin-left: 5%;
+        }
+        /* Body */
+        /* Footer */
+        .footer {
+            display: flex;
+            justify-content: space-evenly;
+            width: 100%;
+            height: auto;
+            background-color: #fff;
+            border-top: #d6b884 solid 5px;
+            bottom: 0;
+            margin-top: auto;
+            margin-bottom: 0;
+        }
+        .coluna{
+            margin-top: 20px;
+            text-align: left;
+            justify-content: left;
+        }
+        .coluna a{
+            display: block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color:#631726;
+            font-size: 1.1rem;
+            transition: 1s;
+            text-align: center;
+        }
+        .coluna a:hover{
+            color: #d6b884;
+            background-color: #631726;
+            border-radius: 5px;
+            padding: 20px;
+        }
+        .coluna h5{
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+            color: #d6b884;
+            font-weight: bold;
+            width: auto;
+        }
+        .coluna p{
+            margin-bottom: 30px;
+            font-size: 1.2rem;
+            color: #631726;
+            font-weight: bold;
+        }
+        .rede-social{
+            width: 20px;
+            height: 20px;
+            margin-right: 5%;
+            vertical-align: middle;
+        }
+        #facebook{
+            background: -webkit-linear-gradient(#3b5998, #265994);
+            background: linear-gradient(#3b5998, #265994);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: left;
+        }
+        #instagram {
+            background: -webkit-linear-gradient(pink, purple);
+            background: linear-gradient(pink, purple);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: left;
+        }
+        #youtube {
+            background: -webkit-linear-gradient(red, #ff0000);
+            background: linear-gradient(red, #ff0000);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: left;
+        }
+        /* Footer */
+        .tipo-pagamento label {
+            font-size: 1rem;
+            color: #d6b884;
+            display: inline-block;
+            margin-bottom: 10px;
+            margin-right: 20px;
+            font-weight: bold;
+        }
+        .tipo-pagamento input[type="radio"] {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        
+        .info-pagamento{
+            padding: 5px;
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .info-pagamento .pagamento-visa,
+        .info-pagamento .pagamento-btc {
+            display: none;
+            padding: 10px;
+        }
+        .info-pagamento .pagamento-visa input,
+        .info-pagamento .pagamento-btc input{
+            font-family: Georgia;
+            width: 250px;
+            margin-left: 5px;
+            text-align: center;
+            border-radius: 5px;
+            padding: 3px;
+            font-size: 1rem
+        }
+        .info-pagamento .pagamento-visa label,
+        .info-pagamento .pagamento-btc label{
+            color: #d6b884;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <button onclick="voltarParaTopo()" id="botaoTopo" title="Voltar para o Topo"></button>
+    <div class="container">
+        <nav class="menu">
+            <div><a href="/home" class="logo-botao"> <img class="logo" src="https://i.postimg.cc/RVp0FwZ5/logo2.png" alt="Logotipo"> </a></div>
+            <div><a href="/cars" id="btn-menu">Veículos</a></div>
+            <div><a href="" id="btn-menu">Reservar</a></div>
+            <div><a href="" id="btn-menu">Agências</a></div>
+            <div><a href="" id="btn-menu">Serviços e Extras</a></div>
+            <div><a href="/sobre-nos" id="btn-menu">Sobre Nós</a></div>
+            <div id="area-cliente-dropdown" class="dropdown">
+                <button id="btn-area-cliente" class="dropbtn">
+                    {% if utilizador %}
+                        {{ utilizador.nome }}
+                    {% else %}
+                        Área do Cliente
+                    {% endif %}
+                </button>
+                <div id="area-cliente-dropdown-content" class="dropdown-content" style="display: none;">
+                    <a href="/perfil">Perfil</a>
+                    {% if not utilizador %}
+                        <a href="/login">Login</a>
+                        <a href="/registar">Registar</a>
+                    {% else %}
+                        <a href="/logout">Logout</a>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!-- Header -->
+    <!-- Body -->
+    <div class="titulo">
+        <h1>{{ veiculo.marca }} {{ veiculo.modelo }}</h1>
+    </div>
+    <div class="veiculo-container">
+        <div class="fotografia-principal">
+            {% if veiculo.foto_1 %}
+                <img class="veiculo-imagem" src="{{ encode_image(veiculo.foto_1) }}" alt="Foto do veículo">
+            {% endif %}
+            {% if veiculo.foto_2 %}
+                <img class="veiculo-imagem" src="{{ encode_image(veiculo.foto_2) }}" alt="Foto do veículo">
+            {% endif %}
+            {% if veiculo.foto_3 %}
+                <img class="veiculo-imagem" src="{{ encode_image(veiculo.foto_3) }}" alt="Foto do veículo">
+            {% endif %}
+            {% if veiculo.foto_4 %}
+                <img class="veiculo-imagem" src="{{ encode_image(veiculo.foto_4) }}" alt="Foto do veículo">
+            {% endif %}
+            {% if veiculo.foto_5 %}
+                <img class="veiculo-imagem" src="{{ encode_image(veiculo.foto_5) }}" alt="Foto do veículo">
+            {% endif %}
+            {% if veiculo.foto_6 %}
+                <img class="veiculo-imagem" src="{{ encode_image(veiculo.foto_6) }}" alt="Foto do veículo">
+            {% endif %}
+            <div class="aluguer">
+                <form action="/alugar" method="POST">
+                    <div class="input-label">
+                        <div class="input-container">
+                            <label for="dataInicio">Data de Início:</label>
+                            <input type="date" name="dataInicio" id="dataInicio">
+                        </div>
+                    </div>
+                    <div class="input-label">
+                        <div class="input-container">
+                            <label for="dataFim">Data de Fim:</label>
+                            <input type="date" name="dataFim" id="dataFim">
+                        </div>
+                    </div>
+                    <div class="input-label">
+                        <div class="input-container">
+                            <label for="estabelecimento_entrega">Estabelecimento de Entrega:</label>
+                            <select name="estabelecimento_entrega" id="estabelecimento_entrega">
+                                <option value="Rua Artilharia 1 105A, 1070-012 Lisboa">Rua Artilharia 1 105A, 1070-012 Lisboa</option><option value="Rua São Francisco 582, 2645-019 Alcabideche 2">Rua São Francisco 582, 2645-019 Alcabideche 2</option><option value="Avenida da Independência Lote1 1C, 4705-162 Braga">Avenida da Independência Lote1 1C, 4705-162 Braga</option><option value="Rua Manuel Pinto de Azevedo 585, 4149-010 Porto">Rua Manuel Pinto de Azevedo 585, 4149-010 Porto</option><option value="Estrada da Ribeira, Armazém 3 C, 2645-575 Alcabideche">Estrada da Ribeira, Armazém 3 C, 2645-575 Alcabideche</option><option value="N125 98.9, 8005-145 Faro">N125 98.9, 8005-145 Faro</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-label">
+                        <div class="input-container">
+                            <label for="estabelecimento_devolucao">Estabelecimento de Devolução:</label>
+                            <select name="estabelecimento_devolucao" id="estabelecimento_devolucao">
+                                <option value="Rua Artilharia 1 105A, 1070-012 Lisboa">Rua Artilharia 1 105A, 1070-012 Lisboa</option><option value="Rua São Francisco 582, 2645-019 Alcabideche 2">Rua São Francisco 582, 2645-019 Alcabideche 2</option><option value="Avenida da Independência Lote1 1C, 4705-162 Braga">Avenida da Independência Lote1 1C, 4705-162 Braga</option><option value="Rua Manuel Pinto de Azevedo 585, 4149-010 Porto">Rua Manuel Pinto de Azevedo 585, 4149-010 Porto</option><option value="Estrada da Ribeira, Armazém 3 C, 2645-575 Alcabideche">Estrada da Ribeira, Armazém 3 C, 2645-575 Alcabideche</option><option value="N125 98.9, 8005-145 Faro">N125 98.9, 8005-145 Faro</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="tipo-pagamento">
+                        <h5>Meio de Pagamento:</h5>
+                        <label for="pagamento-balcao"><input type="radio" name="tipo-pagamento" id="pagamento-balcao" value="Pagamento ao Balcão" checked>Pagamento ao Balcão</label><label for="pagamento-cartao"><input type="radio" name="tipo-pagamento" id="pagamento-cartao" value="Pagamento com Cartão">Pagamento com Cartão</label><label for="pagamento-bitcoin"><input type="radio" name="tipo-pagamento" id="pagamento-bitcoin" value="Pagamento com BitCoin">Pagamento com BitCoin</label>
+                    </div>
+                    <div class="info-pagamento">
+                        <div class="pagamento-visa">
+                            <label for="pagamento-visa">Nome do Cartão</label>
+                            <input type="text" name="nome_cartao">
+                        </div>
+                        <div class="pagamento-visa">
+                            <label for="pagamento-visa">Número do Cartão</label>
+                            <input type="text" name="nr_cartao">
+                        </div>
+                        <div class="pagamento-visa">
+                            <label for="pagamento-visa">Validade do Cartão (Mês/Ano)</label>
+                            <input type="text" name="validade_cartao" pattern="^(0[1-9]|1[0-2])\/([0-9]{2})$" placeholder="MM/YY">
+                        </div>
+                        <div class="pagamento-visa">
+                            <label for="pagamento-visa">CVC</label>
+                            <input type="text" name="cvc">
+                        </div>
+                        <div class="pagamento-btc">
+                            <label for="pagamento-btc">Endereço da Carteira de BitCoin</label>
+                            <input type="text" name="carteira_cripto">
+                        </div>
+                        <div class="pagamento-btc">
+                            <label for="pagamento-btc">Network da Carteira de BitCoin</label>
+                            <input type="text" name="network_cripto">
+                        </div>
+                    </div>
+                    <div class="input-label">
+                        <div style="display: none;"class="input-container">
+                            <label for="desconto">Código de Desconto:</label>
+                            <input type="text" name="desconto" id="desconto">
+                        </div>
+                    </div>
+                    <div class="input-label">
+                        <div class="input-container">
+                            <label for="valorDiario">Valor Diário (€):</label>
+                            <input type="number" name="valorDiario" id="valorDiario" step="0.01" value="{{ veiculo.valor_diario }}" readonly>
+                        </div>
+                    </div>
+                    <div class="input-label">
+                        <div class="input-container">
+                            <label for="valorTotal">Valor Total (€):</label>
+                            <output id="valorTotal" style="border: none; color: #ff0000; text-decoration: underline;"></output>
+                        </div>
+                        <input type="hidden" name="marca" value="{{ veiculo.marca }}">
+                        <input type="hidden" name="modelo" value="{{ veiculo.modelo }}">
+                        <input type="hidden" name="ano" value="{{ veiculo.ano }}">
+                        <input type="hidden" name="potencia" value="{{ veiculo.potencia }}">
+                        <input type="hidden" name="matricula" value="{{ veiculo.matricula }}">
+                        <p style="display: none;">{{ veiculo.disponivel }}</p>
+                        <p style="display: none;">{{ veiculo.data_inicio }}</p>
+                        <p style="display: none;">{{ veiculo.data_fim }}</p>
+                    </div>
+                    <p style="font-family: Georgia; font-size: 0.8rem; margin-top: 2%; margin-left: 2%; font-weight: bold; ">* Antes de prosseguir, por favor, assegure-se de que está autenticado.</p>
+                    <div class="input-label">
+                        <button class="btn-enviar" type="submit" name="avancar">Avançar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="car-details">
+            <h5>Características do Veículo</h5>
+            <div class="paragrafos">
+                <p>Marca:</p>
+                <p>{{ veiculo.marca }}</p>
+            </div>
+            <div class="paragrafos">
+                <p>Modelo:</p>
+                <p>{{ veiculo.modelo }}</p>
+            </div>
+            <div class="paragrafos">
+                <p>Categoria:</p>
+                <p>{{ veiculo.categoria.value }}</p>
+            </div>
+            <div class="paragrafos">
+                <p>Ano de Matrícula:</p>
+                <p>{{ veiculo.ano }}</p>
+            </div>
+            <div class="paragrafos">
+                <p>Potência do Motor:</p>
+                <p>{{ veiculo.potencia }}Hp</p>
+            </div>
+            <div class="paragrafos">
+                <p>Alcance Operacional:</p>
+                <p>{{ veiculo.autonomia }}Km</p>
+            </div>
+            <div class="paragrafos">
+                <p>Sistema de Climatização:</p>
+                <p>{{ veiculo.ac }}</p>
+            </div>
+            <div class="paragrafos">
+                <p>Sistema de Navegação por Satélite (GPS):</p>
+                <p>{{ veiculo.gps }}</p>
+            </div>
+            <div class="paragrafos">
+                <p>Locação:</p>
+                <p>{{ veiculo.locacao }} Lugares Disponíveis</p>
+            </div>
+            <div class="paragrafos">
+                <p>Serviços Adicionais:</p>
+                <p>{{ veiculo.servicos_adicionais }}</p>
+            </div>
+            <div class="paragrafos">
+                <p>Idade Mínima Requerida para Condução:</p>
+                <p>{{ veiculo.idade_minima }} Anos</p>
+            </div>
+            <div class="paragrafos">
+                <p>Valor diario:</p>
+                <p style="color: #ff0000; text-decoration: underline; font-size: 1.5rem;">{{ veiculo.valor_diario }} €</p>
+            </div>
+            <div >
+                <p style="font-weight:bold; font-size: 1.3rem; color: #d6b884; margin-left: 5%;" >Apresentação do veículo:</p>
+                <p style="width: 80%; margin-left: 5%;">{{ veiculo.sobre }}</p>
+            </div>
+        </div>
+    </div>
+    <!-- Body -->
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="coluna">
+            <img src="https://i.postimg.cc/RVp0FwZ5/logo2.png" alt="Logotipo">
+            <p>Copyright &copy; 2024 Luxury Wheels</p>
+            <a href="https://www.facebook.com" id="facebook" ><img src="https://i.postimg.cc/rs9yRfzj/face.png" alt="Facebook logo" class="rede-social">Facebook</a>
+            <a href="https://www.instagram.com" id="instagram"><img src="https://i.postimg.cc/Z5np8MpC/insta.png" alt="Instagram logo" class="rede-social">Instagram </a>
+            <a href="https://www.youtube.com" id="youtube"><img src="https://i.postimg.cc/vmv82QWh/youtube.png" alt="Youtube logo" class="rede-social">Youtube </a>
+        </div>
+        <div class="coluna">
+            <h5>Viaturas mais procurados</h5>
+            <a href="">1</a>
+            <a href="">2</a>
+            <a href="">3</a>
+            <a href="">4</a>
+            <a href="">5</a>
+        </div>
+        <div class="coluna">
+            <h5>Informações</h5>
+            <a href="/sobre-nos">Sobre Nós</a>
+            <a href="/contactos">Contactos</a>
+            <a href="">Perguntas Frequentes</a>
+            <a href="">Termos e Condições</a>
+            <a href="">Política de Privacidade</a>
+        </div>
+    </footer>
+    <!-- Footer -->
+    <script>
+        window.onscroll = function() {scrollFunction()};
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("botaoTopo").style.display = "block";
+            } else {
+                document.getElementById("botaoTopo").style.display = "none";
+            }
+        }
+
+        function voltarParaTopo() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0; 
+        }
+        function showDropdown() {
+            document.getElementById("area-cliente-dropdown-content").style.display = "block";
+        }
+
+        function hideDropdown() {
+            document.getElementById("area-cliente-dropdown-content").style.display = "none";
+        }
+        document.getElementById("btn-area-cliente").addEventListener("mouseover", showDropdown);
+        document.getElementById("area-cliente-dropdown").addEventListener("mouseleave", hideDropdown);
+
+        let slideIndex = 0;
+            carousel();
+
+            function carousel() {
+                let i;
+                let slides = document.getElementsByClassName("fotografia-principal")[0].getElementsByTagName("img");
+                for (i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                slideIndex++;
+                if (slideIndex > slides.length) {
+                    slideIndex = 1;
+                }
+                if (slides[slideIndex - 1].src.trim() !== "") {
+                    slides[slideIndex - 1].style.display = "block";
+                }
+                setTimeout(carousel, 5000); 
+            }
+
+            window.addEventListener('load', function() {
+            var imagens = document.querySelectorAll('.veiculo-imagem');
+
+            var maxWidth = 0;
+            imagens.forEach(function(imagem) {
+                if (imagem.width > maxWidth) {
+                    maxWidth = imagem.width;
+                }
+            });
+
+            imagens.forEach(function(imagem) {
+                imagem.style.width = maxWidth + 'px';
+            });
+        });
+        
+        function calcularValorTotal() {
+            var dataInicio = new Date(document.getElementById('dataInicio').value);
+            var dataFim = new Date(document.getElementById('dataFim').value);
+            var valorDiario = parseFloat(document.getElementById('valorDiario').value);
+            var codigoDesconto = document.getElementById('desconto').value.trim().toUpperCase(); 
+
+            if (!isNaN(dataInicio.getTime()) && !isNaN(dataFim.getTime()) && dataInicio <= dataFim && !isNaN(valorDiario)) {
+                var diffTime = Math.abs(dataFim - dataInicio);
+                var diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+                var valorTotal = valorDiario * diffDays;
+
+                if (codigoDesconto !== '' && codigoDesconto !== 'CUPAO') {
+                    if (codigoDesconto === 'OPENDAY') {
+                        valorTotal *= 0.5; // Desconto de 50%
+                    } else if (codigoDesconto === 'TRESMESES' && diffDays >= 90) {
+                        valorTotal *= 0.7; // Desconto de 30% para aluguel de pelo menos 3 meses
+                    } else if (codigoDesconto === 'ONEDAYOFF' && diffDays > 3) {
+                        valorTotal -= valorDiario; // Desconto igual ao valor diário para aluguel de pelo menos 3 dias
+                    }
+                }
+
+                document.getElementById('valorTotal').textContent = valorTotal.toFixed(2);
+            } else {
+                document.getElementById('valorTotal').textContent = "Por favor, preencha todas as datas corretamente.";
+            }
+        }
+
+        document.getElementById('dataInicio').addEventListener('input', calcularValorTotal);
+        document.getElementById('dataFim').addEventListener('input', calcularValorTotal);
+
+        calcularValorTotal();
+
+        document.getElementById('desconto').addEventListener('input', calcularValorTotal);
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const dataInicioInput = document.getElementById('dataInicio');
+            const dataFimInput = document.getElementById('dataFim');
+            const submitButton = document.querySelector('.btn-enviar');
+            
+            function verificarDatas() {
+                const dataInicio = dataInicioInput.value;
+                const dataFim = dataFimInput.value;
+                const dataInicioVeiculo = '{{ veiculo.data_inicio }}';
+                const dataFimVeiculo = '{{ veiculo.data_fim }}';
+                
+                let coincide = false;
+
+                for (let data = new Date(dataInicio); data <= new Date(dataFim); data.setDate(data.getDate() + 1)) {
+                    if (data >= new Date(dataInicioVeiculo) && data <= new Date(dataFimVeiculo)) {
+                        coincide = true;
+                        break;
+                    }
+                }
+
+                if (dataInicio && dataFim && !coincide) {
+                    submitButton.style.display = 'block';
+                } else {
+                    submitButton.style.display = 'none';
+                }
+            }
+
+            dataInicioInput.addEventListener('input', verificarDatas);
+            dataFimInput.addEventListener('input', verificarDatas);
+
+            verificarDatas();
+        });
+
+        const formPagamento = document.getElementById('form-pagamento');
+        const btnAvancar = document.getElementById('btn-avancar');
+
+        const tipoPagamentoRadios = document.querySelectorAll('input[name="tipo-pagamento"]');
+        const pagamentoVisa = document.querySelectorAll('.pagamento-visa');
+        const pagamentoBtc = document.querySelectorAll('.pagamento-btc');
+
+        tipoPagamentoRadios.forEach(radio => {
+            radio.addEventListener('change', () => {
+                const tipoPagamento = radio.value;
+
+                if (tipoPagamento === 'Pagamento com Cartão') {
+                    pagamentoVisa.forEach(element => {
+                        element.style.display = 'block';
+                    });
+                    pagamentoBtc.forEach(element => {
+                        element.style.display = 'none';
+                    });
+                } else if (tipoPagamento === 'Pagamento com BitCoin') {
+                    pagamentoBtc.forEach(element => {
+                        element.style.display = 'block';
+                    });
+                    pagamentoVisa.forEach(element => {
+                        element.style.display = 'none';
+                    });
+                } else {
+                    pagamentoVisa.forEach(element => {
+                        element.style.display = 'none';
+                    });
+                    pagamentoBtc.forEach(element => {
+                        element.style.display = 'none';
+                    });
+                }
+
+                // Verifica se deve mostrar ou ocultar o botão "Avançar"
+                const selectedPayment = document.querySelector('input[name="tipo-pagamento"]:checked');
+                btnAvancar.style.display = selectedPayment ? 'inline-block' : 'none';
+            });
+        });
+
+        formPagamento.addEventListener('submit', (event) => {
+            const selectedPayment = document.querySelector('input[name="tipo-pagamento"]:checked');
+            if (!selectedPayment) {
+                event.preventDefault(); // Impede o envio do formulário
+                alert('Por favor, selecione uma forma de pagamento.');
+            }
+        });
+
+        // Inicialmente esconde todos os campos exceto o primeiro
+        pagamentoVisa.forEach(element => {
+            element.style.display = 'none';
+        });
+        pagamentoBtc.forEach(element => {
+            element.style.display = 'none';
+        });
+    </script>
+</body>
+</html>

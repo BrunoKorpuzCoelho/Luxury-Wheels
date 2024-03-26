@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar novo veículo | Luxury Wheels Portugal</title>
+    <style>
+        body {
+            font-family: Georgia;
+            margin: 0;
+            padding: 0;
+            background-color: #eee;
+        }
+        /* Header */
+        .container {
+            width: 100%;
+            height: 104px;
+            top: 0;
+            left: 0;
+            background-color: #fff;
+            z-index: 1000;
+            border-bottom: #d6b884 solid 5px;
+        }
+        .logo-botao {
+            background-color: transparent;
+            border: #d6b884 solid 1px;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            transition: .5s;
+        }
+        .logo-botao:hover {
+            background-color: #d6b884;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            height: 100%;
+            padding: 0 20px;
+            margin-left: 30px;
+            margin-right: 50px;
+        }
+        .menu div {
+            display: inline-block;
+        }
+        .menu div:not(:last-child) {
+            margin-right: 2%;
+        }
+        .menu div:last-child {
+            margin-right: 0;
+            margin-left: auto;
+        }
+        #btn-menu {
+            font-family: Georgia;
+            text-decoration: none;
+            font-size: 22px;
+            color: #d6b884;
+            padding: 20px;
+            border-radius: 5px;
+            transition: .85s;
+        }
+        #btn-menu:hover {
+            color: #fff;
+            background-color: #631726;
+        }
+        .dropdown {
+        position: relative;
+        display: inline-block;
+        }
+        .dropbtn {
+            font-family: Georgia;
+            color: #d6b884;
+            background-color: #fff;
+            padding: 12px;
+            font-size: 22px;
+            border: none;
+            cursor: pointer;
+        }
+        .dropbtn:hover{
+            background-color: #631726;
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        .dropdown-content {
+            font-family: Georgia;
+            font-size: 18px;
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            z-index: 1;
+            right: 0;
+        }
+        .dropdown-content a {
+            color: #d6b884;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {
+            background-color: #631726;
+            color: #fff;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .dropdown-content button {
+            display: none;
+        }
+        .dropdown:hover .dropdown-content button {
+            display: inline-block;
+        }
+        #botaoTopo {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 50px;
+            background-color: transparent;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            z-index: 99;
+        }
+        #botaoTopo::before {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 40px;
+            background-image: url('https://i.postimg.cc/RZjDHfyJ/up-arrow-4889419.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        /* Header */
+        /* Body */
+        .form-container {
+            width: 50%;
+            margin: 2% auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #d6b884;
+            font-size: 1.7rem;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            color: #d6b884;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="date"],
+        textarea,
+        button {
+            margin-bottom: 10px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        input[type="file"]{
+            display: none;
+        }
+
+        select{
+            font-family: Georgia;
+            margin-bottom: 10px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .label-file {
+            display: inline-block;
+            border: 2.3px dashed #ccc;
+            color: #d6b884;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            margin-bottom: 15px;
+            transition: 1s;
+        }
+        .label-file:hover {
+            background-color: #d6b884;
+            color: #fff;
+            border: 2.3px dashed #d6b884;
+        }
+        input[type="checkbox"] {
+            margin-top: 5px;
+        }
+
+        button {
+            background-color: #631726;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+        button:hover {
+            background-color: #d6b884;
+        }
+
+        /* Body */
+        /* Scroll Bar */
+        ::-webkit-scrollbar {
+            width: 5px; 
+        }
+        ::-webkit-scrollbar-track {
+            background:#fff; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background:#d6b884; 
+            border-radius: 5px; 
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555; 
+        }
+        scrollbar {
+            width: 5px; 
+        }
+        scrollbar-track {
+            background: #fff; 
+        }
+        scrollbar-thumb {
+            background: #d6b884; 
+            border-radius: 5px; 
+        }
+        scrollbar-thumb:hover {
+            background: #555; 
+        }
+        /* Scroll Bar */
+        /* Footer */
+        .footer {
+            display: flex;
+            justify-content: space-evenly;
+            width: 100%;
+            height: auto;
+            background-color: #fff;
+            border-top: #d6b884 solid 5px;
+            bottom: 0;
+            margin-top: auto;
+            margin-bottom: 0;
+        }
+        .coluna{
+            margin-top: 20px;
+            text-align: left;
+            justify-content: left;
+        }
+        .coluna a{
+            display: block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color:#631726;
+            font-size: 1.1rem;
+            transition: 1s;
+            text-align: center;
+        }
+        .coluna a:hover{
+            color: #d6b884;
+            background-color: #631726;
+            border-radius: 5px;
+            padding: 20px;
+        }
+        .coluna h5{
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+            color: #d6b884;
+            font-weight: bold;
+            width: auto;
+        }
+        .coluna p{
+            margin-bottom: 30px;
+            font-size: 1.2rem;
+            color: #631726;
+            font-weight: bold;
+        }
+        .rede-social{
+            width: 20px;
+            height: 20px;
+            margin-right: 5%;
+            vertical-align: middle;
+        }
+        #facebook{
+            background: -webkit-linear-gradient(#3b5998, #265994);
+            background: linear-gradient(#3b5998, #265994);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: left;
+        }
+        #instagram {
+            background: -webkit-linear-gradient(pink, purple);
+            background: linear-gradient(pink, purple);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: left;
+        }
+        #youtube {
+            background: -webkit-linear-gradient(red, #ff0000);
+            background: linear-gradient(red, #ff0000);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <button onclick="voltarParaTopo()" id="botaoTopo" title="Voltar para o Topo"></button>
+    <div class="container">
+        <nav class="menu">
+            <div><a href="/home" class="logo-botao"> <img class="logo" src="https://i.postimg.cc/RVp0FwZ5/logo2.png" alt="Logotipo"> </a></div>
+            <div><a href="/cars" id="btn-menu">Veículos</a></div>
+            <div><a href="" id="btn-menu">Reservar</a></div>
+            <div><a href="" id="btn-menu">Agências</a></div>
+            <div><a href="" id="btn-menu">Serviços e Extras</a></div>
+            <div><a href="/sobre-nos" id="btn-menu">Sobre Nós</a></div>
+            <div id="area-cliente-dropdown" class="dropdown">
+                <button id="btn-area-cliente" class="dropbtn">
+                    {% if utilizador %}
+                        {{ utilizador.nome }}
+                    {% else %}
+                        Área do Cliente
+                    {% endif %}
+                </button>
+                <div id="area-cliente-dropdown-content" class="dropdown-content" style="display: none;">
+                    <a href="/perfil">Perfil</a>
+                    {% if not utilizador %}
+                        <a href="/login">Login</a>
+                        <a href="/registar">Registar</a>
+                    {% else %}
+                        <a href="/logout">Logout</a>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!-- Header -->
+    <!-- Body -->
+    <div class="form-container">
+        <h2>Formulário de Registro</h2>
+        <form method="post" enctype="multipart/form-data">
+            <label for="tipo_veiculo">Escolha o tipo de veículo:</label>
+            <select id="tipo_veiculo" name="tipo_veiculo" onchange="changeType()">
+                <option value="carro">Carro</option>
+                <option value="moto">Moto</option>
+            </select>
+
+            <label for="matricula">Matrícula:</label>
+            <input type="text" id="matricula" name="matricula" required>
+
+            <label for="marca">Marca:</label>
+            <input type="text" id="marca" name="marca" required>
+
+            <label for="modelo">Modelo:</label>
+            <input type="text" id="modelo" name="modelo" required>
+
+            <label for="ano">Ano:</label>
+            <input type="number" id="ano" name="ano" required>
+
+            <label for="gps">GPS:</label>
+            <input type="text" id="gps" name="gps" required>
+
+            <label for="locacao">Locação:</label>
+            <input type="number" id="locacao" name="locacao" required>
+
+            <label for="tipo_de_caixa">Tipo de Caixa:</label>
+            <input type="text" id="tipo_de_caixa" name="tipo_de_caixa" required>
+
+            <label for="ac">Ar Condicionado:</label>
+            <input type="text" id="ac" name="ac" required>
+
+            <label for="idade_minima">Idade Mínima:</label>
+            <input type="number" id="idade_minima" name="idade_minima" required>
+
+            <label for="numero_de_portas">Número de Portas:</label>
+            <input type="number" id="numero_de_portas" name="numero_de_portas" required>
+
+            <label for="potencia">Potência:</label>
+            <input type="text" id="potencia" name="potencia" required>
+
+            <label for="autonomia">Autonomia:</label>
+            <input type="text" id="autonomia" name="autonomia" required>
+
+            <label for="foto_1" class="label-file">Imagem nº1 (.png):</label>
+            <input type="file" id="foto_1" name="foto_1" accept=".png" required>
+
+            <label for="foto_2" class="label-file">Imagem nº2 (.png):</label>
+            <input type="file" id="foto_2" name="foto_2" accept="image/*" >
+
+            <label for="foto_3" class="label-file">Imagem nº3 (.png):</label>
+            <input type="file" id="foto_3" name="foto_3" accept=".png*" >
+
+            <label for="foto_4" class="label-file">Imagem nº4 (.png):</label>
+            <input type="file" id="foto_4" name="foto_4" accept=".png" >
+
+            <label for="foto_5" class="label-file">Imagem nº5 (.png):</label>
+            <input type="file" id="foto_5" name="foto_5" accept=".png" >
+
+            <label for="foto_6" class="label-file">Imagem nº6 (.png):</label>
+            <input type="file" id="foto_6" name="foto_6" accept=".png" >
+
+            <label for="categoria">Categoria:</label>
+            <select id="categoria" name="categoria" required>
+            </select>
+
+            <label for="valor_diario">Valor Diário:</label>
+            <input type="number" id="valor_diario" name="valor_diario" required>
+
+            <label for="data_inicio">Data de Início:</label>
+            <input type="date" id="data_inicio" name="data_inicio" >
+
+            <label for="data_fim">Data de Fim:</label>
+            <input type="date" id="data_fim" name="data_fim" >
+
+            <label for="sobre">Sobre:</label>
+            <textarea id="sobre" name="sobre" rows="4" ></textarea required>
+
+            <label for="servicos_adicionais">Serviços Adicionais:</label>
+            <input type="text" id="servicos_adicionais" name="servicos_adicionais" >
+
+            <button type="submit">Salvar</button>
+        </form>
+    </div>
+    <!-- Body -->
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="coluna">
+            <img src="https://i.postimg.cc/RVp0FwZ5/logo2.png" alt="Logotipo">
+            <p>Copyright &copy; 2024 Luxury Wheels</p>
+            <a href="https://www.facebook.com" id="facebook" ><img src="https://i.postimg.cc/rs9yRfzj/face.png" alt="Facebook logo" class="rede-social">Facebook</a>
+            <a href="https://www.instagram.com" id="instagram"><img src="https://i.postimg.cc/Z5np8MpC/insta.png" alt="Instagram logo" class="rede-social">Instagram </a>
+            <a href="https://www.youtube.com" id="youtube"><img src="https://i.postimg.cc/vmv82QWh/youtube.png" alt="Youtube logo" class="rede-social">Youtube </a>
+        </div>
+        <div class="coluna">
+            <h5>Viaturas mais procurados</h5>
+            <a href="">1</a>
+            <a href="">2</a>
+            <a href="">3</a>
+            <a href="">4</a>
+            <a href="">5</a>
+        </div>
+        <div class="coluna">
+            <h5>Informações</h5>
+            <a href="/sobre-nos">Sobre Nós</a>
+            <a href="/contactos">Contactos</a>
+            <a href="">Perguntas Frequentes</a>
+            <a href="">Termos e Condições</a>
+            <a href="">Política de Privacidade</a>
+        </div>
+    </footer>
+    <!-- Footer -->
+    <script>
+        window.onscroll = function() {scrollFunction()};
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("botaoTopo").style.display = "block";
+            } else {
+                document.getElementById("botaoTopo").style.display = "none";
+            }
+        }
+        function voltarParaTopo() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0; 
+        }
+        function showDropdown() {
+            document.getElementById("area-cliente-dropdown-content").style.display = "block";
+        }
+
+        function hideDropdown() {
+            document.getElementById("area-cliente-dropdown-content").style.display = "none";
+        }
+        document.getElementById("btn-area-cliente").addEventListener("mouseover", showDropdown);
+        document.getElementById("area-cliente-dropdown").addEventListener("mouseleave", hideDropdown);
+        function changeType() {
+            var select = document.getElementById("tipo_veiculo");
+            var categoria = document.getElementById("categoria");
+
+            categoria.innerHTML = "<option value=''>Selecione...</option>";
+
+            if (select.value === "carro") {
+                var categoriasCarro = ["todos", "eletrico", "prestige", "descapotavel", "hypersport", "suv", "hyperluxury", "unique", "hatchback", "hybrid", "limusine", "autocaravana"];
+                categoriasCarro.forEach(function(cat) {
+                    addOption(categoria, cat);
+                });
+            } else if (select.value === "moto") {
+                var categoriasMoto = ["todos","eletrico", "prestige", "chooper", "naked", "super_sport", "tourer", "atv", "jet_ski", "motocross"];
+                categoriasMoto.forEach(function(cat) {
+                    addOption(categoria, cat);
+                });
+            }
+        }
+
+        function addOption(select, value) {
+            var option = document.createElement("option");
+            option.text = value.charAt(0).toUpperCase() + value.slice(1); 
+            option.value = value;
+            select.add(option);
+        }
+
+        changeType(); 
+    </script>
+</body>
+</html>

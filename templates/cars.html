@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veículos | Luxury Wheels Portugal</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        body{
+            font-family: Georgia;
+            background-color: #fff;    
+        }
+        /* Header */
+        .container {
+            width: 100%;
+            height: 96px;
+            top: 0;
+            left: 0;
+            background-color: #fff;
+            z-index: 1000;
+            border-bottom: #d6b884 solid 5px;
+        }
+        .logo-botao {
+            background-color: transparent;
+            border: #d6b884 solid 1px;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            transition: .5s;
+        }
+        .logo-botao:hover {
+            background-color: #d6b884;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            height: 100%;
+            padding: 0 20px;
+            margin-left: 30px;
+            margin-right: 50px;
+        }
+        .menu div {
+            display: inline-block;
+        }
+        .menu div:not(:last-child) {
+            margin-right: 2%;
+        }
+        .menu div:last-child {
+            margin-right: 0;
+            margin-left: auto;
+        }
+        #btn-menu {
+            font-family: Georgia;
+            text-decoration: none;
+            font-size: 22px;
+            color: #d6b884;
+            padding: 20px;
+            border-radius: 5px;
+            transition: .85s;
+        }
+        #btn-menu:hover {
+            color: #fff;
+            background-color: #631726;
+        }
+        #botaoTopo {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 50px;
+            background-color: transparent;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            z-index: 99;
+        }
+        #botaoTopo::before {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 40px;
+            background-image: url('https://i.postimg.cc/RZjDHfyJ/up-arrow-4889419.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        ::-webkit-scrollbar {
+            width: 5px; 
+        }
+        ::-webkit-scrollbar-track {
+            background:#fff; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background:#d6b884; 
+            border-radius: 5px; 
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555; 
+        }
+        scrollbar {
+            width: 5px; 
+        }
+        scrollbar-track {
+            background: #fff; 
+        }
+        scrollbar-thumb {
+            background: #d6b884; 
+            border-radius: 5px; 
+        }
+        scrollbar-thumb:hover {
+            background: #555; 
+        }
+        
+        .filtrar-data {
+            width: auto;
+            height: 100px;
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            margin: 2% auto;
+            border: #631726 solid 3px;
+            border-radius: 15px;
+        }
+        .datas {
+            flex: 0 0 calc(10% - 20px); 
+            margin-bottom: 20px; 
+            text-align: center; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .texto {
+            padding: 10px;
+            background-color: #631726;
+            color: #fff;
+            width: 100%; 
+            text-align: center;
+            border-radius: 5px;
+            margin-bottom: 5%;
+        }
+
+        .input-date,
+        .hora-select {
+            font-family: Georgia;
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-top: 1%; 
+            background-color: #eee;
+            text-align: center;
+            border-radius: 5px;
+            box-sizing: border-box; 
+            appearance: none;
+            cursor: pointer;
+        }
+
+        .pesquisar-btn {
+            font-family: Georgia;
+            padding: 15px 30px;
+            margin-top: 12%; 
+            background-color: #631726;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.7s ease-in-out;
+        }
+        .pesquisar-btn:hover{
+            transform: scale(1.2);
+            background-color: #d6b884;
+            color: #fff;
+        }
+
+        /* Footer */
+        .footer {
+            display: flex;
+            justify-content: space-evenly;
+            width: 100%;
+            height: auto;
+            background-color: #fff;
+            border-top: #d6b884 solid 5px;
+            bottom: 0;
+            margin-top: auto;
+            margin-bottom: 0;
+        }
+        
+        .coluna{
+            margin-top: 20px;
+            text-align: left;
+            justify-content: left;
+        }
+        .coluna a{
+            display: block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color:#631726;
+            font-size: 1.1rem;
+            transition: 1s;
+            text-align: center;
+        }
+        .coluna a:hover{
+            color: #d6b884;
+            background-color: #631726;
+            border-radius: 5px;
+            padding: 20px;
+        }
+        .coluna h5{
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+            color: #d6b884;
+            font-weight: bold;
+            width: auto;
+        }
+        .coluna p{
+            margin-bottom: 30px;
+            font-size: 1.2rem;
+            color: #631726;
+            font-weight: bold;
+        }
+        .rede-social{
+            width: 20px;
+            height: 20px;
+            margin-right: 5%;
+            vertical-align: middle;
+        }
+        #facebook{
+            background: -webkit-linear-gradient(#3b5998, #265994);
+            background: linear-gradient(#3b5998, #265994);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: left;
+        }
+        #instagram {
+            background: -webkit-linear-gradient(pink, purple);
+            background: linear-gradient(pink, purple);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: left;
+        }
+        #youtube {
+            background: -webkit-linear-gradient(red, #ff0000);
+            background: linear-gradient(red, #ff0000);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: left;
+        }
+        .filtrar {
+            width: auto;
+            margin: 2% auto;
+            border: #631726 solid 3px;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .filtrar label {
+            color: #d6b884;
+            font-weight: bold;
+            margin-right: 10px;
+            margin-left: 10px;
+        }
+
+        .filtrar select,
+        .filtrar input[type="number"],
+        .filtrar input[type="text"] {
+            font-family: Georgia;
+            color: #631726;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: auto; 
+            
+        }
+        .filtrar input[type="number"]:first-child {
+        margin-right: 0;
+        }
+        .filtrar button {
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: #631726;
+            color: #fff;
+            cursor: pointer;
+            transition: 0.7s  ease-in-out;
+            margin-left: 10px;
+        }
+        .filtrar button:hover {
+            transform: scale(1.2);
+            background-color: #d6b884;
+            color: #fff;
+        }
+        .cars-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            width: 90%;
+            height: auto;
+            margin: 2% auto;
+        }
+
+        .car-row {
+            color:#d6b884;
+            text-shadow: 0 0 50px #d6b884;
+            display: flex;
+            width: 48%; 
+            height: 300px;
+            margin-bottom: 20px;
+            border: #631726 solid 3px;
+            background-color: #eee;
+            border-radius: 5px;
+            margin: .5%;
+            align-items: center;
+            justify-content: center;
+            transition: 1s;
+        }
+        .car-row:hover{
+            background-color: #631726cb;
+            color: #fff;
+        }
+        .car-row:hover .marca {
+            color: #fff;
+        }
+        .car {
+            width: 48%; 
+        }
+        .car-details {
+            font-weight: bold;
+            width: 48%; 
+            padding-left: 4%; 
+        }
+        .car img {
+            width: 360px; 
+            height: auto;
+            border-radius: 15px;
+            padding: 10px;
+        }
+        .car-details p {
+            width: 90%;
+        }
+        #valor{
+            color: #ff0000;  
+            margin-bottom: 5%;
+        }
+        .alugue-agora {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            background-color: #631726;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            width: 50%;
+            height:  20px;
+        }
+        .alugue-agora:hover{
+            background-color: #fff;
+            color: #631726;
+        }
+        .seta {
+            padding: 5px;
+            width: 20px;
+            height: 20px;
+            margin-right: 2%;
+        }
+        @media only screen and (max-width: 768px) {
+            .cars-container {
+                flex-direction: column; 
+                align-items: center; 
+            }
+            .car-row {
+                width: 90%; 
+                margin: 2% 0; 
+            }
+            .car,
+            .car-details {
+                width: 100%; 
+            }
+            .car img {
+                width: 100%; 
+                height: auto; 
+            }
+        }
+        .marca{
+            color: #631726;
+            font-weight: bold;
+            font-size: 1.3rem;
+            transition: 0.9s;
+        }
+        
+    </style>
+</head>
+<body>
+    <!--  scripts/JS  -->
+    <script>
+        window.onscroll = function() {
+            scrollFunction();
+        };
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("botaoTopo").style.display = "block";
+            } else {
+                document.getElementById("botaoTopo").style.display = "none";
+            }
+        }
+        function voltarParaTopo() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0; 
+        }
+        function limparVeiculos() {
+            $(".carros-container .car-row").hide(); 
+            $(".motos-container .car-row").hide(); 
+        }
+        function filtrar() {
+            var tipoVeiculo = $("#tipo_veiculo").val();
+            var marca = $("#marca").val();
+            var modeloSelecionado = $("#modelo").val();
+            var locacaoSelecionada = $("#locacao").val();
+            var precoMaximo = parseFloat($("#preco_maximo").val());
+            var categoriaSelecionada = $("#todas_categorias").val();
+
+            $(".car-row").each(function() {
+                var tipoVeiculoRegistro = $(this).closest(".cars-container").attr("id");
+                var marcaVeiculo = $(this).find(".marca").text();
+                var modeloVeiculo = $(this).find("#modelo").text().split(":")[1].trim();
+                var locacaoVeiculo = parseInt($(this).find("#locacao").text().split(":")[1].trim());
+                var valorDiario = parseFloat($(this).find("#valor").text().split(":")[1].trim().replace("€", ""));
+                var categoriaVeiculo = $(this).find("#categoria").text().split(":")[1].trim();
+
+                if ((tipoVeiculoRegistro === "carros-container" && tipoVeiculo === "carro") ||
+                    (tipoVeiculoRegistro === "motos-container" && tipoVeiculo === "moto") ||
+                    tipoVeiculo === "todas") {
+                    if ((marca === "todas" || marcaVeiculo.includes(marca)) &&
+                        (modeloSelecionado === "todas" || modeloSelecionado === modeloVeiculo) &&
+                        (locacaoSelecionada === "todas" || parseInt(locacaoSelecionada) === locacaoVeiculo) &&
+                        (categoriaSelecionada === "todas" || categoriaSelecionada === categoriaVeiculo) &&
+                        (isNaN(precoMaximo) || valorDiario <= precoMaximo)) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                } else {
+                    $(this).hide();
+                }
+            });
+        }
+
+
+
+
+        
+        function parseDate(dateString) {
+            var parts = dateString.split('-');
+            return new Date(parts[0], parts[1] - 1, parts[2]);
+        }
+
+
+        function compareDates(date1, date2) {
+            return date1.getTime() === date2.getTime();
+        }
+
+        function pesquisar() {
+            var dataInicioSelecionada = parseDate(document.getElementById("data_inicio").value);
+            var dataFimSelecionada = parseDate(document.getElementById("data_fim").value);
+
+            var carrosContainer = document.getElementById("carros-container");
+            var motosContainer = document.getElementById("motos-container");
+
+            var carros = carrosContainer.querySelectorAll(".car-row");
+            var motos = motosContainer.querySelectorAll(".car-row");
+
+            carros.forEach(function(carro) {
+                var dataInicioVeiculo = parseDate(carro.querySelector("#data-inicio").textContent);
+                var dataFimVeiculo = parseDate(carro.querySelector("#data-fim").textContent);
+
+                if ((dataInicioSelecionada >= dataInicioVeiculo && dataInicioSelecionada <= dataFimVeiculo) || 
+                    (dataFimSelecionada >= dataInicioVeiculo && dataFimSelecionada <= dataFimVeiculo) || 
+                    (dataInicioSelecionada <= dataInicioVeiculo && dataFimSelecionada >= dataFimVeiculo)) {
+                    carro.style.display = "none"; 
+                } else {
+                    carro.style.display = ""; 
+                }
+            });
+
+            motos.forEach(function(moto) {
+                var dataInicioVeiculo = parseDate(moto.querySelector("#data-inicio").textContent);
+                var dataFimVeiculo = parseDate(moto.querySelector("#data-fim").textContent);
+
+                if ((dataInicioSelecionada >= dataInicioVeiculo && dataInicioSelecionada <= dataFimVeiculo) || 
+                    (dataFimSelecionada >= dataInicioVeiculo && dataFimSelecionada <= dataFimVeiculo) || 
+                    (dataInicioSelecionada <= dataInicioVeiculo && dataFimSelecionada >= dataFimVeiculo)) {
+                    moto.style.display = "none"; 
+                } else {
+                    moto.style.display = ""; 
+                }
+            });
+        }
+    </script>
+    <!-- Header -->
+    <button onclick="voltarParaTopo()" id="botaoTopo" title="Voltar para o Topo"></button>
+    <!-- Header -->
+    <div class="container">
+        <nav class="menu">
+            <div><a href="/home" class="logo-botao"> <img class="logo" src="https://i.postimg.cc/RVp0FwZ5/logo2.png" alt="Logotipo"> </a></div>
+            <div><a href="/cars" id="btn-menu">Veículos</a></div>
+            <div><a href="" id="btn-menu">Reservar</a></div>
+            <div><a href="" id="btn-menu">Agências</a></div>
+            <div><a href="" id="btn-menu">Serviços e Extras</a></div>
+            <div><a href="/sobre-nos" id="btn-menu">Sobre Nós</a></div>
+            <div>
+                <button style="display: none;"></button>
+            </div>
+        </nav>
+    </div>
+    <!-- Header -->
+    <!-- Header -->
+    <!-- Body -->
+    <div class="filtrar-data">
+        <div class="datas">
+            <label for="data_inicio" class="texto">Data de Início</label>
+            <input type="date" id="data_inicio" class="input-date">
+        </div>
+        <div class="datas">
+            <label for="data_fim" class="texto">Data de Fim</label>
+            <input type="date" id="data_fim" class="input-date">
+        </div>
+        <div class="datas">
+            <label for="hora_inicio" class="texto">Hora de Início</label>
+            <select id="hora_inicio" class="hora-select">
+                <option value="00:00">00:00</option><option value="00:30">00:30</option><option value="01:00">01:00</option><option value="01:30">01:30</option><option value="02:00">02:00</option><option value="02:30">02:30</option><option value="03:00">03:00</option><option value="03:30">03:30</option><option value="04:00">04:00</option><option value="04:30">04:30</option><option value="05:00">05:00</option><option value="05:30">05:30</option><option value="06:00">06:00</option><option value="06:30">06:30</option><option value="07:00">07:00</option><option value="07:30">07:30</option><option value="08:00">08:00</option><option value="08:30">08:30</option><option value="09:00">09:00</option><option value="09:30">09:30</option><option value="10:00">10:00</option><option value="10:30">10:30</option><option value="11:00">11:00</option><option value="11:30">11:30</option><option value="12:00">12:00</option><option value="12:30">12:30</option><option value="13:00">13:00</option><option value="13:30">13:30</option><option value="14:00">14:00</option><option value="14:30">14:30</option><option value="15:00">15:00</option><option value="15:30">15:30</option><option value="16:00">16:00</option><option value="16:30">16:30</option><option value="17:00">17:00</option><option value="17:30">17:30</option><option value="18:00">18:00</option><option value="18:30">18:30</option><option value="19:00">19:00</option><option value="19:30">19:30</option><option value="20:00">20:00</option><option value="20:30">20:30</option><option value="21:00">21:00</option><option value="21:30">21:30</option><option value="22:00">22:00</option><option value="22:30">22:30</option><option value="23:00">23:00</option><option value="23:30">23:30</option>
+            </select>
+        </div>
+        <div class="datas">
+            <label for="hora_fim" class="texto">Hora de Fim</label>
+            <select id="hora_fim" class="hora-select">
+                <option value="00:00">00:00</option><option value="00:30">00:30</option><option value="01:00">01:00</option><option value="01:30">01:30</option><option value="02:00">02:00</option><option value="02:30">02:30</option><option value="03:00">03:00</option><option value="03:30">03:30</option><option value="04:00">04:00</option><option value="04:30">04:30</option><option value="05:00">05:00</option><option value="05:30">05:30</option><option value="06:00">06:00</option><option value="06:30">06:30</option><option value="07:00">07:00</option><option value="07:30">07:30</option><option value="08:00">08:00</option><option value="08:30">08:30</option><option value="09:00">09:00</option><option value="09:30">09:30</option><option value="10:00">10:00</option><option value="10:30">10:30</option><option value="11:00">11:00</option><option value="11:30">11:30</option><option value="12:00">12:00</option><option value="12:30">12:30</option><option value="13:00">13:00</option><option value="13:30">13:30</option><option value="14:00">14:00</option><option value="14:30">14:30</option><option value="15:00">15:00</option><option value="15:30">15:30</option><option value="16:00">16:00</option><option value="16:30">16:30</option><option value="17:00">17:00</option><option value="17:30">17:30</option><option value="18:00">18:00</option><option value="18:30">18:30</option><option value="19:00">19:00</option><option value="19:30">19:30</option><option value="20:00">20:00</option><option value="20:30">20:30</option><option value="21:00">21:00</option><option value="21:30">21:30</option><option value="22:00">22:00</option><option value="22:30">22:30</option><option value="23:00">23:00</option><option value="23:30">23:30</option>
+            </select>
+        </div>
+        <div class="datas">
+            <button type="button" onclick="pesquisar()" class="pesquisar-btn">Pesquisar</button>
+        </div>
+    </div>
+    <div class="filtrar">
+        
+            <label for="tipo_veiculo">Tipo de Veículo:</label>
+            <select id="tipo_veiculo" name="tipo_veiculo">
+                <option value="todas">Todos os veículos</option><option value="carro">Carros</option><option value="moto">Motas</option>
+            </select>
+
+            <label for="marca">Marca:</label>
+            <select id="marca" name="marca">
+                <option value="todas">Todas as Marcas</option><option value="Aston Martin">Aston Martin</option><option value="Audi">Audi</option> <option value="Bentley">Bentley</option><option value="Bmw">BMW</option><option value="Brabus">Brabus</option><option value="Bugatti">Bugatti</option><option value="Ducati">Ducati</option><option value="Ferrari">Ferrari</option> <option value="Ford">Ford</option><option value="Koenigsegg">Koenigsegg</option><option value="Lamborghini">Lamborghini</option><option value="Mclaren">Mclaren</option><option value="Mercedes">Mercedes</option><option value="Rolls-Royce">Rolls-Royce</option><option value="Porsche">Porsche</option><option value="Spyker">Spyker</option>
+            </select>
+
+            <label for="modelo">Modelo:</label>
+            <select id="modelo" name="modelo">
+                <option value="todas">Todos os Modelos</option><option value="4,5 Litre Blower">4,5 Litre Blower</option><option value="540 K Cabriolet">540 K Cabriolet</option><option value="600 Pullman Landaulet">600 Pullman Landaulet</option><option value="760">760</option><option value="Amg Gt Black Series">Amg Gt Black Series</option><option value="Aventador Svj Roadster">Aventador Svj Roadster</option><option value="Bentayga V8">Bentayga V8</option><option value="C8">C8</option><option value="Cc850">Cc850</option><option value="Centenario Roadster">Centenario Roadster</option><option value="Chiron Super Sport">Chiron Super Sport</option><option value="Cl 65 Amg">Cl 65 Amg</option><option value="Clk 55">Clk 55</option><option value="Continental Gtc Speed W12">Continental Gtc Speed W12</option><option value="Countach">Countach</option><option value="Countach Lp5000">Countach Lp5000</option><option value="Culinan">Culinan</option><option value="E-Tron Gt">E-Tron Gt</option><option value="E55 Amg">E55 Amg</option><option value="E63 Amg">E63 Amg</option><option value="Enzo">Enzo</option><option value="Eqs 53">Eqs 53</option><option value="Eqs 580">Eqs 580</option><option value="Eqv 300 Vip">Eqv 300 Vip</option><option value="F12">F12</option><option value="F150 Raptor Shelby">F150 Raptor Shelby</option><option value="F40">F40</option><option value="F8 Spider">F8 Spider</option><option value="F8 Tributo">F8 Tributo</option><option value="Flying Spur">Flying Spur</option><option value="G 63 Amg Brabus 6X6">G 63 Amg Brabus 6X6</option><option value="G65 Amg">G65 Amg</option><option value="Gle 63 Brabus Rocket 900">Gle 63 Brabus Rocket 900</option><option value="Gt">Gt</option><option value="Gtc4 Lusso">Gtc4 Lusso</option><option value="Huracán">Huracán</option><option value="I7">I7</option><option value="Jesko">Jesko</option><option value="Laferrari">Laferrari</option><option value="M1">M1</option><option value="M1 Coupe">M1 Coupe</option><option value="M2">M2</option><option value="M3 Cs">M3 Cs</option><option value="M3 E30">M3 E30</option><option value="M4 Cls">M4 Cls</option><option value="M5 Manhart Mh5 900">M5 Manhart Mh5 900</option><option value="M6">M6</option><option value="M8">M8</option><option value="Maybach Gls 600">Maybach Gls 600</option><option value="Mustang Boss 249">Mustang Boss 249</option><option value="Mustang Eleanor">Mustang Eleanor</option><option value="Mustang Mach-E">Mustang Mach-E</option><option value="Mustang Shelby Gt500">Mustang Shelby Gt500</option><option value="One-77">One-77</option><option value="Phantom">Phantom</option><option value="Portofino">Portofino</option><option value="Q7">Q7</option><option value="Q8 E-Tron">Q8 E-Tron</option><option value="R8 Cabrio">R8 Cabrio</option><option value="R8 Coupe">R8 Coupe</option><option value="Roma">Roma</option><option value="Rs Q8">Rs Q8</option><option value="Rs3">Rs3</option><option value="Rs6 Signature">Rs6 Signature</option><option value="Rs7">Rs7</option><option value="S 650 Maybach Pullman">S 650 Maybach Pullman</option><option value="Senna">Senna</option><option value="Sf90 Spider">Sf90 Spider</option><option value="Sf90 Stradale">Sf90 Stradale</option><option value="Sian Roadster">Sian Roadster</option><option value="Slr 722 Mso Mclaren Edition">Slr 722 Mso Mclaren Edition</option><option value="Slr Mclaren Stirling Moss Edition">Slr Mclaren Stirling Moss Edition</option><option value="Sls Amg Black Series">Sls Amg Black Series</option><option value="Speedtail">Speedtail</option><option value="Tt Rs">Tt Rs</option><option value="Urus Mansory Carbon">Urus Mansory Carbon</option><option value="Urus Mansory Venatus">Urus Mansory Venatus</option><option value="Vantage Db4">Vantage Db4</option><option value="Veyron 16.4">Veyron 16.4</option><option value="X5M">X5M</option><option value="X6M">X6M</option><option value="X7M">X7M</option><option value="Xm">Xm</option>
+                
+                
+            </select>
+            
+            <label for="locacao">Quantidade de ocupantes:</label>
+            <select id="locacao" name="locacao">
+                <option value="todas">Todos as opções</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7 ou mais</option>
+            </select>
+
+
+            <label for="preco_maximo">Preço Máximo:</label>
+            <input type="number" id="preco_maximo" name="preco_maximo" min="0" step="0.01">
+            
+            <label for="todas_categorias" id="categoria_label">Categoria:</label>
+            <select id="todas_categorias" name="categoria">
+                <option value="todas">Todas as Categorias</option><option value="Elétrico">Elétrico</option><option value="Prestige">Prestige</option><option value="Descapotável">Descapotável</option><option value="Hypersport">Hypersport</option><option value="SUV">SUV</option><option value="HyperLuxury">HyperLuxury</option><option value="Único">Único</option><option value="Hatchback">Hatchback</option><option value="Hybrid">Hybrid</option><option value="Limusine">Limusine</option><option value="Autocaravana">Autocaravana</option><option value="Chopper">Chopper</option><option value="Naked">Naked</option><option value="Super Sport">Super Sport</option><option value="Tourer">Tourer</option><option value="ATV">ATV</option><option value="Jet Ski">Jet Ski</option><option value="Motocross">Motocross</option>
+            </select>
+
+            <button onclick="filtrar()">Filtrar</button>
+        
+    </div>
+    <div class="carros-container cars-container" id="carros-container">
+        {% if carros %}
+            {% for veiculo in carros %}
+                <div class="car-row">
+                    <div class="car">
+                        <img src="{{ encode_image(veiculo.foto_1) }}" alt="Foto do veículo">
+                    </div>
+                    <div class="car-details">
+                        <p class="marca">{{ veiculo.marca }} {{ veiculo.modelo }}</p>
+                        <p id="data-inicio" style="display: none;">{{ veiculo.data_inicio }}</p>
+                        <p id="data-fim" style="display: none;">{{ veiculo.data_fim }}</p>
+                        <p id="modelo" style="display: none;">modelo : {{ veiculo.modelo }}</p>
+                        <p id="locacao" style="display: none;">locacao : {{ veiculo.locacao }}</p>
+                        <p id="categoria">Categoria: {{ veiculo.categoria.value }}</p>
+                        <p id="potencia">Potência: {{ veiculo.potencia }}Hp</p>
+                        <p id="registo">Registo: {{ veiculo.ano }}</p>
+                        <p id="idade-minima">Idade Mínima: {{ veiculo.idade_minima }} anos</p>
+                        <p id="valor">Valor Diário: {{ veiculo.valor_diario }}€</p>
+                        <a href="{{ url_for('alugar_veiculo', id=veiculo.id) }}" class="alugue-agora"><img class="seta" src="https://i.postimg.cc/mrmH6Lq0/arrow-14025536.png" alt="Seta">Alugue Agora</a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+    
+    <div class="motos-container cars-container" id="motos-container">
+        {% if motos %}
+            {% for veiculo in motos %}
+                <div class="car-row">
+                    <div class="car">
+                        <img src="{{ encode_image(veiculo.foto_1) }}" alt="Foto da moto">
+                    </div>
+                    <div class="car-details">
+                        <p class="marca">{{ veiculo.marca }} {{ veiculo.modelo }}</p>
+                        <p id="data-inicio" style="display: none;">{{ veiculo.data_inicio }}</p>
+                        <p id="data-fim" style="display: none;">{{ veiculo.data_fim }}</p>
+                        <p id="modelo" style="display: none;">modelo : {{ veiculo.modelo }}</p>
+                        <p id="locacao" style="display: none;">locacao : {{ veiculo.locacao }}</p>
+                        <p id="categoria">Categoria: {{ veiculo.categoria.value }}</p>
+                        <p id="potencia">Potência: {{ veiculo.potencia }}Hp</p>
+                        <p id="registo">Registo: {{ veiculo.ano }}</p>
+                        <p id="idade-minima">Idade Mínima: {{ veiculo.idade_minima }} anos</p>
+                        <p id="valor">Valor Diário: {{ veiculo.valor_diario }}€</p>
+                        <a href="{{ url_for('alugar_veiculo', id=veiculo.id) }}" class="alugue-agora"><img class="seta" src="https://i.postimg.cc/mrmH6Lq0/arrow-14025536.png" alt="Seta">Alugue Agora</a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+    
+    <!-- Body -->
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="coluna">
+            <img src="https://i.postimg.cc/RVp0FwZ5/logo2.png" alt="Logotipo">
+            <p>Copyright &copy; 2024 Luxury Wheels</p>
+            <a href="https://www.facebook.com" id="facebook" ><img src="https://i.postimg.cc/rs9yRfzj/face.png" alt="Facebook logo" class="rede-social">Facebook</a>
+            <a href="https://www.instagram.com" id="instagram"><img src="https://i.postimg.cc/Z5np8MpC/insta.png" alt="Instagram logo" class="rede-social">Instagram </a>
+            <a href="https://www.youtube.com" id="youtube"><img src="https://i.postimg.cc/vmv82QWh/youtube.png" alt="Youtube logo" class="rede-social">Youtube </a>
+        </div>
+        <div class="coluna">
+            <h5>Viaturas mais procurados</h5>
+            <a href="">1</a>
+            <a href="">2</a>
+            <a href="">3</a>
+            <a href="">4</a>
+            <a href="">5</a>
+            <a href="">6</a>
+            <a href="">7</a>
+            <a href="">8</a>
+            <a href="">9</a>
+            <a href="">0</a>
+        </div>
+        <div class="coluna">
+            <h5>Informações</h5>
+            <a href="/sobre-nos">Sobre Nós</a>
+            <a href="/contactos">Contactos</a>
+            <a href="">Perguntas Frequentes</a>
+            <a href="">Termos e Condições</a>
+            <a href="">Política de Privacidade</a>
+        </div>
+    </footer>
+    <!-- Footer -->
+
+    
+</body>
+</html>

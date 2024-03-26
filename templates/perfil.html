@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil | Luxury Wheels Portugal</title>
+    <style>
+        body{
+            font-family: Georgia;
+            background-color: #ccc;    
+        }
+        /* Header */
+        .container {
+            width: 100%;
+            height: 96px;
+            top: 0;
+            left: 0;
+            background-color: #fff;
+            z-index: 1000;
+            border-bottom: #d6b884 solid 5px;
+        }
+        .logo-botao {
+            background-color: transparent;
+            border: #d6b884 solid 1px;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            transition: .5s;
+        }
+        .logo-botao:hover {
+            background-color: #d6b884;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            height: 100%;
+            padding: 0 20px;
+            margin-left: 30px;
+            margin-right: 50px;
+        }
+        .menu div {
+            display: inline-block;
+        }
+        .menu div:not(:last-child) {
+            margin-right: 2%;
+        }
+        .menu div:last-child {
+            margin-right: 0;
+            margin-left: auto;
+        }
+        #btn-menu {
+            font-family: Georgia;
+            text-decoration: none;
+            font-size: 22px;
+            color: #d6b884;
+            padding: 20px;
+            border-radius: 5px;
+            transition: .85s;
+        }
+        #btn-menu:hover {
+            color: #fff;
+            background-color: #631726;
+        }
+        .dropdown {
+        position: relative;
+        display: inline-block;
+        }
+        .dropbtn {
+            font-family: Georgia;
+            color: #d6b884;
+            background-color: #fff;
+            padding: 12px;
+            font-size: 22px;
+            border: none;
+            cursor: pointer;
+        }
+        .dropbtn:hover{
+            background-color: #631726;
+            color: #fff;
+            border-radius: 5px;
+        }
+        .dropdown-content {
+            font-family: Georgia;
+            font-size: 18px;
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            z-index: 1;
+            right: 0;
+        }
+        .dropdown-content a {
+            color: #d6b884;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {
+            background-color: #631726;
+            color: #fff;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .dropdown-content button {
+            display: none;
+        }
+        .dropdown:hover .dropdown-content button {
+            display: inline-block;
+        }
+        /* Header */
+        /* Body */
+        .perfil-containers{
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            margin: 2% auto;
+            padding: 20px;
+            width: 90%;
+            height: auto;
+        }
+        .info-container{
+            background-color: #fff;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-evenly;
+            border: #631726 3px solid;
+            border-radius: 15px;
+            width: auto;
+            padding: 20px;
+            flex-direction: column;
+        }
+        .info-container h1{
+            margin: 2% auto;
+            margin-bottom: 40px;
+            font-size: 1.5rem;
+            color: #631726;
+        }
+        .info-container label{
+            color: #d6b884;
+            width: auto;
+            text-align: left;
+            font-size: 1.3rem;
+            margin-right: 30px;
+            justify-content: center;
+            align-items: center;
+            
+        }
+        .info-container input{
+            font-family: Georgia;
+            font-size: 1.0rem;
+            width: auto;
+            height: 10px;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            border: #631726 2px solid;
+        }
+        #btn-atualizar{
+            font-size: 1rem;
+            width: 50%;
+            display: block;
+            margin: 2% auto;
+            padding: 10px;
+            background-color: #631726;
+            color: #fff;
+            border-radius: 5px;
+            transition: 0.8s;
+            cursor: pointer;
+        }
+        #btn-atualizar:hover{
+            background-color: #d6b884;
+        }
+        /* Body */
+        /* Footer */
+        .footer {
+            display: flex;
+            justify-content: space-evenly;
+            width: 100%;
+            height: auto;
+            background-color: #fff;
+            border-top: #d6b884 solid 5px;
+            bottom: 0;
+            margin-top: auto;
+            margin-bottom: 0;
+        }
+        .coluna{
+            margin-top: 20px;
+            text-align: left;
+            justify-content: left;
+        }
+        .coluna a{
+            display: block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color:#631726;
+            font-size: 1.1rem;
+            transition: 1s;
+            text-align: center;
+        }
+        .coluna a:hover{
+            color: #d6b884;
+            background-color: #631726;
+            border-radius: 5px;
+            padding: 20px;
+        }
+        .coluna h5{
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+            color: #d6b884;
+            font-weight: bold;
+            width: auto;
+        }
+        .coluna p{
+            margin-bottom: 30px;
+            font-size: 1.2rem;
+            color: #631726;
+            font-weight: bold;
+        }
+        .rede-social{
+            width: 20px;
+            height: 20px;
+            margin-right: 5%;
+            vertical-align: middle;
+        }
+        #facebook{
+            background: -webkit-linear-gradient(#3b5998, #265994);
+            background: linear-gradient(#3b5998, #265994);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: left;
+        }
+        #instagram {
+            background: -webkit-linear-gradient(pink, purple);
+            background: linear-gradient(pink, purple);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: left;
+        }
+        #youtube {
+            background: -webkit-linear-gradient(red, #ff0000);
+            background: linear-gradient(red, #ff0000);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: left;
+        }
+        /* Footer */
+        /* Scroll Bar */
+        ::-webkit-scrollbar {
+            width: 5px; 
+        }
+        ::-webkit-scrollbar-track {
+            background:#fff; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background:#d6b884; 
+            border-radius: 5px; 
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555; 
+        }
+        scrollbar {
+            width: 5px; 
+        }
+        scrollbar-track {
+            background: #fff; 
+        }
+        scrollbar-thumb {
+            background: #d6b884; 
+            border-radius: 5px; 
+        }
+        scrollbar-thumb:hover {
+            background: #555; 
+        }
+        /* Scroll Bar */
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="container">
+        <nav class="menu">
+            <div><a href="/home" class="logo-botao"> <img class="logo" src="https://i.postimg.cc/RVp0FwZ5/logo2.png" alt="Logotipo"> </a></div>
+            <div><a href="/cars" id="btn-menu">Veículos</a></div>
+            <div><a href="" id="btn-menu">Reservar</a></div>
+            <div><a href="" id="btn-menu">Agências</a></div>
+            <div><a href="" id="btn-menu">Serviços e Extras</a></div>
+            <div><a href="/sobre-nos" id="btn-menu">Sobre Nós</a></div>
+            <div id="area-cliente-dropdown" class="dropdown">
+                <button id="btn-area-cliente" class="dropbtn">
+                    {% if utilizador %}
+                        {{ utilizador.nome }}
+                    {% else %}
+                        Área do Cliente
+                    {% endif %}
+                </button>
+                <div id="area-cliente-dropdown-content" class="dropdown-content" style="display: none;">
+                    <a href="/perfil">Perfil</a>
+                    {% if not utilizador %}
+                        <a href="/login">Login</a>
+                        <a href="/registar">Registar</a>
+                    {% else %}
+                        <a href="/logout">Logout</a>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!-- Header -->
+    <!-- Body-->
+    <div class="perfil-containers">
+        <div class="info-container">
+            <h1>Informação Pessoal</h1>
+            <form action="/perfil" method="POST">
+                <div class="info">
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" name="nome" value="{{ utilizador.nome }}">
+                </div>
+                <div class="info">
+                    <label for="nif">NIF:</label>
+                    <input type="text" id="nif" name="nif" value="{{ utilizador.nif }}">
+                </div>
+                <div class="info">
+                    <label for="email">Email:</label>
+                    <input type="text" id="email" name="email" value="{{ utilizador.email }}">
+                </div>
+                <div class="info">
+                    <label for="contacto">Contacto:</label>
+                    <input type="text" id="contacto" name="contacto" value="{{ utilizador.telefone }}">
+                </div>
+                <div class="password">
+                    <label for="password">Nova password:</label>
+                    <input type="password" id="password" name="password">
+                </div>
+                <button id="btn-atualizar" type="submit" name="atualizar" >Atualizar</button>
+            </form>   
+        </div>
+        <div class="info-container">
+            <h1>Detalhes de Pagamento</h1>
+            <form action="/detalhes_pagamento" method="POST">
+                <div class="info">
+                    <label for="nome_cartao">Nome no cartão:</label>
+                    <input type="text" id="nome_cartao" name="nome_cartao" value="{{ utilizador.nome_cartao }}">
+                </div>
+                <div class="info">
+                    <label for="nr_cartao">Numero do cartão:</label>
+                    <input type="text" id="nr_cartao" name="nr_cartao" value="{{ utilizador.nr_cartao }}">
+                </div>
+                <div class="info">
+                    <label for="validade_cartao">Validade cartão:</label>
+                    <input type="text" id="validade_cartao" name="validade_cartao" value="{{ utilizador.validade_cartao }}">
+                </div>
+                <div class="info">
+                    <label for="cvc">CVC:</label>
+                    <input type="text" id="cvc" name="cvc" value="{{ utilizador.cvc }}">
+                </div>
+                <div class="info">
+                    <label for="carteira_cripto">Carteira de Bitcoin:</label>
+                    <input type="text" id="carteira_cripto" name="carteira_cripto" value="{{ utilizador.carteira_cripto }}">
+                </div>
+                <button id="btn-atualizar" type="submit" name="detalhes_pagamento" >Atualizar</button>
+            </form>
+        </div>
+    </div>
+    <!-- Body-->
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="coluna">
+            <img src="https://i.postimg.cc/RVp0FwZ5/logo2.png" alt="Logotipo">
+            <p>Copyright &copy; 2024 Luxury Wheels</p>
+            <a href="https://www.facebook.com" id="facebook" ><img src="https://i.postimg.cc/rs9yRfzj/face.png" alt="Facebook logo" class="rede-social">Facebook</a>
+            <a href="https://www.instagram.com" id="instagram"><img src="https://i.postimg.cc/Z5np8MpC/insta.png" alt="Instagram logo" class="rede-social">Instagram </a>
+            <a href="https://www.youtube.com" id="youtube"><img src="https://i.postimg.cc/vmv82QWh/youtube.png" alt="Youtube logo" class="rede-social">Youtube </a>
+        </div>
+        <div class="coluna">
+            <h5>Viaturas mais procurados</h5>
+            <a href="">1</a>
+            <a href="">2</a>
+            <a href="">3</a>
+            <a href="">4</a>
+            <a href="">5</a>
+        </div>
+        <div class="coluna">
+            <h5>Informações</h5>
+            <a href="/sobre-nos">Sobre Nós</a>
+            <a href="/contactos">Contactos</a>
+            <a href="">Perguntas Frequentes</a>
+            <a href="">Termos e Condições</a>
+            <a href="">Política de Privacidade</a>
+        </div>
+    </footer>
+    <!-- Footer -->
+    <script>
+        function showDropdown() {
+            document.getElementById("area-cliente-dropdown-content").style.display = "block";
+        }
+
+        function hideDropdown() {
+            document.getElementById("area-cliente-dropdown-content").style.display = "none";
+        }
+        document.getElementById("btn-area-cliente").addEventListener("mouseover", showDropdown);
+        document.getElementById("area-cliente-dropdown").addEventListener("mouseleave", hideDropdown);
+    </script>
+</body>
+</html>

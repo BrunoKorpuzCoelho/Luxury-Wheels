@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registar | Luxury Wheels Portugal</title>
+    <style>
+        body{
+            background-image: url(https://i.postimg.cc/Pr8qvtDL/marbel.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        /* Header */
+        .container {
+            width: 100%;
+            height: 96px;
+            top: 0;
+            left: 0;
+            background-color: #fff;
+            z-index: 1000;
+            border-bottom: #d6b884 solid 5px;
+        }
+        .logo-botao {
+            background-color: transparent;
+            border: #d6b884 solid 1px;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            transition: .5s;
+        }
+        .logo-botao:hover {
+            background-color: #d6b884;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            height: 100%;
+            padding: 0 20px;
+            margin-left: 30px;
+            margin-right: 50px;
+        }
+        .menu div {
+            display: inline-block;
+        }
+        .menu div:not(:last-child) {
+            margin-right: 2%;
+        }
+        .menu div:last-child {
+            margin-right: 0;
+            margin-left: auto;
+        }
+        #btn-menu {
+            font-family: Georgia;
+            text-decoration: none;
+            font-size: 22px;
+            color: #d6b884;
+            padding: 20px;
+            border-radius: 5px;
+            transition: .85s;
+        }
+        #btn-menu:hover {
+            color: #fff;
+            background-color: #631726;
+        }
+        .dropdown {
+        position: relative;
+        display: inline-block;
+        }
+        .dropbtn {
+            font-family: Georgia;
+            color: #d6b884;
+            background-color: #fff;
+            padding: 12px;
+            font-size: 22px;
+            border: none;
+            cursor: pointer;
+        }
+        .dropbtn:hover{
+            background-color: #631726;
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        .dropdown-content {
+            font-family: Georgia;
+            font-size: 18px;
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            z-index: 1;
+            right: 0;
+        }
+        .dropdown-content a {
+            color: #d6b884;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {
+            background-color: #631726;
+            color: #fff;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .dropdown-content button {
+            display: none;
+        }
+        .dropdown:hover .dropdown-content button {
+            display: inline-block;
+        }
+        /* Header */
+        /* Scroll Bar */
+        ::-webkit-scrollbar {
+            width: 5px; 
+        }
+        ::-webkit-scrollbar-track {
+            background:#fff; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background:#d6b884; 
+            border-radius: 5px; 
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555; 
+        }
+        scrollbar {
+            width: 5px; 
+        }
+        scrollbar-track {
+            background: #fff; 
+        }
+        scrollbar-thumb {
+            background: #d6b884; 
+            border-radius: 5px; 
+        }
+        scrollbar-thumb:hover {
+            background: #555; 
+        }
+        /* Scroll Bar */
+        .registar-container {
+            background-color: #ffffffb7;
+            text-align: center;
+            margin: 0 auto;
+            margin-top: 5%;
+            margin-bottom: 5%;
+            border: 3px solid #631726;
+            width: 400px;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .registar label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1rem;
+            color: #d6b884;
+        }
+        .registar input {
+            font-family: Georgia;
+            width: 90%;
+            padding: 8px;
+            font-size: 1.0rem;
+            margin-bottom: 15px;
+            text-align: center;
+            border: 2px solid #631726;
+            border-radius: 5px;
+        }
+        .registar button {
+            width: 90%;
+            font-size: 1.2rem;
+            padding: 10px;
+            color: #fff;
+            background-color: #d6b884;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;  
+        }
+        .registar button:hover {
+            color: #fff;
+            background-color: #631726;
+        }
+        .forms{
+            margin-top: 20px;
+        }
+        #btn-registar{
+            width: 45%;
+            font-size: 1.2rem;
+            font-family: Georgia;
+            color: #631726;
+            background-color: #d6b884;
+            transition: 1s;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+        }
+        #btn-registar:hover{
+            color: #d6b884;
+            background-color: #631726;
+        }
+        .h1{
+            font-family: Georgia;
+            color: #d6b884;
+            font-size: 1.4rem;
+        }
+        /* Footer */
+        .footer {
+            display: flex;
+            justify-content: space-evenly;
+            width: 100%;
+            height: auto;
+            background-color: #fff;
+            border-top: #d6b884 solid 5px;
+            bottom: 0;
+            margin-top: auto;
+            margin-bottom: 0;
+        }
+        .coluna{
+            margin-top: 20px;
+            text-align: left;
+            justify-content: left;
+        }
+        .coluna a{
+            display: block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color:#631726;
+            font-size: 1.1rem;
+            transition: 1s;
+            text-align: center;
+        }
+        .coluna a:hover{
+            color: #d6b884;
+            background-color: #631726;
+            border-radius: 5px;
+            padding: 20px;
+        }
+        .coluna h5{
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+            color: #d6b884;
+            font-weight: bold;
+            width: auto;
+        }
+        .coluna p{
+            margin-bottom: 30px;
+            font-size: 1.2rem;
+            color: #631726;
+            font-weight: bold;
+        }
+        .rede-social{
+            width: 20px;
+            height: 20px;
+            margin-right: 5%;
+            vertical-align: middle;
+        }
+        #facebook{
+            background: -webkit-linear-gradient(#3b5998, #265994);
+            background: linear-gradient(#3b5998, #265994);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: left;
+        }
+        #instagram {
+            background: -webkit-linear-gradient(pink, purple);
+            background: linear-gradient(pink, purple);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: left;
+        }
+        #youtube {
+            background: -webkit-linear-gradient(red, #ff0000);
+            background: linear-gradient(red, #ff0000);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: left;
+        }
+        /* Footer */
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="container">
+        <nav class="menu">
+            <div><a href="/home" class="logo-botao"> <img class="logo" src="https://i.postimg.cc/RVp0FwZ5/logo2.png" alt="Logotipo"> </a></div>
+            <div><a href="/cars" id="btn-menu">Veículos</a></div>
+            <div><a href="" id="btn-menu">Reservar</a></div>
+            <div><a href="" id="btn-menu">Agências</a></div>
+            <div><a href="" id="btn-menu">Serviços e Extras</a></div>
+            <div><a href="/sobre-nos" id="btn-menu">Sobre Nós</a></div>
+            <div id="area-cliente-dropdown" class="dropdown">
+                <button id="btn-area-cliente" class="dropbtn">
+                    {% if utilizador %}
+                        {{ utilizador.nome }}
+                    {% else %}
+                        Área do Cliente
+                    {% endif %}
+                </button>
+                <div id="area-cliente-dropdown-content" class="dropdown-content" style="display: none;">
+                    <a href="/perfil">Perfil</a>
+                    {% if not utilizador %}
+                        <a href="/login">Login</a>
+                        <a href="/registar">Registar</a>
+                    {% else %}
+                        <a href="/logout">Logout</a>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!-- Header -->
+    <div class="registar-container">
+        <h1 class="h1">Registar novo usuário</h1>
+        <div class="forms"></div>
+            <form id="registar-form" class="registar" action="/registar" method="post">
+
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" required>
+
+                <label for="email">Email:</label>
+                <input type="text" id="email" name="email" required>
+
+                <label for="telefone">Telefone:</label>
+                <input type="text" id="telefone" name="telefone" required>
+
+                <label for="novo-username">Username:</label>
+                <input type="text" id="novo-username" name="username" required>
+
+                <label for="nova-password">Nova Password:</label>
+                <input type="password" id="nova-password" name="password" required>
+
+                <label for="tipo_user" style="display: none;"></label>
+                <input type="text" id="tipo_user" name="tipo_user" style="display: none;">
+
+                <label for="nome_cartao" style="display: none;"></label>
+                <input type="text" id="nome_cartao" name="nome_cartao" style="display: none;">
+
+                <label for="validade_cartao" style="display: none;">:</label>
+                <input type="text" id="validade_cartao" name="validade_cartao" style="display: none;">
+
+                <label for="cvc" style="display: none;"></label>
+                <input type="text" id="cvc" name="cvc" style="display: none;">
+
+                <label for="nif" style="display: none;"></label>
+                <input type="text" id="nif" name="nif" style="display: none;">
+
+                <label for="carteira_cripto" style="display: none;"></label>
+                <input type="text" id="carteira_cripto" name="carteira_cripto" style="display: none;">
+
+                <label for="nr_cartao" style="display: none;"></label>
+                <input type="text" id="nr_cartao" name="nr_cartao" style="display: none;">
+
+                <button type="submit" name="registar">Registar</button>
+            </form>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="coluna">
+            <img src="https://i.postimg.cc/RVp0FwZ5/logo2.png" alt="Logotipo">
+            <p>Copyright &copy; 2024 Luxury Wheels</p>
+            <a href="https://www.facebook.com" id="facebook" ><img src="https://i.postimg.cc/rs9yRfzj/face.png" alt="Facebook logo" class="rede-social">Facebook</a>
+            <a href="https://www.instagram.com" id="instagram"><img src="https://i.postimg.cc/Z5np8MpC/insta.png" alt="Instagram logo" class="rede-social">Instagram </a>
+            <a href="https://www.youtube.com" id="youtube"><img src="https://i.postimg.cc/vmv82QWh/youtube.png" alt="Youtube logo" class="rede-social">Youtube </a>
+        </div>
+        <div class="coluna">
+            <h5>Viaturas mais procurados</h5>
+            <a href="">1</a>
+            <a href="">2</a>
+            <a href="">3</a>
+            <a href="">4</a>
+            <a href="">5</a>
+        </div>
+        <div class="coluna">
+            <h5>Informações</h5>
+            <a href="/sobre-nos">Sobre Nós</a>
+            <a href="/contactos">Contactos</a>
+            <a href="">Perguntas Frequentes</a>
+            <a href="">Termos e Condições</a>
+            <a href="">Política de Privacidade</a>
+        </div>
+    </footer>
+    <!-- Footer -->
+    <script>
+        function showDropdown() {
+            document.getElementById("area-cliente-dropdown-content").style.display = "block";
+        }
+    
+        function hideDropdown() {
+            document.getElementById("area-cliente-dropdown-content").style.display = "none";
+        }
+        document.getElementById("btn-area-cliente").addEventListener("mouseover", showDropdown);
+        document.getElementById("area-cliente-dropdown").addEventListener("mouseleave", hideDropdown);
+    </script>
+</body>
+</html>

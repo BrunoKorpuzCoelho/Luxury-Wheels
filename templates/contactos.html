@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contactos | Luxury Wheels Portugal</title>
+    <style>
+        body{
+            font-family: Georgia;
+            background-color: #ccc; 
+        }
+        /* Header */
+        .container {
+            width: 100%;
+            height: 96px;
+            top: 0;
+            left: 0;
+            background-color: #fff;
+            z-index: 1000;
+            border-bottom: #d6b884 solid 5px;
+        }
+        .logo-botao {
+            background-color: transparent;
+            border: #d6b884 solid 1px;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            transition: .5s;
+        }
+        .logo-botao:hover {
+            background-color: #d6b884;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            height: 100%;
+            padding: 0 20px;
+            margin-left: 30px;
+            margin-right: 50px;
+        }
+        .menu div {
+            display: inline-block;
+        }
+        .menu div:not(:last-child) {
+            margin-right: 2%;
+        }
+        .menu div:last-child {
+            margin-right: 0;
+            margin-left: auto;
+        }
+        #btn-menu {
+            font-family: Georgia;
+            text-decoration: none;
+            font-size: 22px;
+            color: #d6b884;
+            padding: 20px;
+            border-radius: 5px;
+            transition: .85s;
+        }
+        #btn-menu:hover {
+            color: #fff;
+            background-color: #631726;
+        }
+        .dropdown {
+        position: relative;
+        display: inline-block;
+        }
+        .dropbtn {
+            font-family: Georgia;
+            color: #d6b884;
+            background-color: #fff;
+            padding: 12px;
+            font-size: 22px;
+            border: none;
+            cursor: pointer;
+        }
+        .dropbtn:hover{
+            background-color: #631726;
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        .dropdown-content {
+            font-family: Georgia;
+            font-size: 18px;
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            z-index: 1;
+            right: 0;
+        }
+        .dropdown-content a {
+            color: #d6b884;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {
+            background-color: #631726;
+            color: #fff;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .dropdown-content button {
+            display: none;
+        }
+        .dropdown:hover .dropdown-content button {
+            display: inline-block;
+        }
+        #botaoTopo {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 50px;
+            background-color: transparent;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            z-index: 99;
+        }
+        #botaoTopo::before {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 40px;
+            background-image: url('https://i.postimg.cc/RZjDHfyJ/up-arrow-4889419.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        /* Header */
+        /* Body */
+        .titulo{
+            color:#fff;
+            background-color: #631726;
+            width:200px;
+            border-top-left-radius: 35px;
+            border-bottom-right-radius: 35px;
+            margin: 1% auto;
+            padding: 5px;
+            text-align: center;
+            justify-content: center;
+            box-shadow: #fff 3px 3px 10px 10px;
+        }
+        .body-container{
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            text-align: left;
+            width: 80%;
+            height: auto;
+            margin: 2% auto;
+        }
+        .body-container h5{
+            font-size: 2.2rem;
+            margin-left: 2.5%;
+            color:#631726;
+        }
+        .body-container p{
+            margin-left: 5%;
+            color: #fff;
+            font-size: 1.4rem;
+            font-weight:lighter;
+            text-decoration: underline;
+        }
+        #info{
+            color: #631726;
+            font-size: 1.6rem;
+            font-weight: 450;
+            text-decoration: none;
+        }
+        .coluna-1{
+            width: 50%;
+            height: auto;
+            padding: 20px;
+        }
+        .social {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 20px;
+            margin-top: 50px;
+            margin-bottom: 50px;
+            margin-left: 5%;
+        }
+        .social a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            font-size: 1.35rem;
+            color: #fff;
+            margin-right: 20px;
+        }
+        .social-img {
+            width: 30px; 
+            height: 30px;
+            margin-right: 5px; 
+            
+            box-shadow:#fff 3px 3px 10px 3px;
+        }
+        .social:hover{
+            padding: 20px;
+            width: 53%;
+            box-shadow: #fff 3px 3px 10px 10px;
+        }
+        .coluna-2{
+            background-color: #eee;
+            width: 50%;
+            height: auto;
+            padding: 20px;
+            border: #631726 3px  solid;
+            border-radius: 15px;
+            margin: 2% auto;
+            margin-right: 2%;
+        }
+        .coluna-2 h6{
+            font-size: 2rem;
+            color: #631726;
+            margin-top: 0;
+            margin-bottom: 5%;
+        }
+        .formulario-envio form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .formulario-envio label {
+            font-size: 1.2rem;
+            color:#631726;
+        }
+
+        .formulario-envio input{
+            font-size: Georgia;
+            margin-bottom: 10px; 
+            width: 100%;
+            height: 30px;
+            border-radius: 5px;
+        }
+        .formulario-envio input:hover{
+            box-shadow: #d6b884  3px 3px 10px 2px;
+        }
+        .formulario-envio textarea {
+            margin-bottom: 10px; 
+            width: 100%; 
+            border-radius: 5px;
+            font-size: Georgia;
+        }
+        .formulario-envio textarea:hover{
+            box-shadow: #d6b884  3px 3px 10px 2px;
+        }
+
+        .formulario-envio .formulario-grupo {
+            display: inline-block;
+            flex-direction: row;
+            justify-content: space-evenly;
+            align-items: center;
+            margin-bottom: 5px; 
+        }
+
+        .formulario-envio .formulario-grupo label {
+            width: 45%; 
+            margin-right: 5px;
+        }
+
+        .formulario-envio .formulario-grupo input{
+            width: 100%;
+        }
+        .formulario-envio .formulario-grupo textarea {
+            width: 100%; 
+            height: 100px;
+        }
+        .btn-mensagem{
+            padding: 5px;
+            border-radius: 15px;
+            width: 30%;
+            height: auto;
+            background-color: #d6b884;
+            color: #fff;
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: 1s;
+        }
+        .btn-mensagem:hover{
+            background-color: #631726;
+        }
+        
+
+
+        /* Body */
+        /* Footer */
+        .footer {
+            display: flex;
+            justify-content: space-evenly;
+            width: 100%;
+            height: auto;
+            background-color: #fff;
+            border-top: #d6b884 solid 5px;
+            bottom: 0;
+            margin-top: auto;
+            margin-bottom: 0;
+        }
+        .coluna{
+            margin-top: 20px;
+            text-align: left;
+            justify-content: left;
+        }
+        .coluna a{
+            display: block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color:#631726;
+            font-size: 1.1rem;
+            transition: 1s;
+            text-align: center;
+        }
+        .coluna a:hover{
+            color: #d6b884;
+            background-color: #631726;
+            border-radius: 5px;
+            padding: 20px;
+        }
+        .coluna h5{
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+            color: #d6b884;
+            font-weight: bold;
+            width: auto;
+        }
+        .coluna p{
+            margin-bottom: 30px;
+            font-size: 1.2rem;
+            color: #631726;
+            font-weight: bold;
+        }
+        .rede-social{
+            width: 20px;
+            height: 20px;
+            margin-right: 5%;
+            vertical-align: middle;
+        }
+        #facebook{
+            background: -webkit-linear-gradient(#3b5998, #265994);
+            background: linear-gradient(#3b5998, #265994);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: left;
+        }
+        #instagram {
+            background: -webkit-linear-gradient(pink, purple);
+            background: linear-gradient(pink, purple);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: left;
+        }
+        #youtube {
+            background: -webkit-linear-gradient(red, #ff0000);
+            background: linear-gradient(red, #ff0000);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: left;
+        }
+        #botaoTopo {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 50px;
+            background-color: transparent;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            z-index: 99;
+        }
+        #botaoTopo::before {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 40px;
+            background-image: url('https://i.postimg.cc/RZjDHfyJ/up-arrow-4889419.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        ::-webkit-scrollbar {
+            width: 5px; 
+        }
+        ::-webkit-scrollbar-track {
+            background:#fff; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background:#d6b884; 
+            border-radius: 5px; 
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555; 
+        }
+        scrollbar {
+            width: 5px; 
+        }
+        scrollbar-track {
+            background: #fff; 
+        }
+        scrollbar-thumb {
+            background: #d6b884; 
+            border-radius: 5px; 
+        }
+        scrollbar-thumb:hover {
+            background: #555; 
+        }
+        /* Footer */
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <button onclick="voltarParaTopo()" id="botaoTopo" title="Voltar para o Topo"></button>
+    <!-- Header -->
+    <div class="container">
+        <nav class="menu">
+            <div><a href="/home" class="logo-botao"> <img class="logo" src="https://i.postimg.cc/RVp0FwZ5/logo2.png" alt="Logotipo"> </a></div>
+            <div><a href="/cars" id="btn-menu">Veículos</a></div>
+            <div><a href="" id="btn-menu">Reservar</a></div>
+            <div><a href="" id="btn-menu">Agências</a></div>
+            <div><a href="" id="btn-menu">Serviços e Extras</a></div>
+            <div><a href="/sobre-nos" id="btn-menu">Sobre Nós</a></div>
+            <div id="area-cliente-dropdown" class="dropdown">
+                <button id="btn-area-cliente" class="dropbtn">
+                    {% if utilizador %}
+                        {{ utilizador.nome }}
+                    {% else %}
+                        Área do Cliente
+                    {% endif %}
+                </button>
+                <div id="area-cliente-dropdown-content" class="dropdown-content" style="display: none;">
+                    <a href="/perfil">Perfil</a>
+                    {% if not utilizador %}
+                        <a href="/login">Login</a>
+                        <a href="/registar">Registar</a>
+                    {% else %}
+                        <a href="/logout">Logout</a>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!-- Header -->
+    <!-- Header -->
+    <!-- Body -->
+    <div class="titulo">
+        <h1>Contactos</h1>
+    </div>
+    <div class="body-container">
+        <div class="coluna-1">
+            <h5 class="sub-titulo">Contacte-nos</h5>
+            <p>Se tiver alguma questão, comentário ou solicitação, não hesite em contactar-nos. Estamos aqui para ajudar e ansiosos por ouvir de si.</p>
+            <p id="info">Telefone:</p>
+            <p>+351 999 999 999</p>
+            <p id="info">E-mail: </p>
+            <p>luxurywheels.pj@gmail.com</p>
+            <p id="info">Horário de Atendimento:</p>
+            <p>Segunda a Sexta das 08:30 ás 20:00<br>Sábado das 09:00 ás 17:00<br>Domingo e Feriados das 09:00 ás 13:00</p>
+            <p id="info">Redes Sociais:</p>
+            <p>Siga-nos nas redes sociais para estar a par das últimas novidades, promoções e eventos da nossa empresa.</p>
+            <div class="social">
+                <a href="https://www.facebook.com" id="facebook">
+                    <img src="https://i.postimg.cc/rs9yRfzj/face.png" alt="Facebook logo" class="social-img">
+                    Facebook
+                </a>
+                <a href="https://www.instagram.com" id="instagram">
+                    <img src="https://i.postimg.cc/Z5np8MpC/insta.png" alt="Instagram logo" class="social-img">
+                    Instagram
+                </a>
+                <a href="https://www.youtube.com" id="youtube">
+                    <img src="https://i.postimg.cc/vmv82QWh/youtube.png" alt="Youtube logo" class="social-img">
+                    Youtube
+                </a>
+            </div>
+        </div>
+        <div class="coluna-2">
+            <h6>Entre em contacto conosco</h6>
+            <div class="formulario-envio">
+                <form action="/enviar" method="post">
+                    <div class="formulario-grupo">
+                        <label for="nome">Nome:</label>
+                        <input type="text" id="nome" name="nome" required>
+                    </div>
+            
+                    <div class="formulario-grupo">
+                        <label for="email">Email:</label>
+                        <input type="text" id="email" name="email" required>
+                    </div>
+            
+                    <div class="formulario-grupo">
+                        <label for="assunto">Assunto:</label>
+                        <input type="text" id="assunto" name="assunto" required>
+                    </div>
+            
+                    <div class="formulario-grupo">
+                        <label for="mensagem">Mensagem:</label>
+                    </div>
+                    <div class="formulario-grupo">
+                        <textarea id="mensagem" name="mensagem" rows="4" cols="50" required></textarea>
+                    </div>
+                    <button class="btn-mensagem" type="submit">Enviar Mensagem</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Body -->
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="coluna">
+            <img src="https://i.postimg.cc/RVp0FwZ5/logo2.png" alt="Logotipo">
+            <p>Copyright &copy; 2024 Luxury Wheels</p>
+            <a href="https://www.facebook.com" id="facebook" ><img src="https://i.postimg.cc/rs9yRfzj/face.png" alt="Facebook logo" class="rede-social">Facebook</a>
+            <a href="https://www.instagram.com" id="instagram"><img src="https://i.postimg.cc/Z5np8MpC/insta.png" alt="Instagram logo" class="rede-social">Instagram </a>
+            <a href="https://www.youtube.com" id="youtube"><img src="https://i.postimg.cc/vmv82QWh/youtube.png" alt="Youtube logo" class="rede-social">Youtube </a>
+        </div>
+        <div class="coluna">
+            <h5>Viaturas mais procurados</h5>
+            <a href="">1</a>
+            <a href="">2</a>
+            <a href="">3</a>
+            <a href="">4</a>
+            <a href="">5</a>
+            <a href="">6</a>
+            <a href="">7</a>
+            <a href="">8</a>
+            <a href="">9</a>
+            <a href="">0</a>
+        </div>
+        <div class="coluna">
+            <h5>Informações</h5>
+            <a href="/sobre-nos">Sobre Nós</a>
+            <a href="/contactos">Contactos</a>
+            <a href="">Perguntas Frequentes</a>
+            <a href="">Termos e Condições</a>
+            <a href="">Política de Privacidade</a>
+        </div>
+    </footer>
+    <!-- Footer -->
+    <!-- Scripts -->
+    <script>
+        window.onscroll = function() {scrollFunction()};
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("botaoTopo").style.display = "block";
+            } else {
+                document.getElementById("botaoTopo").style.display = "none";
+            }
+        }
+        function voltarParaTopo() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0; 
+        }
+        document.addEventListener("DOMContentLoaded", function() {
+            const form = document.querySelector("form");
+            form.addEventListener("submit", function(event) {
+                event.preventDefault(); 
+                const nome = document.getElementById("nome").value;
+                const email = document.getElementById("email").value;
+                const assunto = document.getElementById("assunto").value;
+                const mensagem = document.getElementById("mensagem").value;
+                if (nome === "" || email === "" || assunto === "" || mensagem === "") {
+                    alert("Por favor, preencha todos os campos.");
+                    return;
+                }
+                fetch("/contactos", {
+                    method: "POST",
+                    body: new FormData(form)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert("E-mail enviado com sucesso!");
+                        // Limpar os campos do formulário
+                        document.getElementById("nome").value = "";
+                        document.getElementById("email").value = "";
+                        document.getElementById("assunto").value = "";
+                        document.getElementById("mensagem").value = "";
+                    } else {
+                        alert("Erro ao enviar o e-mail: " + data.error);
+                    }
+                })
+                .catch(error => {
+                    alert("Erro ao enviar o e-mail: " + error.message);
+                });
+            });
+        });
+        function showDropdown() {
+            document.getElementById("area-cliente-dropdown-content").style.display = "block";
+        }
+
+        function hideDropdown() {
+            document.getElementById("area-cliente-dropdown-content").style.display = "none";
+        }
+        document.getElementById("btn-area-cliente").addEventListener("mouseover", showDropdown);
+        document.getElementById("area-cliente-dropdown").addEventListener("mouseleave", hideDropdown);
+    </script>
+    
+</body>
+</html>

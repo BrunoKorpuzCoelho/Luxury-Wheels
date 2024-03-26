@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento | Luxury Wheels Portugal</title>
+    <style>
+        /* Header */
+        .container {
+            width: 100%;
+            height: 96px;
+            top: 0;
+            left: 0;
+            background-color: #fff;
+            z-index: 1000;
+            border-bottom: #d6b884 solid 5px;
+        }
+        .logo-botao {
+            background-color: transparent;
+            border: #d6b884 solid 1px;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            transition: .5s;
+        }
+        .logo-botao:hover {
+            background-color: #d6b884;
+        }
+        .menu {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            height: 100%;
+            padding: 0 20px;
+            margin-left: 30px;
+            margin-right: 50px;
+        }
+        .menu div {
+            display: inline-block;
+        }
+        .menu div:not(:last-child) {
+            margin-right: 2%;
+        }
+        .menu div:last-child {
+            margin-right: 0;
+            margin-left: auto;
+        }
+        #btn-menu {
+            font-family: Georgia;
+            text-decoration: none;
+            font-size: 22px;
+            color: #d6b884;
+            padding: 20px;
+            border-radius: 5px;
+            transition: .85s;
+        }
+        #btn-menu:hover {
+            color: #fff;
+            background-color: #631726;
+        }
+        .dropdown {
+        position: relative;
+        display: inline-block;
+        }
+        .dropbtn {
+            font-family: Georgia;
+            color: #d6b884;
+            background-color: #fff;
+            padding: 12px;
+            font-size: 22px;
+            border: none;
+            cursor: pointer;
+        }
+        .dropbtn:hover{
+            background-color: #631726;
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        .dropdown-content {
+            font-family: Georgia;
+            font-size: 18px;
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            z-index: 1;
+            right: 0;
+        }
+        .dropdown-content a {
+            color: #d6b884;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {
+            background-color: #631726;
+            color: #fff;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .dropdown-content button {
+            display: none;
+        }
+        .dropdown:hover .dropdown-content button {
+            display: inline-block;
+        }
+        ::-webkit-scrollbar {
+            width: 5px; 
+        }
+        ::-webkit-scrollbar-track {
+            background:#fff; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background:#d6b884; 
+            border-radius: 5px; 
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555; 
+        }
+        scrollbar {
+            width: 5px; 
+        }
+        scrollbar-track {
+            background: #fff; 
+        }
+        scrollbar-thumb {
+            background: #d6b884; 
+            border-radius: 5px; 
+        }
+        scrollbar-thumb:hover {
+            background: #555; 
+        }
+        .container-pagamento {
+            max-width: 705px;
+            width: auto;
+            height: 366px;
+            padding: 20px;
+            margin: 0 auto;
+            margin-top: 2%;
+            margin-bottom: 2%;
+        }
+        h5{
+            font-size: 1.5rem;
+            color: #d6b884;
+            text-align: center;
+        }
+        button{
+            font-family: Georgia;
+            display: flex;
+            margin: 2% auto;
+            padding: 10px;
+            font-size: 1rem;
+            border: #631726 solid 2px;
+            border-radius: 5px;
+            background-color: #d6b884;
+            color: #fff;
+            cursor: pointer;
+            transition: 1s;
+        }
+        button:hover{
+            background-color: #631726;
+        }
+        .tipo-pagamento label {
+            font-size: 1.1rem;
+            color: #d6b884;
+            display: inline-block;
+            margin-bottom: 10px;
+            margin-right: 20px;
+            font-weight: bold;
+        }
+        .tipo-pagamento input[type="radio"] {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        
+        .info-pagamento{
+            padding: 10px;
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .info-pagamento .pagamento-visa,
+        .info-pagamento .pagamento-btc {
+            display: none;
+            padding: 10px;
+        }
+        .info-pagamento .pagamento-visa input,
+        .info-pagamento .pagamento-btc input{
+            font-family: Georgia;
+            margin-left: 10px;
+            text-align: center;
+            border-radius: 5px;
+            padding: 3px;
+            font-size: 1rem
+        }
+        .info-pagamento .pagamento-visa label,
+        .info-pagamento .pagamento-btc label{
+            font-size: 1rem;
+        }
+        /* Footer */
+        .footer {
+            display: flex;
+            justify-content: space-evenly;
+            width: 100%;
+            height: auto;
+            background-color: #fff;
+            border-top: #d6b884 solid 5px;
+            bottom: 0;
+            margin-top: auto;
+            margin-bottom: 0;
+        }
+        .coluna{
+            margin-top: 20px;
+            text-align: left;
+            justify-content: left;
+        }
+        .coluna a{
+            display: block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color:#631726;
+            font-size: 1.1rem;
+            transition: 1s;
+            text-align: center;
+        }
+        .coluna a:hover{
+            color: #d6b884;
+            background-color: #631726;
+            border-radius: 5px;
+            padding: 20px;
+        }
+        .coluna h5{
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+            color: #d6b884;
+            font-weight: bold;
+            width: auto;
+        }
+        .coluna p{
+            margin-bottom: 30px;
+            font-size: 1.2rem;
+            color: #631726;
+            font-weight: bold;
+        }
+        .rede-social{
+            width: 20px;
+            height: 20px;
+            margin-right: 5%;
+            vertical-align: middle;
+        }
+        #facebook{
+            background: -webkit-linear-gradient(#3b5998, #265994);
+            background: linear-gradient(#3b5998, #265994);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: left;
+        }
+        #instagram {
+            background: -webkit-linear-gradient(pink, purple);
+            background: linear-gradient(pink, purple);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: left;
+        }
+        #youtube {
+            background: -webkit-linear-gradient(red, #ff0000);
+            background: linear-gradient(red, #ff0000);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: left;
+        }
+        /* Footer */
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="container">
+        <nav class="menu">
+            <div><a href="/home" class="logo-botao"> <img class="logo" src="https://i.postimg.cc/RVp0FwZ5/logo2.png" alt="Logotipo"> </a></div>
+            <div><a href="/cars" id="btn-menu">Veículos</a></div>
+            <div><a href="" id="btn-menu">Reservar</a></div>
+            <div><a href="" id="btn-menu">Agências</a></div>
+            <div><a href="" id="btn-menu">Serviços e Extras</a></div>
+            <div><a href="/sobre-nos" id="btn-menu">Sobre Nós</a></div>
+            <div id="area-cliente-dropdown" class="dropdown">
+                <button id="btn-area-cliente" class="dropbtn">
+                    {% if utilizador %}
+                        {{ utilizador.nome }}
+                    {% else %}
+                        Área do Cliente
+                    {% endif %}
+                </button>
+                <div id="area-cliente-dropdown-content" class="dropdown-content" style="display: none;">
+                    <a href="/perfil">Perfil</a>
+                    {% if not utilizador %}
+                        <a href="/login">Login</a>
+                        <a href="/registar">Registar</a>
+                    {% else %}
+                        <a href="/logout">Logout</a>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!-- Header -->
+    <!-- Body -->
+    <div class="container-pagamento">
+        <form action="recibo" method="POST">
+            <div class="tipo-pagamento">
+                <h5>Meio de Pagamento:</h5>
+                <label for="pagamento-balcao"><input type="radio" name="tipo-pagamento" id="pagamento-balcao" value="pagamento-balcao" checked> Pagamento ao Balcão</label><label for="pagamento-cartao"><input type="radio" name="tipo-pagamento" id="pagamento-cartao" value="pagamento-cartao"> Pagamento com Cartão</label><label for="pagamento-bitcoin"><input type="radio" name="tipo-pagamento" id="pagamento-bitcoin" value="pagamento-bitcoin"> Pagamento com BitCoin</label>
+            </div>
+            <div class="info-pagamento">
+                <div class="pagamento-visa">
+                    <label for="pagamento-visa">Nome do Cartão</label>
+                    <input type="text" name="nome_cartao">
+                </div>
+                <div class="pagamento-visa">
+                    <label for="pagamento-visa">Número do Cartão</label>
+                    <input type="text" name="nr_cartao">
+                </div>
+                <div class="pagamento-visa">
+                    <label for="pagamento-visa">Validade do Cartão (Mês/Ano)</label>
+                    <input type="text" name="validade_cartao" pattern="^(0[1-9]|1[0-2])\/([0-9]{2})$" placeholder="MM/YY">
+                </div>
+                <div class="pagamento-visa">
+                    <label for="pagamento-visa">CVC</label>
+                    <input type="text" name="cvc">
+                </div>
+                <div class="pagamento-btc">
+                    <label for="pagamento-btc">Endereço da Carteira de BitCoin</label>
+                    <input type="text" name="carteira_cripto">
+                </div>
+                <div class="pagamento-btc">
+                    <label for="pagamento-btc">Network da Carteira de BitCoin</label>
+                    <input type="text" name="network_cripto">
+                </div>
+            </div>
+            <button  type="submit" name="submeter">Submeter</button>
+        </form>
+    </div>
+    <!-- Body -->
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="coluna">
+            <img src="https://i.postimg.cc/RVp0FwZ5/logo2.png" alt="Logotipo">
+            <p>Copyright &copy; 2024 Luxury Wheels</p>
+            <a href="https://www.facebook.com" id="facebook" ><img src="https://i.postimg.cc/rs9yRfzj/face.png" alt="Facebook logo" class="rede-social">Facebook</a>
+            <a href="https://www.instagram.com" id="instagram"><img src="https://i.postimg.cc/Z5np8MpC/insta.png" alt="Instagram logo" class="rede-social">Instagram </a>
+            <a href="https://www.youtube.com" id="youtube"><img src="https://i.postimg.cc/vmv82QWh/youtube.png" alt="Youtube logo" class="rede-social">Youtube </a>
+        </div>
+        <div class="coluna">
+            <h5>Viaturas mais procurados</h5>
+            <a href="">1</a>
+            <a href="">2</a>
+            <a href="">3</a>
+            <a href="">4</a>
+            <a href="">5</a>
+        </div>
+        <div class="coluna">
+            <h5>Informações</h5>
+            <a href="/sobre-nos">Sobre Nós</a>
+            <a href="/contactos">Contactos</a>
+            <a href="">Perguntas Frequentes</a>
+            <a href="">Termos e Condições</a>
+            <a href="">Política de Privacidade</a>
+        </div>
+    </footer>
+    <!-- Footer -->
+    <script>
+        function showDropdown() {
+            document.getElementById("area-cliente-dropdown-content").style.display = "block";
+        }
+
+        function hideDropdown() {
+            document.getElementById("area-cliente-dropdown-content").style.display = "none";
+        }
+        document.getElementById("btn-area-cliente").addEventListener("mouseover", showDropdown);
+        document.getElementById("area-cliente-dropdown").addEventListener("mouseleave", hideDropdown);
+
+
+
+
+        const formPagamento = document.getElementById('form-pagamento');
+    const btnAvancar = document.getElementById('btn-avancar');
+
+    const tipoPagamentoRadios = document.querySelectorAll('input[name="tipo-pagamento"]');
+    const pagamentoVisa = document.querySelectorAll('.pagamento-visa');
+    const pagamentoBtc = document.querySelectorAll('.pagamento-btc');
+
+    tipoPagamentoRadios.forEach(radio => {
+        radio.addEventListener('change', () => {
+            const tipoPagamento = radio.value;
+
+            if (tipoPagamento === 'pagamento-cartao') {
+                pagamentoVisa.forEach(element => {
+                    element.style.display = 'block';
+                });
+                pagamentoBtc.forEach(element => {
+                    element.style.display = 'none';
+                });
+            } else if (tipoPagamento === 'pagamento-bitcoin') {
+                pagamentoBtc.forEach(element => {
+                    element.style.display = 'block';
+                });
+                pagamentoVisa.forEach(element => {
+                    element.style.display = 'none';
+                });
+            } else {
+                pagamentoVisa.forEach(element => {
+                    element.style.display = 'none';
+                });
+                pagamentoBtc.forEach(element => {
+                    element.style.display = 'none';
+                });
+            }
+
+            // Verifica se deve mostrar ou ocultar o botão "Avançar"
+            const selectedPayment = document.querySelector('input[name="tipo-pagamento"]:checked');
+            btnAvancar.style.display = selectedPayment ? 'inline-block' : 'none';
+        });
+    });
+
+    formPagamento.addEventListener('submit', (event) => {
+        const selectedPayment = document.querySelector('input[name="tipo-pagamento"]:checked');
+        if (!selectedPayment) {
+            event.preventDefault(); // Impede o envio do formulário
+            alert('Por favor, selecione uma forma de pagamento.');
+        }
+    });
+
+    // Inicialmente esconde todos os campos exceto o primeiro
+    pagamentoVisa.forEach(element => {
+        element.style.display = 'none';
+    });
+    pagamentoBtc.forEach(element => {
+        element.style.display = 'none';
+    });
+    
+    </script>
+</body>
+</html>

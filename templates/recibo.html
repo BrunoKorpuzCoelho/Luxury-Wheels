@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recibo | Luxury Wheels Portugal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 2% auto;
+            border: 1px solid #ccc;
+            padding: 40px;
+            position: relative;
+        }
+        h1 {
+            margin-top: 50px;
+            margin-bottom: 50px;
+            text-align: left;
+            color: #333;
+            font-size: 1.5rem;
+        }
+        h5{
+            text-align: center;
+            color: #333;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        .info {
+            margin-bottom: 20px;
+        }
+        .info p {
+            margin: 5px 0;
+            font-size: 1.1rem;
+        }
+        .logo {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 100px; 
+        }
+        .footer {
+            margin-top: 50px;
+            bottom: 20px;
+            left: 20px;
+            color: #888;
+        }
+        .btn-confirmar {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px; 
+        }
+
+        .btn-confirmar button {
+            background-color: #d6b884;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-confirmar button:hover {
+            background-color: #631726;
+            color: #fff;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div class="confirmar">
+        <h1 style="text-align: center; color: #631726; border: #631726 2px solid; border-radius: 5px; padding: 10px; width: auto; margin-top: 20px;">Confirme os seus dados por favor:</h1>
+    </div>
+    <div class="container">
+        <img class="logo" src="https://i.postimg.cc/RVp0FwZ5/logo2.png" alt="Logo da Luxury Wheels">
+        <h1 style="color: #d6b884;">Reserva de Aluguel de Veículo</h1>
+        
+    <form action="/recibo" method="POST" id="reciboForm" data-id="{{ novo_registo.id }}">
+        <div class="info">
+                <h5>Dados do Cliente</h5>
+                <p><strong>Nome:</strong> {{ current_user.nome }}</p>
+                <p><strong>NIF:</strong> {{ current_user.nif }}</p>
+                <p><strong>Email:</strong> {{ current_user.email }}</p>
+                <p><strong>Telefone:</strong> {{ current_user.telefone }}</p>
+                
+                <h5>Dados da Reserva</h5>
+
+                <p id="ref" name="ref" ><strong>Referência da Reserva:</strong> </p>
+                <p><strong>Data de Início:</strong> {{ data_inicio }}</p>
+                <p><strong>Data de Fim:</strong> {{ data_fim }}</p>
+                <p><strong>Estabelecimento de Entrega:</strong> {{ estabelecimento_entrega }}</p>
+                <p><strong>Estabelecimento de Devolução:</strong> {{ estabelecimento_devolucao }}</p>
+                <p><strong>Veículo:</strong> {{ marca }} {{ modelo }}</p>
+                <p><strong>Matrícula:</strong> {{ matricula }}</p>
+                <p><strong>Ano de Matrícula:</strong> {{ ano }}</p>
+                <p><strong>Potência do Motor:</strong> {{ potencia }} Hp</p>
+                <p><strong>Valor Diário:</strong> {{ valor_diario }} €</p>
+
+                <h5>Dados de Pagamento</h5>
+
+                <p><strong>Método de Pagamento:</strong> {{ tipo_pagamento }}</p>
+                <p><strong>Nome Cartão:</strong> {{ nome_cartao }}</p>
+                <p><strong>Número do Cartão:</strong> ****{{ nr_cartao[-4:] if nr_cartao else '' }}</p>
+                <p><strong>Validade do Cartão:</strong> {{ validade_cartao }}</p>
+                <p><strong>CVC:</strong> ***</p>
+                <p><strong>Carteira de Criptomoedas:</strong> {{ carteira_cripto }}</p>
+
+                <input type="hidden" id="email" name="email" value="{{ current_user.email }}">
+                <input type="hidden" id="referenciaInput" name="ref" value="">
+                <input type="hidden" id="marca" name="marca" value="{{ marca }}">
+                <input type="hidden" id="modelo" name="modelo" value="{{ modelo }}">
+                <input type="hidden" id="matricula" name="matricula" value="{{ matricula }}">
+                <input type="hidden" id="ano" name="ano" value="{{ ano }}">
+                <input type="hidden" id="potencia" name="potencia" value="{{ potencia }}">
+                <input type="hidden" id="valor_diario" name="valor_diario" value="{{ valor_diario }}">
+                <input type="hidden" id="tipo_pagamento" name="tipo_pagamento" value="{{ tipo_pagamento }}">
+                <input type="hidden" id="nome_cartao" name="nome_cartao" value="{{ nome_cartao }}">
+                <input type="hidden" id="nr_cartao" name="nr_cartao" value="{{ nr_cartao }}">
+                <input type="hidden" id="validade_cartao" name="valor_diario" value="{{ validade_cartao }}">
+                <input type="hidden" id="carteira_cripto" name="carteira_cripto" value="{{ carteira_cripto }}">
+                <input type="hidden" id="data_inicio" name="data_inicio" value="{{ data_inicio }}">
+                <input type="hidden" id="data_fim" name="data_fim" value="{{ data_fim }}">
+                <input type="hidden" id="estabelecimento_entrega" name="estabelecimento_entrega" value="{{ estabelecimento_entrega }}">
+                <input type="hidden" id="estabelecimento_devolucao" name="estabelecimento_devolucao" value="{{ estabelecimento_devolucao }}">
+                <input type="hidden" id="valor_total" name="valor_total" value="{{ valor_total }}">
+                
+            </div>
+            <div class="total">
+                <p id="valorTotalExibicao" style="font-size: 1.4rem; color: #d6b884;"><strong>Total a Pagar:</strong> {{ valor_total }} €</p>
+            </div>
+            <div class="footer">
+                <p>Copyright &copy; 2024 Luxury Wheels<br>
+                Data: <span id="data"></span> Hora: <span id="hora"></span></p>
+            </div>
+        </div>
+        <div class="btn-confirmar">
+            <button type="submit">Confirmar dados</button>
+        </div>
+    </form>
+    </div>
+    <script>
+        function getDataAtual() {
+            const dataAtual = new Date();
+            const dia = String(dataAtual.getDate()).padStart(2, '0');
+            const mes = String(dataAtual.getMonth() + 1).padStart(2, '0'); 
+            const ano = dataAtual.getFullYear();
+            return dia + '/' + mes + '/' + ano;
+        }
+    
+        function getHoraAtual() {
+            const horaAtual = new Date();
+            const hora = String(horaAtual.getHours()).padStart(2, '0');
+            const minutos = String(horaAtual.getMinutes()).padStart(2, '0');
+            const segundos = String(horaAtual.getSeconds()).padStart(2, '0');
+            return hora + ':' + minutos + ':' + segundos;
+        }
+    
+        setInterval(function() {
+            document.getElementById('data').innerText = getDataAtual();
+            document.getElementById('hora').innerText = getHoraAtual();
+        }, 1000); 
+        
+        function gerarReferencia() {
+            const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let ref = '';
+            for (let i = 0; i < 10; i++) {
+                ref += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
+            }
+            return ref;
+        }
+
+        const referencia = gerarReferencia().toUpperCase();
+        document.getElementById('referenciaInput').value = referencia;
+        document.getElementById('ref').innerHTML = "<strong>Referência da Reserva:</strong> " + referencia;
+
+
+
+
+
+
+        document.getElementById("reciboForm").addEventListener("submit", function() {
+    // Obtém o ID do novo registro do atributo data-id do formulário
+    var novoRegistoId = this.getAttribute("data-id");
+    
+    // Após a submissão do formulário, faz o download do recibo
+    window.location.href = "/download_recibo/" + novoRegistoId;
+});
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nós | Luxury Wheels Portugal</title>
+    <style>
+        body{
+            font-family: Georgia;
+            background-color: #ccc;    
+        }
+        /* Header */
+        .container {
+            width: 100%;
+            height: 96px;
+            top: 0;
+            left: 0;
+            background-color: #fff;
+            z-index: 1000;
+            border-bottom: #d6b884 solid 5px;
+        }
+        .logo-botao {
+            background-color: transparent;
+            border: #d6b884 solid 1px;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            transition: .5s;
+        }
+        .logo-botao:hover {
+            background-color: #d6b884;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            height: 100%;
+            padding: 0 20px;
+            margin-left: 30px;
+            margin-right: 50px;
+        }
+        .menu div {
+            display: inline-block;
+        }
+        .menu div:not(:last-child) {
+            margin-right: 2%;
+        }
+        .menu div:last-child {
+            margin-right: 0;
+            margin-left: auto;
+        }
+        #btn-menu {
+            font-family: Georgia;
+            text-decoration: none;
+            font-size: 22px;
+            color: #d6b884;
+            padding: 20px;
+            border-radius: 5px;
+            transition: .85s;
+        }
+        #btn-menu:hover {
+            color: #fff;
+            background-color: #631726;
+        }
+        .dropdown {
+        position: relative;
+        display: inline-block;
+        }
+        .dropbtn {
+            font-family: Georgia;
+            color: #d6b884;
+            background-color: #fff;
+            padding: 12px;
+            font-size: 22px;
+            border: none;
+            cursor: pointer;
+        }
+        .dropbtn:hover{
+            background-color: #631726;
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        .dropdown-content {
+            font-family: Georgia;
+            font-size: 18px;
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            z-index: 1;
+            right: 0;
+        }
+        .dropdown-content a {
+            color: #d6b884;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {
+            background-color: #631726;
+            color: #fff;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .dropdown-content button {
+            display: none;
+        }
+        .dropdown:hover .dropdown-content button {
+            display: inline-block;
+        }
+        #botaoTopo {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 50px;
+            background-color: transparent;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            z-index: 99;
+        }
+        #botaoTopo::before {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 40px;
+            background-image: url('https://i.postimg.cc/RZjDHfyJ/up-arrow-4889419.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        ::-webkit-scrollbar {
+            width: 5px; 
+        }
+        ::-webkit-scrollbar-track {
+            background:#fff; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background:#d6b884; 
+            border-radius: 5px; 
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555; 
+        }
+        scrollbar {
+            width: 5px; 
+        }
+        scrollbar-track {
+            background: #fff; 
+        }
+        scrollbar-thumb {
+            background: #d6b884; 
+            border-radius: 5px; 
+        }
+        scrollbar-thumb:hover {
+            background: #555; 
+        }
+        .titulo-h1{
+            color:#fff;
+            background-color: #631726;
+            width:200px;
+            border-top-left-radius: 35px;
+            border-bottom-right-radius: 35px;
+            margin: 1% auto;
+            padding: 5px;
+            text-align: center;
+            justify-content: center;
+            box-shadow: #fff 3px 3px 10px 10px;
+        }
+        .titulo-h2{
+            color: #fff;
+            width: 80%;
+            margin: 1% auto;
+            padding: 5px;
+        }
+        .primeiro-paragrafo{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 80%;
+            margin: 2% auto;
+            padding: 20px;
+        }
+        .primeiro-paragrafo img{
+            width: 200px;
+            height: auto;
+            border-radius: 30px;
+            margin-right: 2%;
+            margin-left: 2%;
+            box-shadow:#fff 3px 3px 10px 5px;
+        }
+        .primeiro-paragrafo p{
+            margin-left: 2%;
+            color: #fff;
+            font-size: 1.35rem;
+            font-weight:lighter
+        }
+        #buglogo{
+            box-shadow:#d6b884 3px 3px 10px 5px;
+        }
+        /* Footer */
+        .footer {
+            display: flex;
+            justify-content: space-evenly;
+            width: 100%;
+            height: auto;
+            background-color: #fff;
+            border-top: #d6b884 solid 5px;
+            bottom: 0;
+            margin-top: auto;
+            margin-bottom: 0;
+        }
+        .coluna{
+            margin-top: 20px;
+            text-align: left;
+            justify-content: left;
+        }
+        .coluna a{
+            display: block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color:#631726;
+            font-size: 1.1rem;
+            transition: 1s;
+            text-align: center;
+        }
+        .coluna a:hover{
+            color: #d6b884;
+            background-color: #631726;
+            border-radius: 5px;
+            padding: 20px;
+        }
+        .coluna h5{
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+            color: #d6b884;
+            font-weight: bold;
+            width: auto;
+        }
+        .coluna p{
+            margin-bottom: 30px;
+            font-size: 1.2rem;
+            color: #631726;
+            font-weight: bold;
+        }
+        .rede-social{
+            width: 20px;
+            height: 20px;
+            margin-right: 5%;
+            vertical-align: middle;
+        }
+        #facebook{
+            background: -webkit-linear-gradient(#3b5998, #265994);
+            background: linear-gradient(#3b5998, #265994);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: left;
+        }
+        #instagram {
+            background: -webkit-linear-gradient(pink, purple);
+            background: linear-gradient(pink, purple);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: left;
+        }
+        #youtube {
+            background: -webkit-linear-gradient(red, #ff0000);
+            background: linear-gradient(red, #ff0000);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: left;
+        }
+        /* Footer */
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <button onclick="voltarParaTopo()" id="botaoTopo" title="Voltar para o Topo"></button>
+    <div class="container">
+        <nav class="menu">
+            <div><a href="/home" class="logo-botao"> <img class="logo" src="https://i.postimg.cc/RVp0FwZ5/logo2.png" alt="Logotipo"> </a></div>
+            <div><a href="/cars" id="btn-menu">Veículos</a></div>
+            <div><a href="" id="btn-menu">Reservar</a></div>
+            <div><a href="" id="btn-menu">Agências</a></div>
+            <div><a href="" id="btn-menu">Serviços e Extras</a></div>
+            <div><a href="/sobre-nos" id="btn-menu">Sobre Nós</a></div>
+            <div id="area-cliente-dropdown" class="dropdown">
+                <button id="btn-area-cliente" class="dropbtn">
+                    {% if utilizador %}
+                        {{ utilizador.nome }}
+                    {% else %}
+                        Área do Cliente
+                    {% endif %}
+                </button>
+                <div id="area-cliente-dropdown-content" class="dropdown-content" style="display: none;">
+                    <a href="/perfil">Perfil</a>
+                    {% if not utilizador %}
+                        <a href="/login">Login</a>
+                        <a href="/registar">Registar</a>
+                    {% else %}
+                        <a href="/logout">Logout</a>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!-- Header -->
+    <!-- Body-->
+    <div class="titulo-h1">
+        <h1>Sobre Nós</h1>
+    </div> 
+    <div class="titulo-h2">
+        <h2>Luxury Wheels: A Experiência Inigualável do Nosso Serviço de Renting de Viaturas de Luxo</h2>
+    </div>
+    <div class="primeiro-paragrafo">
+        <img src="https://i.postimg.cc/BQPY3FZq/lambologo-1.png" alt="Lamborghini Logotipo">
+        <p>No tecido da modernidade, onde o luxo se entrelaça com a conveniência, nasce uma experiência de condução inigualável. Bem-vindo ao nosso mundo de renting de viaturas de luxo, onde cada curva da estrada é uma promessa de sofisticação e exclusividade.<br>
+            Em um mercado saturado de opções comuns, destacamo-nos como os arquitetos da elegância sobre rodas. Com as melhores e mais únicas marcas do mundo à sua disposição, cada carro em nosso portfólio é uma obra-prima da engenharia automotiva, um símbolo de prestígio e distinção.
+        </p>
+    </div><div class="primeiro-paragrafo">
+        <p>Imagine-se deslizando pelas ruas em um carro que transcende a mera funcionalidade; é uma declaração de estilo, uma extensão do seu próprio bom gosto. Das linhas aerodinâmicas às inovações tecnológicas, cada detalhe é meticulosamente projetado para proporcionar uma experiência de condução sem paralelo.<br>
+            E não se trata apenas de chegar do ponto A ao ponto B. É sobre a jornada. É sobre os momentos preciosos que você cria enquanto está no comando de um ícone sobre rodas. Seja para uma escapadela de fim de semana ou para uma viagem de negócios, cada viagem se transforma em uma experiência memorável, uma história para contar.
+        </p>
+        <img src="https://i.postimg.cc/6pCVQLGh/ferrarilogo-1.png" alt="Ferrari Logotipo">
+    </div>
+    <div class="primeiro-paragrafo">
+        <img src="https://i.postimg.cc/B61csZRh/rollslogo.png" alt="Rolls-Royce Logotipo">
+        <p>No coração de nossa missão está o compromisso inabalável com a satisfação do cliente. Nossa equipe dedicada está pronta para superar todas as suas expectativas, oferecendo um serviço personalizado que antecipa suas necessidades antes mesmo de você percebê-las. Do momento em que você faz a reserva até o momento em que devolve a chave, sua satisfação é nossa prioridade número um.<br>
+            Em nosso santuário automotivo, as melhores e mais únicas marcas do mundo aguardam para serem desbravadas. Cada veículo em nossa frota é uma manifestação da perfeição, uma fusão de elegância intemporal e desempenho impecável. Dos icônicos supercarros aos sedans de luxo, cada carro é um testemunho da engenhosidade humana e um símbolo de status inigualável.
+        </p>
+    </div>
+    </div><div class="primeiro-paragrafo">
+        <p>O que nos distingue verdadeiramente é nossa paixão por criar memórias duradouras. Porque para nós, o renting de viaturas de luxo não é apenas sobre transportar clientes de um lugar para outro, é sobre desencadear emoções, inspirar admiração e criar momentos que resistem ao teste do tempo.<br>
+            Portanto, se você busca mais do que apenas um meio de transporte, se você aspira pelo extraordinário, junte-se a nós nesta jornada de luxo. Descubra o poder da elegância em movimento. Venha experimentar a diferença que apenas as melhores e mais únicas marcas do mundo podem oferecer. Permita-se ser cativado pela magia das nossas viaturas de elite e embarque em uma aventura que só os privilegiados têm o privilégio de vivenciar.
+        </p>
+        <img id="buglogo"src="https://i.postimg.cc/Rhzqjv7x/buglogo.png" alt="Bugatti Logotipo">
+    </div>
+    <!-- Body-->
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="coluna">
+            <img src="https://i.postimg.cc/RVp0FwZ5/logo2.png" alt="Logotipo">
+            <p>Copyright &copy; 2024 Luxury Wheels</p>
+            <a href="https://www.facebook.com" id="facebook" ><img src="https://i.postimg.cc/rs9yRfzj/face.png" alt="Facebook logo" class="rede-social">Facebook</a>
+            <a href="https://www.instagram.com" id="instagram"><img src="https://i.postimg.cc/Z5np8MpC/insta.png" alt="Instagram logo" class="rede-social">Instagram </a>
+            <a href="https://www.youtube.com" id="youtube"><img src="https://i.postimg.cc/vmv82QWh/youtube.png" alt="Youtube logo" class="rede-social">Youtube </a>
+        </div>
+        <div class="coluna">
+            <h5>Viaturas mais procurados</h5>
+            <a href="">1</a>
+            <a href="">2</a>
+            <a href="">3</a>
+            <a href="">4</a>
+            <a href="">5</a>
+        </div>
+        <div class="coluna">
+            <h5>Informações</h5>
+            <a href="/sobre-nos">Sobre Nós</a>
+            <a href="/contactos">Contactos</a>
+            <a href="">Perguntas Frequentes</a>
+            <a href="">Termos e Condições</a>
+            <a href="">Política de Privacidade</a>
+        </div>
+    </footer>
+    <!-- Footer -->
+    <!-- Scripts -->
+    <script>
+        window.onscroll = function() {scrollFunction()};
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("botaoTopo").style.display = "block";
+            } else {
+                document.getElementById("botaoTopo").style.display = "none";
+            }
+        }
+
+        function voltarParaTopo() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0; 
+        }
+        function showDropdown() {
+            document.getElementById("area-cliente-dropdown-content").style.display = "block";
+        }
+
+        function hideDropdown() {
+            document.getElementById("area-cliente-dropdown-content").style.display = "none";
+        }
+        document.getElementById("btn-area-cliente").addEventListener("mouseover", showDropdown);
+        document.getElementById("area-cliente-dropdown").addEventListener("mouseleave", hideDropdown);
+    </script>
+</body>
+</html>

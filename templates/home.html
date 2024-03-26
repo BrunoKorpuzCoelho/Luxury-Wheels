@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Renting Automóvel | Luxury Wheels Portugal</title>
+    <style>
+        body {
+            background-image: url("https://i.postimg.cc/Pr8qvtDL/marbel.png");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            font-family: Georgia;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: #eee;
+            min-height: 100vh;
+            position: relative;
+        }
+        /* Header */
+        .container {
+            width: 100%;
+            height: 96px;
+            top: 0;
+            left: 0;
+            background-color: #fff;
+            z-index: 1000;
+            border-bottom: #d6b884 solid 5px;
+        }
+        .logo-botao {
+            background-color: transparent;
+            border: #d6b884 solid 1px;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            transition: .5s;
+        }
+        .logo-botao:hover {
+            background-color: #d6b884;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            height: 100%;
+            padding: 0 20px;
+            margin-left: 30px;
+            margin-right: 50px;
+        }
+        .menu div {
+            display: inline-block;
+        }
+        .menu div:not(:last-child) {
+            margin-right: 2%;
+        }
+        .menu div:last-child {
+            margin-right: 0;
+            margin-left: auto;
+        }
+        #btn-menu {
+            font-family: Georgia;
+            text-decoration: none;
+            font-size: 22px;
+            color: #d6b884;
+            padding: 20px;
+            border-radius: 5px;
+            transition: .85s;
+        }
+        #btn-menu:hover {
+            color: #fff;
+            background-color: #631726;
+        }
+        .dropdown {
+        position: relative;
+        display: inline-block;
+        }
+        .dropbtn {
+            font-family: Georgia;
+            color: #d6b884;
+            background-color: #fff;
+            padding: 12px;
+            font-size: 22px;
+            border: none;
+            cursor: pointer;
+        }
+        .dropbtn:hover{
+            background-color: #631726;
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        .dropdown-content {
+            font-family: Georgia;
+            font-size: 18px;
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            z-index: 1;
+            right: 0;
+        }
+        .dropdown-content a {
+            color: #d6b884;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {
+            background-color: #631726;
+            color: #fff;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .dropdown-content button {
+            display: none;
+        }
+        .dropdown:hover .dropdown-content button {
+            display: inline-block;
+        }
+        /* Body*/
+        .body-container {
+            width: 90%;
+            height: auto;
+            margin-top: 1%;
+            margin-bottom: 0;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .agenda-container {
+            background-color: #cfcfcf7e;
+            border: #631726 solid 5px;
+            border-top-left-radius: 150px;
+            border-bottom-right-radius: 150px;
+            padding: 20px;
+            width: auto;
+            height: auto;
+            margin-left: 0;
+            margin-right: auto;
+            margin-top: 1%;
+            margin-bottom: 1%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+        }
+        #slideshow-container {
+            position: relative;
+            width: 550px;
+            height: 650px;
+            max-width: 800px;
+            float: right;
+            margin-left: 1%;
+            margin-right: 0;
+            margin-top: 1%;
+            border-top-right-radius: 150px;
+            border-bottom-left-radius: 150px;
+            overflow: hidden;
+        }
+
+        #slideshow-container .imagens {
+            position: absolute;
+            width: 100%;
+            height: auto;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        #slideshow-container .imagens.active {
+            opacity: 1;
+        }
+        .estabelecimentos {
+            width: 35%;
+            margin-right: 1%;
+        }
+        .texto {
+            padding: 10px;
+            background-color: #631726;
+            color: #fff;
+            width: 92%;
+            text-align: center;
+            margin-right: 10px;
+            margin-top: 1%;
+            position: relative;
+        }
+        .input {
+            font-family: Georgia;
+            width: 89.5%;
+            padding: 10px;
+            margin-bottom: 1%;
+            margin-top: 1%;
+            background-color: #eee;
+            text-align: center;
+        }
+        .data-hora {
+            width: 85%;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .hora-select {
+            font-family: Georgia;
+            width: 95.5%;
+            margin-top: 10px;
+            padding: 10px;
+            border: 2px solid #631726;
+            border-radius: 5px;
+            background-color: #eee;
+            appearance: none;
+            text-align: center;
+            cursor: pointer;  
+        }
+        .hora-select option {
+            padding: 10px; 
+            background-color: #fff; 
+            color: #631726; 
+            font-family: Georgia;
+        }
+        .hora-select:focus {
+            outline: none; 
+            border-color: #d6b884;
+        }
+        .btn-agenda-container {
+            font-size: 25px;
+            color: #fff;
+            text-decoration: none;
+            background-color: #d6b884;
+            display: flex;
+            align-items: center;
+            width: 50%;
+            border: #631726  solid 3px;
+            border-top-left-radius: 50px;
+            border-bottom-right-radius: 50px;
+            margin-left: 21%;
+            margin-top: 5%;
+            padding-left: 20px;
+            transition: .7s;
+        }
+        .btn-agenda-container svg {
+            width: 30px;
+            height: 30px;
+            color: #fff;
+            margin-right: 1%; 
+            margin-left: 5px;
+            margin-top: 2%;
+            margin-bottom: 2%;
+            padding: 20px;
+        }
+        .btn-agenda-container:hover{
+            transform: scale(1.1);
+            background-color: #631726;
+
+        }
+        .info-btn{
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+        .info-btn:hover {
+            opacity: 0.7; 
+        }
+        .info-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: #d6b884;
+        }
+        .input[type="date"] {
+            font-family: Georgia;
+            width: 89.5%;
+            padding: 10px;
+            margin-bottom: 1%;
+            margin-top: 1%;
+            background-color: #eee;
+            text-align: center;
+            border: 2px solid #631726; 
+            border-radius: 5px; 
+            outline: none; 
+            cursor: pointer;
+        }
+        /* Modal */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1000; 
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto; 
+            background-color: #ffffff44; 
+        }
+        .custom-title {
+            font-family: Georgia;
+            color: #d6b884;
+            font-size: 24px;
+        }
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto; 
+            padding: 20px;
+            border: 5px solid #631726;
+            width: 50%; 
+        }
+        .modal-content ul {
+            list-style-type: none; 
+            padding: 0;
+        }
+        .modal-content li {
+            cursor: pointer;
+            margin-bottom: 10px;
+            border: #631726 solid 2px;
+            padding: 20px;
+            width: auto;
+            transition: 0.5s;
+        }
+        .modal-content li:nth-child(odd) {
+            background-color: #eee; 
+        }
+        .modal-content li:nth-child(even) {
+            background-color: #fff; 
+        }
+        .modal-content li:hover{
+            background-color: #d6b884;
+            color: #fff;
+            border: #d6b884 solid 2px;
+        }
+        .close {
+            width: 30px;
+            height: 30px;
+            color: red;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            border: red solid 1px;
+            justify-content: center;
+            line-height: 30px; 
+            text-align: center;
+            transition: .5s;
+        }
+        .close:hover,
+        .close:focus {
+            color: #d6b884;
+            background-color: #631726;
+            border: none;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .veiculos-destaque{
+            width: auto;
+            height: auto;
+            border:#631726 solid 3px;
+            margin-top: 2%;
+            margin-left: 2%;
+            margin-bottom: 2%;
+            margin-right: 2%;
+            justify-content: center;
+            border-radius: 5px;
+            
+        }
+        .veiculos-destaque-h1{
+            display: block;
+            background-color: #631726;
+            border-bottom: #d6b884 solid 9px;
+            width: auto;
+            height: 40px;
+            padding: 5px;
+            color: #eee;
+            border-radius: 5px;
+            margin-left: 1%;
+            margin-right: 1%;
+            text-align: center;
+
+        }
+        .carros-display {
+            display: flex;
+            justify-content: space-between;
+        }
+        .carro{
+            width: 23%;
+            text-align: center;
+            margin-top: 20px;
+            border: #631726 1px solid;
+            margin: 1%;
+            border-radius: 10px;
+        }
+        .carro img{
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            
+        }
+        .carro a{
+            font-size: 20px;
+            display: inline-block;
+            width: 85%;
+            padding: 10px 20px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-decoration: none;
+            color: #fff;
+            background-color: #631726;
+            border-radius: 5px;
+            transition: 1s;
+            border-bottom: #d6b884 9px solid;
+        }
+        .carro a:hover {
+            background-color: #d6b884;
+        }
+        .what-we-do{
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            border:#631726 3px solid;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 2%;
+            margin-right: 2%;
+            margin-left: 2%;
+            margin-bottom: 2%;
+        }
+        .what-we-do-img img{
+            margin-top: auto;
+            margin-right: 0;
+            margin-left: 2%;
+            margin-bottom: auto;
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .what-we-do-texto{
+            padding: 20px;
+            margin-top: auto;
+            margin-right: 2%;
+            margin-left: 2%;
+            margin-bottom: auto;
+            border-radius: 10px;
+        }
+        .what-we-do-h1{
+            font-size: 2rem;
+            color: #fff;
+            padding: 5px;
+            background-color: #631726;
+            border-radius: 10px;
+            width: 220px;
+            font: bold;
+        }
+        .what-we-do-texto  p{
+            background-color: #a0a0a0d5;
+            color: #fff;
+            font-size: 1.2rem;
+        }
+        .label-servicos {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border: #631726 3px solid;
+            border-radius: 5px;
+            margin: 2% 2% 2% 2%;
+            border-radius: 10px;
+            width: auto;
+            height: auto;
+        }
+        .servico {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: calc(30% - 10px);
+            margin: 2%; 
+            height: 450px;
+            border: #631726 1px solid;
+            padding: 5px;
+            background-color: #631726;
+            border-radius: 5px;
+            text-align: center; 
+            flex-grow: 1;
+            box-shadow: 5px 0px 20px 0px #d6b884;
+        }
+        .servico img {
+            width: 50%; 
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 5px; 
+            margin-top: 5px;
+        }
+        .texto {
+            width: 90%;
+        }
+        .servico h5 {
+            color: #fff;
+            font-size: 1.5rem; 
+            margin-bottom: 20px; 
+        }
+        .servico p {
+            color: #fff;
+            font-size: 1rem; 
+            margin-top: 2%; 
+            text-align: left;
+        }
+        /* Footer */
+        .footer {
+            display: flex;
+            justify-content: space-evenly;
+            width: 100%;
+            height: auto;
+            background-color: #fff;
+            border-top: #d6b884 solid 5px;
+            bottom: 0;
+            margin-top: auto;
+            margin-bottom: 0;
+        }
+        .coluna{
+            margin-top: 20px;
+            text-align: left;
+            justify-content: left;
+        }
+        .coluna a{
+            display: block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color:#631726;
+            font-size: 1.1rem;
+            transition: 1s;
+            text-align: center;
+        }
+        .coluna a:hover{
+            color: #d6b884;
+            background-color: #631726;
+            border-radius: 5px;
+            padding: 20px;
+        }
+        .coluna h5{
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+            color: #d6b884;
+            font-weight: bold;
+            width: auto;
+        }
+        .coluna p{
+            margin-bottom: 30px;
+            font-size: 1.2rem;
+            color: #631726;
+            font-weight: bold;
+        }
+        .rede-social{
+            width: 20px;
+            height: 20px;
+            margin-right: 5%;
+            vertical-align: middle;
+        }
+        #facebook{
+            background: -webkit-linear-gradient(#3b5998, #265994);
+            background: linear-gradient(#3b5998, #265994);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: left;
+        }
+        #instagram {
+            background: -webkit-linear-gradient(pink, purple);
+            background: linear-gradient(pink, purple);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: left;
+        }
+        #youtube {
+            background: -webkit-linear-gradient(red, #ff0000);
+            background: linear-gradient(red, #ff0000);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: left;
+        }
+        #botaoTopo {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 50px;
+            background-color: transparent;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            z-index: 99;
+        }
+        #botaoTopo::before {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 40px;
+            background-image: url('https://i.postimg.cc/RZjDHfyJ/up-arrow-4889419.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        ::-webkit-scrollbar {
+            width: 5px; 
+        }
+        ::-webkit-scrollbar-track {
+            background:#fff; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background:#d6b884; 
+            border-radius: 5px; 
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555; 
+        }
+        scrollbar {
+            width: 5px; 
+        }
+        scrollbar-track {
+            background: #fff; 
+        }
+        scrollbar-thumb {
+            background: #d6b884; 
+            border-radius: 5px; 
+        }
+        scrollbar-thumb:hover {
+            background: #555; 
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="container">
+        <nav class="menu">
+            <div><a href="/home" class="logo-botao"> <img class="logo" src="https://i.postimg.cc/RVp0FwZ5/logo2.png" alt="Logotipo"> </a></div>
+            <div><a href="/cars" id="btn-menu">Veículos</a></div>
+            <div><a href="" id="btn-menu">Reservar</a></div>
+            <div><a href="" id="btn-menu">Agências</a></div>
+            <div><a href="" id="btn-menu">Serviços e Extras</a></div>
+            <div><a href="/sobre-nos" id="btn-menu">Sobre Nós</a></div>
+            <div id="area-cliente-dropdown" class="dropdown" >
+                <button id="btn-area-cliente" class="dropbtn">
+                    {% if utilizador %}
+                        {{ utilizador.nome }}
+                    {% else %}
+                        Área do Cliente
+                    {% endif %}
+                </button>
+                <div id="area-cliente-dropdown-content" class="dropdown-content" style="display: none;">
+                    <a href="/perfil">Perfil</a>
+                    {% if not utilizador %}
+                        <a href="/login">Login</a>
+                        <a href="/registar">Registar</a>
+                    {% else %}
+                        <a href="/logout">Logout</a>
+                        {% if utilizador.tipo_user == 'Administrador' %}
+                            <a href="/guardar">Adicionar veículo</a>
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!-- Header -->
+    <!-- Body -->
+    <div class="body-container">
+        <div class="agenda-container">
+            <div class="estabelecimentos">
+                <div class="texto">
+                    Estação de Entrega
+                    <a href="" class="info-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-square" viewBox="0 0 16 16">
+                            <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+                            <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="input-container">
+                    <input type="text" name="estabelecimento_entrega" class="input" id="estacao-entrega" placeholder="Sul/Centro/Norte">
+                </div>
+            </div>
+            <div class="estabelecimentos">
+                <div class="texto">
+                    Estação de Devolução
+                    <a href="" class="info-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-square" viewBox="0 0 16 16">
+                            <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+                            <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="input-container">
+                    <input type="text" name="estabelecimento_devolucao" class="input" id="estacao-devolucao" placeholder="Sul/Centro/Norte">
+                </div>
+            </div>
+            <div class="estabelecimentos">
+                <div class="texto">Data de Início</div>
+                <input type="date" class="input input-date">
+            </div>
+            <div class="estabelecimentos">
+                <div class="texto">Hora de Início</div>
+                <select id="hora_inicio" class="hora-select">
+                    <option value="00:00">00:00</option><option value="00:30">00:30</option><option value="01:00">01:00</option><option value="01:30">01:30</option><option value="02:00">02:00</option><option value="02:30">02:30</option><option value="03:00">03:00</option><option value="03:30">03:30</option><option value="04:00">04:00</option><option value="04:30">04:30</option><option value="05:00">05:00</option><option value="05:30">05:30</option><option value="06:00">06:00</option><option value="06:30">06:30</option><option value="07:00">07:00</option><option value="07:30">07:30</option><option value="08:00">08:00</option><option value="08:30">08:30</option><option value="09:00">09:00</option><option value="09:30">09:30</option><option value="10:00">10:00</option><option value="10:30">10:30</option><option value="11:00">11:00</option><option value="11:30">11:30</option><option value="12:00">12:00</option><option value="12:30">12:30</option><option value="13:00">13:00</option><option value="13:30">13:30</option><option value="14:00">14:00</option><option value="14:30">14:30</option><option value="15:00">15:00</option><option value="15:30">15:30</option><option value="16:00">16:00</option><option value="16:30">16:30</option><option value="17:00">17:00</option><option value="17:30">17:30</option><option value="18:00">18:00</option><option value="18:30">18:30</option><option value="19:00">19:00</option><option value="19:30">19:30</option><option value="20:00">20:00</option><option value="20:30">20:30</option><option value="21:00">21:00</option><option value="21:30">21:30</option><option value="22:00">22:00</option><option value="22:30">22:30</option><option value="23:00">23:00</option><option value="23:30">23:30</option>
+                </select>
+            </div>
+            <div class="estabelecimentos">
+                <div class="texto">Data de Fim</div>
+                <input type="date" class="input input-date">
+            </div>
+            <div class="estabelecimentos">
+                <div class="texto">Hora de Fim</div>
+                <select id="hora_fim" class="hora-select">
+                    <option value="00:00">00:00</option><option value="00:30">00:30</option><option value="01:00">01:00</option><option value="01:30">01:30</option><option value="02:00">02:00</option><option value="02:30">02:30</option><option value="03:00">03:00</option><option value="03:30">03:30</option><option value="04:00">04:00</option><option value="04:30">04:30</option><option value="05:00">05:00</option><option value="05:30">05:30</option><option value="06:00">06:00</option><option value="06:30">06:30</option><option value="07:00">07:00</option><option value="07:30">07:30</option><option value="08:00">08:00</option><option value="08:30">08:30</option><option value="09:00">09:00</option><option value="09:30">09:30</option><option value="10:00">10:00</option><option value="10:30">10:30</option><option value="11:00">11:00</option><option value="11:30">11:30</option><option value="12:00">12:00</option><option value="12:30">12:30</option><option value="13:00">13:00</option><option value="13:30">13:30</option><option value="14:00">14:00</option><option value="14:30">14:30</option><option value="15:00">15:00</option><option value="15:30">15:30</option><option value="16:00">16:00</option><option value="16:30">16:30</option><option value="17:00">17:00</option><option value="17:30">17:30</option><option value="18:00">18:00</option><option value="18:30">18:30</option><option value="19:00">19:00</option><option value="19:30">19:30</option><option value="20:00">20:00</option><option value="20:30">20:30</option><option value="21:00">21:00</option><option value="21:30">21:30</option><option value="22:00">22:00</option><option value="22:30">22:30</option><option value="23:00">23:00</option><option value="23:30">23:30</option>
+                </select>
+            </div>
+            <div class="estabelecimentos">
+                <a href="#" class="btn-agenda-container">
+                    Procurar
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <div id="slideshow-container">
+            <img class="imagens active" src="https://i.postimg.cc/XvbY0VsD/bannerbugattichiron.png" alt="Buggati Chiron Banner">
+            <img class="imagens" src="https://i.postimg.cc/XvvbJFWm/rentingdeluxo.png" alt="Promoção 50%">
+            <img class="imagens" src="https://i.postimg.cc/cLf6q6GP/redbull.png" alt="Promoção Red Bull">
+            <img class="imagens" src="https://i.postimg.cc/R0kRSXPX/uniquecars.png" alt="Veículos únicos Banner">
+            <img class="imagens" src="https://i.postimg.cc/tTQmtvxY/rccullinan.png" alt="Rolls-Royce Cullinan Banner">
+        </div>
+    </div>
+    <div class="veiculos-destaque">
+        <h1 class="veiculos-destaque-h1">Veículos em Destaque</h1>
+        <div class="carros-display">
+            <div class="carro">
+                <img src="https://i.postimg.cc/YSvX425G/bentleydestaque.png" alt="Bentley Bentayga Mansory">
+                <a href="#">Bentley Bentayga Mansory</a>
+            </div>
+            <div class="carro">
+                <img src="https://i.postimg.cc/KzdCc348/bugattidestaque.png" alt="Bugatti Veyron 16.4">
+                <a href="#">Bugatti Veyron 16.4</a>
+            </div>
+            <div class="carro">
+                <img src="https://i.postimg.cc/J7HLwMth/lambodestaque.png" alt="Lamborghini Sian Roadster">
+                <a href="#">Lamborghini Sian Roadster</a>
+            </div>
+            <div class="carro">
+                <img src="https://i.postimg.cc/3xJfTF9Z/rrdestaque.png" alt="Rolls-Royce Phantom EWB">
+                <a href="#">Rolls-Royce Phantom EWB</a>
+            </div>
+        </div>
+    </div>
+    <div class="what-we-do">
+        <div class="what-we-do-img">
+            <img src="https://i.postimg.cc/CMsN2Rk0/3.png" alt="">
+        </div>
+        <div class="what-we-do-texto">
+            <h1 class="what-we-do-h1">What We Do:</h1>
+            <p>Bem-vindo à Luxury Wheels Portugal, a sua escolha premium para aluguer de automóveis de luxo. Estamos dedicados a proporcionar experiências de condução verdadeiramente memoráveis e exclusivas.</p>
+<p>Orgulhamo-nos de oferecer uma frota de veículos de alta qualidade, cuidadosamente selecionados para garantir o máximo conforto e desempenho. Todos os nossos carros são equipados com transmissão automática, garantindo uma experiência de condução suave e sem complicações.</p>
+<p>Seja para uma escapadela de fim de semana, um evento especial ou uma viagem de negócios, os nossos carros de luxo são a escolha ideal para explorar as maravilhas de Portugal com estilo e elegância.</p>
+<p>Permita-nos tornar a sua jornada ainda mais extraordinária. Reserve já o seu carro de sonho com Luxury Wheels Portugal.</p>
+        </div>
+    </div>
+    <div class="label-servicos">
+        <div class="servico">
+            <img src="https://i.postimg.cc/s24kk1Kh/autogear1.png" alt="Caixa de velocidades automática">
+            <div class="texto">
+                <h5>Caixa Automática</h5>
+                <p>Para veículos de alto luxo e hypercars, uma transmissão automática proporciona uma experiência de condução ainda mais refinada e eficiente, mantendo o condutor livre para desfrutar do desempenho excepcional do veículo.</p>
+            </div>
+        </div>
+        <div class="servico">
+            <img src="https://i.postimg.cc/9Mz0QYyj/fuelicon.png" alt="Combustível">
+            <div class="texto">
+                <h5>Combustível</h5>
+                <p>Para locações de um mês ou mais, oferecemos um bônus de 200€ em combustível. Desfrute do luxo do seu veículo com esta oferta exclusiva e aproveite ao máximo sua jornada pelas estradas, enquanto nós cuidamos do seu abastecimento.</p>
+            </div>
+        </div>
+        <div class="servico">
+            <img src="https://i.postimg.cc/Mp3JRqY2/calendericon.png" alt="Agenda">
+            <div class="texto">
+                <h5>Agendamento</h5>
+                <p>Desfrute de total flexibilidade em nossos serviços de aluguel, disponíveis por períodos que variam de 1 dia a 12 meses. Adapte a duração do aluguel conforme suas necessidades, garantindo uma experiência de condução excepcional a cada momento.</p>
+            </div>
+        </div>
+        <div class="servico">
+            <img src="https://i.postimg.cc/NjVtrQg9/star.png" alt="Top Brands">
+            <div class="texto">
+                <h5>Marcas de Luxo</h5>
+                <p>Na Luxury Wheels, primamos pela exclusividade e qualidade, estabelecendo parcerias apenas com as marcas mais prestigiadas no mundo dos automóveis de luxo. Garantimos que cada veículo em nossa seleção ofereça o mais alto padrão de desempenho, conforto e elegância.</p>
+            </div>
+        </div>
+        <div class="servico">
+            <img src="https://i.postimg.cc/pLnkMNjj/payment.png" alt="Pagamentos">
+            <div class="texto">
+                <h5>Pagamento</h5>
+                <p>Comprometemo-nos a facilitar e tornar acessível o processo de pagamento para os nossos clientes. Dispomos de uma gama diversificada de opções flexíveis, concebidas para atender às necessidades financeiras individuais, garantindo praticidade e confiança em todas as transações.</p>
+            </div>
+        </div>
+    </div>
+    <button onclick="voltarParaTopo()" id="botaoTopo" title="Voltar para o Topo"></button>
+    <!-- Body-->
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="coluna">
+            <img src="https://i.postimg.cc/RVp0FwZ5/logo2.png" alt="Logotipo">
+            <p>Copyright &copy; 2024 Luxury Wheels</p>
+            <a href="https://www.facebook.com" id="facebook" ><img src="https://i.postimg.cc/rs9yRfzj/face.png" alt="Facebook logo" class="rede-social">Facebook</a>
+            <a href="https://www.instagram.com" id="instagram"><img src="https://i.postimg.cc/Z5np8MpC/insta.png" alt="Instagram logo" class="rede-social">Instagram </a>
+            <a href="https://www.youtube.com" id="youtube"><img src="https://i.postimg.cc/vmv82QWh/youtube.png" alt="Youtube logo" class="rede-social">Youtube </a>
+        </div>
+        <div class="coluna">
+            <h5>Viaturas mais procurados</h5>
+            <a href="">1</a>
+            <a href="">2</a>
+            <a href="">3</a>
+            <a href="">4</a>
+            <a href="">5</a>
+            <a href="">6</a>
+            <a href="">7</a>
+            <a href="">8</a>
+            <a href="">9</a>
+            <a href="">0</a>
+        </div>
+        <div class="coluna">
+            <h5>Informações</h5>
+            <a href="/sobre-nos">Sobre Nós</a>
+            <a href="/contactos">Contactos</a>
+            <a href="">Perguntas Frequentes</a>
+            <a href="">Termos e Condições</a>
+            <a href="">Política de Privacidade</a>
+        </div>
+    </footer>
+    <!-- Footer -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <ul id="moradas-lista"></ul>
+        </div>
+    </div>
+    <script>
+        function showModal(text) {
+            var modal = document.getElementById("myModal");
+            var moradasList = document.getElementById("moradas-lista");
+            moradasList.innerHTML = ""; 
+            
+            var title = document.createElement("h1");
+            title.textContent = "Moradas disponíveis";
+            title.classList.add("custom-title");
+            moradasList.appendChild(title);
+    
+            var moradas = text.split('\n');
+            moradas.forEach(function(morada) {
+                if (morada.trim() !== "") {
+                    var listItem = document.createElement("li");
+                    listItem.textContent = morada.trim();
+                    listItem.addEventListener('click', function() {
+                        copyToClipboard(morada.trim());
+                    });
+                    moradasList.appendChild(listItem);
+                }
+            });
+            modal.style.display = "block";
+        }
+    
+        function closeModal() {
+            var modal = document.getElementById("myModal");
+            modal.style.display = "none";
+        }
+    
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text);
+            alert("Morada copiada para a área de transferência: " + text);
+        }
+    
+        document.querySelectorAll('.info-btn').forEach(item => {
+            item.addEventListener('click', event => {
+                event.preventDefault();
+                var text = item.parentElement.textContent.trim();
+                text = text.substring(0, text.indexOf('Estação'));
+                showModal("Rua Artilharia 1 105A, 1070-012 Lisboa\n" +
+                   "Rua São Francisco 582, 2645-019 Alcabideche\n" +
+                   "Avenida da Independência Lote1 1C, 4705-162 Braga\n" +
+                   "Rua Manuel Pinto de Azevedo 585, 4149-010 Porto\n" +
+                   "Estrada da Ribeira, Armazém 3 C, 2645-575 Alcabideche\n" +
+                   "N125 98.9, 8005-145 Faro");
+    });
+        });
+    
+        var closeBtn = document.querySelector('.close');
+        closeBtn.addEventListener('click', function() {
+            closeModal();
+        });
+    
+        window.addEventListener('click', function(event) {
+            var modal = document.getElementById("myModal");
+            if (event.target == modal) {
+                closeModal();
+            }
+        });
+        let images = document.querySelectorAll('.imagens');
+        let currentImageIndex = 0;
+        let interval = setInterval(nextImage, 10000);
+
+        function nextImage() {
+            images[currentImageIndex].classList.remove('active');
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            images[currentImageIndex].classList.add('active');
+        }
+
+        window.onscroll = function() {scrollFunction()};
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("botaoTopo").style.display = "block";
+            } else {
+                document.getElementById("botaoTopo").style.display = "none";
+            }
+        }
+
+        function voltarParaTopo() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0; 
+        }
+        function showDropdown() {
+            document.getElementById("area-cliente-dropdown-content").style.display = "block";
+        }
+
+        function hideDropdown() {
+            document.getElementById("area-cliente-dropdown-content").style.display = "none";
+        }
+
+        document.getElementById("btn-area-cliente").addEventListener("mouseover", showDropdown);
+        document.getElementById("area-cliente-dropdown").addEventListener("mouseleave", hideDropdown);
+    </script>
+</body>
+</html>
