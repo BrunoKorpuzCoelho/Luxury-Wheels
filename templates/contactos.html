@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://i.postimg.cc/sx18KHfy/favicon-16x16.png">
     <title>Contactos | Luxury Wheels Portugal</title>
     <style>
         body{
@@ -204,7 +205,7 @@
         }
         .social:hover{
             padding: 20px;
-            width: 53%;
+            width: auto;
             box-shadow: #fff 3px 3px 10px 10px;
         }
         .coluna-2{
@@ -419,14 +420,12 @@
 <body>
     <!-- Header -->
     <button onclick="voltarParaTopo()" id="botaoTopo" title="Voltar para o Topo"></button>
-    <!-- Header -->
     <div class="container">
         <nav class="menu">
             <div><a href="/home" class="logo-botao"> <img class="logo" src="https://i.postimg.cc/RVp0FwZ5/logo2.png" alt="Logotipo"> </a></div>
             <div><a href="/cars" id="btn-menu">Veículos</a></div>
-            <div><a href="" id="btn-menu">Reservar</a></div>
-            <div><a href="" id="btn-menu">Agências</a></div>
-            <div><a href="" id="btn-menu">Serviços e Extras</a></div>
+            <div><a href="/servicos-extras" id="btn-menu">Serviços e Extras</a></div>
+            <div><a href="/contactos" id="btn-menu">Contactos</a></div>
             <div><a href="/sobre-nos" id="btn-menu">Sobre Nós</a></div>
             <div id="area-cliente-dropdown" class="dropdown">
                 <button id="btn-area-cliente" class="dropbtn">
@@ -442,6 +441,7 @@
                         <a href="/login">Login</a>
                         <a href="/registar">Registar</a>
                     {% else %}
+                        <a href="/alterar-reserva">Alterar Reserva</a>
                         <a href="/logout">Logout</a>
                     {% endif %}
                 </div>
@@ -461,7 +461,7 @@
             <p id="info">Telefone:</p>
             <p>+351 999 999 999</p>
             <p id="info">E-mail: </p>
-            <p>luxurywheels.pj@gmail.com</p>
+            <p>luxurywheels.pf@hotmail.com</p>
             <p id="info">Horário de Atendimento:</p>
             <p>Segunda a Sexta das 08:30 ás 20:00<br>Sábado das 09:00 ás 17:00<br>Domingo e Feriados das 09:00 ás 13:00</p>
             <p id="info">Redes Sociais:</p>
@@ -511,6 +511,9 @@
             </div>
         </div>
     </div>
+    <div class="morada">
+        
+    </div>
     <!-- Body -->
     <!-- Footer -->
     <footer class="footer">
@@ -523,24 +526,18 @@
         </div>
         <div class="coluna">
             <h5>Viaturas mais procurados</h5>
-            <a href="">1</a>
-            <a href="">2</a>
-            <a href="">3</a>
-            <a href="">4</a>
-            <a href="">5</a>
-            <a href="">6</a>
-            <a href="">7</a>
-            <a href="">8</a>
-            <a href="">9</a>
-            <a href="">0</a>
+            <a href="/alugar?id=13">Bugatti Chiron Super Sport</a>
+            <a href="/alugar?id=86">Lamborghini Aventador Svj Roadster</a>
+            <a href="/alugar?id=74">Ferrari Laferrari</a>
+            <a href="/alugar?id=81">Ferrari F8 Spider</a>
+            <a href="/alugar?id=10">Bentley Continental Gtc Speed W12</a>
         </div>
         <div class="coluna">
             <h5>Informações</h5>
             <a href="/sobre-nos">Sobre Nós</a>
             <a href="/contactos">Contactos</a>
-            <a href="">Perguntas Frequentes</a>
-            <a href="">Termos e Condições</a>
-            <a href="">Política de Privacidade</a>
+            <a href="/termos-condicoes">Termos e Condições</a>
+            <a href="/politicas-de-privacidade">Política de Privacidade</a>
         </div>
     </footer>
     <!-- Footer -->

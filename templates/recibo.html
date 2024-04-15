@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://i.postimg.cc/sx18KHfy/favicon-16x16.png">
     <title>Recibo | Luxury Wheels Portugal</title>
     <style>
         body {
@@ -130,6 +131,8 @@
                 <input type="hidden" id="estabelecimento_entrega" name="estabelecimento_entrega" value="{{ estabelecimento_entrega }}">
                 <input type="hidden" id="estabelecimento_devolucao" name="estabelecimento_devolucao" value="{{ estabelecimento_devolucao }}">
                 <input type="hidden" id="valor_total" name="valor_total" value="{{ valor_total }}">
+                <input type="hidden" id="nome" name="nome" value="{{ current_user.nome }}">
+                <input type="hidden" id="nif" name="nif" value="{{ current_user.nif }}">
                 
             </div>
             <div class="total">
@@ -189,8 +192,7 @@
     // Obtém o ID do novo registro do atributo data-id do formulário
     var novoRegistoId = this.getAttribute("data-id");
     
-    // Após a submissão do formulário, faz o download do recibo
-    window.location.href = "/download_recibo/" + novoRegistoId;
+    
 });
 
     </script>

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://i.postimg.cc/sx18KHfy/favicon-16x16.png">
     <title>Login | Luxury Wheels Portugal</title>
     <style>
         body{
@@ -48,7 +49,8 @@
             margin-right: 2%;
         }
         .menu div:last-child {
-            margin-left: 0;
+            margin-right: 0;
+            margin-left: auto;
         }
         #btn-menu {
             font-family: Georgia;
@@ -63,8 +65,55 @@
             color: #fff;
             background-color: #631726;
         }
-        /* Header */
-        /* Scroll Bar */
+        .dropdown {
+        position: relative;
+        display: inline-block;
+        }
+        .dropbtn {
+            font-family: Georgia;
+            color: #d6b884;
+            background-color: #fff;
+            padding: 12px;
+            font-size: 22px;
+            border: none;
+            cursor: pointer;
+        }
+        .dropbtn:hover{
+            background-color: #631726;
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        .dropdown-content {
+            font-family: Georgia;
+            font-size: 18px;
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            z-index: 1;
+            right: 0;
+        }
+        .dropdown-content a {
+            color: #d6b884;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {
+            background-color: #631726;
+            color: #fff;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .dropdown-content button {
+            display: none;
+        }
+        .dropdown:hover .dropdown-content button {
+            display: inline-block;
+        }
         ::-webkit-scrollbar {
             width: 5px; 
         }
@@ -91,7 +140,27 @@
         scrollbar-thumb:hover {
             background: #555; 
         }
-        /* Scroll Bar */
+        #botaoTopo {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 50px;
+            background-color: transparent;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            z-index: 99;
+        }
+        #botaoTopo::before {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 40px;
+            background-image: url('https://i.postimg.cc/RZjDHfyJ/up-arrow-4889419.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        /* Header */
         /*  Body */
         .login-container {   
             text-align: center;
@@ -104,7 +173,7 @@
             border-radius: 5px;
         }
         .body-container{
-            height: 394px;
+            height: 505px;
         }
         .login label {
             display: block;
@@ -156,6 +225,11 @@
             color: #631726;
             background-color: #d6b884;
         } 
+        .login-container p{
+            color: #d6b884;
+            font-size: 1.1rem;
+            text-decoration: underline;
+        }
     /*Body*/
     /* Footer */
     .footer {
@@ -233,34 +307,62 @@
             text-align: left;
         }
         /* Footer */
+        .error-message{
+            font-size: 1.1rem;
+            color: #ff0000;
+            margin-bottom: 5%;
+        }
     </style>
 </head>
 <body>
     <!-- Header -->
+    <button onclick="voltarParaTopo()" id="botaoTopo" title="Voltar para o Topo"></button>
     <div class="container">
         <nav class="menu">
             <div><a href="/home" class="logo-botao"> <img class="logo" src="https://i.postimg.cc/RVp0FwZ5/logo2.png" alt="Logotipo"> </a></div>
             <div><a href="/cars" id="btn-menu">Veículos</a></div>
-            <div><a href="" id="btn-menu">Reservar</a></div>
-            <div><a href="" id="btn-menu">Agências</a></div>
-            <div><a href="" id="btn-menu">Serviços e Extras</a></div>
+            <div><a href="/servicos-extras" id="btn-menu">Serviços e Extras</a></div>
+            <div><a href="/contactos" id="btn-menu">Contactos</a></div>
             <div><a href="/sobre-nos" id="btn-menu">Sobre Nós</a></div>
+            <div id="area-cliente-dropdown" class="dropdown">
+                <button id="btn-area-cliente" class="dropbtn">
+                    {% if utilizador %}
+                        {{ utilizador.nome }}
+                    {% else %}
+                        Área do Cliente
+                    {% endif %}
+                </button>
+                <div id="area-cliente-dropdown-content" class="dropdown-content" style="display: none;">
+                    <a href="/perfil">Perfil</a>
+                    {% if not utilizador %}
+                        <a href="/login">Login</a>
+                        <a href="/registar">Registar</a>
+                    {% else %}
+                        <a href="/alterar-reserva">Alterar Reserva</a>
+                        <a href="/logout">Logout</a>
+                    {% endif %}
+                </div>
+            </div>
         </nav>
     </div>
     <!-- Header -->
     <!-- Body -->
     <div class="body-container">
+
         <div class="login-container">
             <div class="forms">
                 <form id="login-form" class="login" action="/login" method="POST"> 
-        
+                    {% if error %}
+                    <div class="error-message">{{ error }}</div> 
+                    {% endif %}
                     <label for="username">Username:</label>
                     <input type="text" id="username" name="username" required>
-        
+    
                     <label for="password">Password:</label>
                     <input type="password" id="password" name="password" required>
-        
+    
                     <button type="submit" name="login">Login</button>
+                    <p>Se não tiver conta.<button style="margin-top: 2%; width: 40%; margin-left: 5%;" id="botaoRedirecionar">Registe-se</button></p>
                 </form>
             </div>
         </div>
@@ -277,21 +379,51 @@
         </div>
         <div class="coluna">
             <h5>Viaturas mais procurados</h5>
-            <a href="">1</a>
-            <a href="">2</a>
-            <a href="">3</a>
-            <a href="">4</a>
-            <a href="">5</a>
+            <a href="/alugar?id=13">Bugatti Chiron Super Sport</a>
+            <a href="/alugar?id=86">Lamborghini Aventador Svj Roadster</a>
+            <a href="/alugar?id=74">Ferrari Laferrari</a>
+            <a href="/alugar?id=81">Ferrari F8 Spider</a>
+            <a href="/alugar?id=10">Bentley Continental Gtc Speed W12</a>
         </div>
         <div class="coluna">
             <h5>Informações</h5>
             <a href="/sobre-nos">Sobre Nós</a>
             <a href="/contactos">Contactos</a>
-            <a href="">Perguntas Frequentes</a>
-            <a href="">Termos e Condições</a>
-            <a href="">Política de Privacidade</a>
+            <a href="/termos-condicoes">Termos e Condições</a>
+            <a href="/politicas-de-privacidade">Política de Privacidade</a>
         </div>
     </footer>
     <!-- Footer -->
+    <script>
+        function showDropdown() {
+            document.getElementById("area-cliente-dropdown-content").style.display = "block";
+        }
+
+        function hideDropdown() {
+            document.getElementById("area-cliente-dropdown-content").style.display = "none";
+        }
+        document.getElementById("btn-area-cliente").addEventListener("mouseover", showDropdown);
+        document.getElementById("area-cliente-dropdown").addEventListener("mouseleave", hideDropdown);
+
+        document.getElementById("botaoRedirecionar").addEventListener("click", function() {
+    
+        window.location.href = "/registar";
+        });
+        
+        window.onscroll = function() {scrollFunction()};
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("botaoTopo").style.display = "block";
+            } else {
+                document.getElementById("botaoTopo").style.display = "none";
+            }
+        }
+
+        function voltarParaTopo() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0; 
+        }
+    </script>
 </body>
 </html>

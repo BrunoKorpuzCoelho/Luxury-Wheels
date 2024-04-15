@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://i.postimg.cc/sx18KHfy/favicon-16x16.png">
     <title>Veículos | Luxury Wheels Portugal</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <style>
@@ -333,6 +334,7 @@
             font-weight: bold;
             width: 48%; 
             padding-left: 4%; 
+            height: 320px;
         }
         .car img {
             width: 360px; 
@@ -424,7 +426,6 @@
             var locacaoSelecionada = $("#locacao").val();
             var precoMaximo = parseFloat($("#preco_maximo").val());
             var categoriaSelecionada = $("#todas_categorias").val();
-
             $(".car-row").each(function() {
                 var tipoVeiculoRegistro = $(this).closest(".cars-container").attr("id");
                 var marcaVeiculo = $(this).find(".marca").text();
@@ -450,21 +451,13 @@
                 }
             });
         }
-
-
-
-
-        
         function parseDate(dateString) {
             var parts = dateString.split('-');
             return new Date(parts[0], parts[1] - 1, parts[2]);
         }
-
-
         function compareDates(date1, date2) {
             return date1.getTime() === date2.getTime();
         }
-
         function pesquisar() {
             var dataInicioSelecionada = parseDate(document.getElementById("data_inicio").value);
             var dataFimSelecionada = parseDate(document.getElementById("data_fim").value);
@@ -500,7 +493,7 @@
                     moto.style.display = ""; 
                 }
             });
-        }
+        } 
     </script>
     <!-- Header -->
     <button onclick="voltarParaTopo()" id="botaoTopo" title="Voltar para o Topo"></button>
@@ -509,9 +502,8 @@
         <nav class="menu">
             <div><a href="/home" class="logo-botao"> <img class="logo" src="https://i.postimg.cc/RVp0FwZ5/logo2.png" alt="Logotipo"> </a></div>
             <div><a href="/cars" id="btn-menu">Veículos</a></div>
-            <div><a href="" id="btn-menu">Reservar</a></div>
-            <div><a href="" id="btn-menu">Agências</a></div>
-            <div><a href="" id="btn-menu">Serviços e Extras</a></div>
+            <div><a href="/servicos-extras" id="btn-menu">Serviços e Extras</a></div>
+            <div><a href="/contactos" id="btn-menu">Contactos</a></div>
             <div><a href="/sobre-nos" id="btn-menu">Sobre Nós</a></div>
             <div>
                 <button style="display: none;"></button>
@@ -555,12 +547,12 @@
 
             <label for="marca">Marca:</label>
             <select id="marca" name="marca">
-                <option value="todas">Todas as Marcas</option><option value="Aston Martin">Aston Martin</option><option value="Audi">Audi</option> <option value="Bentley">Bentley</option><option value="Bmw">BMW</option><option value="Brabus">Brabus</option><option value="Bugatti">Bugatti</option><option value="Ducati">Ducati</option><option value="Ferrari">Ferrari</option> <option value="Ford">Ford</option><option value="Koenigsegg">Koenigsegg</option><option value="Lamborghini">Lamborghini</option><option value="Mclaren">Mclaren</option><option value="Mercedes">Mercedes</option><option value="Rolls-Royce">Rolls-Royce</option><option value="Porsche">Porsche</option><option value="Spyker">Spyker</option>
+                <option value="todas">Todas as Marcas</option><option value="Aston Martin">Aston Martin</option><option value="Audi">Audi</option> <option value="Bentley">Bentley</option><option value="Bmw">BMW</option><option value="Brabus">Brabus</option><option value="Bugatti">Bugatti</option><option value="Ducati">Ducati</option><option value="Ferrari">Ferrari</option> <option value="Ford">Ford</option><option value="Koenigsegg">Koenigsegg</option><option value="Lamborghini">Lamborghini</option><option value="Mclaren">Mclaren</option><option value="Mercedes">Mercedes</option><option value="Rolls-Royce">Rolls-Royce</option><option value="Pagani">Pagani</option><option value="Porsche">Porsche</option><option value="Spyker">Spyker</option>
             </select>
 
             <label for="modelo">Modelo:</label>
             <select id="modelo" name="modelo">
-                <option value="todas">Todos os Modelos</option><option value="4,5 Litre Blower">4,5 Litre Blower</option><option value="540 K Cabriolet">540 K Cabriolet</option><option value="600 Pullman Landaulet">600 Pullman Landaulet</option><option value="760">760</option><option value="Amg Gt Black Series">Amg Gt Black Series</option><option value="Aventador Svj Roadster">Aventador Svj Roadster</option><option value="Bentayga V8">Bentayga V8</option><option value="C8">C8</option><option value="Cc850">Cc850</option><option value="Centenario Roadster">Centenario Roadster</option><option value="Chiron Super Sport">Chiron Super Sport</option><option value="Cl 65 Amg">Cl 65 Amg</option><option value="Clk 55">Clk 55</option><option value="Continental Gtc Speed W12">Continental Gtc Speed W12</option><option value="Countach">Countach</option><option value="Countach Lp5000">Countach Lp5000</option><option value="Culinan">Culinan</option><option value="E-Tron Gt">E-Tron Gt</option><option value="E55 Amg">E55 Amg</option><option value="E63 Amg">E63 Amg</option><option value="Enzo">Enzo</option><option value="Eqs 53">Eqs 53</option><option value="Eqs 580">Eqs 580</option><option value="Eqv 300 Vip">Eqv 300 Vip</option><option value="F12">F12</option><option value="F150 Raptor Shelby">F150 Raptor Shelby</option><option value="F40">F40</option><option value="F8 Spider">F8 Spider</option><option value="F8 Tributo">F8 Tributo</option><option value="Flying Spur">Flying Spur</option><option value="G 63 Amg Brabus 6X6">G 63 Amg Brabus 6X6</option><option value="G65 Amg">G65 Amg</option><option value="Gle 63 Brabus Rocket 900">Gle 63 Brabus Rocket 900</option><option value="Gt">Gt</option><option value="Gtc4 Lusso">Gtc4 Lusso</option><option value="Huracán">Huracán</option><option value="I7">I7</option><option value="Jesko">Jesko</option><option value="Laferrari">Laferrari</option><option value="M1">M1</option><option value="M1 Coupe">M1 Coupe</option><option value="M2">M2</option><option value="M3 Cs">M3 Cs</option><option value="M3 E30">M3 E30</option><option value="M4 Cls">M4 Cls</option><option value="M5 Manhart Mh5 900">M5 Manhart Mh5 900</option><option value="M6">M6</option><option value="M8">M8</option><option value="Maybach Gls 600">Maybach Gls 600</option><option value="Mustang Boss 249">Mustang Boss 249</option><option value="Mustang Eleanor">Mustang Eleanor</option><option value="Mustang Mach-E">Mustang Mach-E</option><option value="Mustang Shelby Gt500">Mustang Shelby Gt500</option><option value="One-77">One-77</option><option value="Phantom">Phantom</option><option value="Portofino">Portofino</option><option value="Q7">Q7</option><option value="Q8 E-Tron">Q8 E-Tron</option><option value="R8 Cabrio">R8 Cabrio</option><option value="R8 Coupe">R8 Coupe</option><option value="Roma">Roma</option><option value="Rs Q8">Rs Q8</option><option value="Rs3">Rs3</option><option value="Rs6 Signature">Rs6 Signature</option><option value="Rs7">Rs7</option><option value="S 650 Maybach Pullman">S 650 Maybach Pullman</option><option value="Senna">Senna</option><option value="Sf90 Spider">Sf90 Spider</option><option value="Sf90 Stradale">Sf90 Stradale</option><option value="Sian Roadster">Sian Roadster</option><option value="Slr 722 Mso Mclaren Edition">Slr 722 Mso Mclaren Edition</option><option value="Slr Mclaren Stirling Moss Edition">Slr Mclaren Stirling Moss Edition</option><option value="Sls Amg Black Series">Sls Amg Black Series</option><option value="Speedtail">Speedtail</option><option value="Tt Rs">Tt Rs</option><option value="Urus Mansory Carbon">Urus Mansory Carbon</option><option value="Urus Mansory Venatus">Urus Mansory Venatus</option><option value="Vantage Db4">Vantage Db4</option><option value="Veyron 16.4">Veyron 16.4</option><option value="X5M">X5M</option><option value="X6M">X6M</option><option value="X7M">X7M</option><option value="Xm">Xm</option>
+                <option value="todas">Todos os Modelos</option><option value="4,5 Litre Blower">4,5 Litre Blower</option><option value="540 K Cabriolet">540 K Cabriolet</option><option value="600 Pullman Landaulet">600 Pullman Landaulet</option><option value="760">760</option><option value="Amg Gt Black Series">Amg Gt Black Series</option><option value="Aventador Svj Roadster">Aventador Svj Roadster</option><option value="Bentayga V8">Bentayga V8</option><option value="C8">C8</option><option value="Cc850">Cc850</option><option value="Centenario Roadster">Centenario Roadster</option><option value="Chiron Super Sport">Chiron Super Sport</option><option value="Cl 65 Amg">Cl 65 Amg</option><option value="Clk 55">Clk 55</option><option value="Continental Gtc Speed W12">Continental Gtc Speed W12</option><option value="Countach">Countach</option><option value="Countach Lp5000">Countach Lp5000</option><option value="Culinan">Culinan</option><option value="E-Tron Gt">E-Tron Gt</option><option value="E55 Amg">E55 Amg</option><option value="E63 Amg">E63 Amg</option><option value="Enzo">Enzo</option><option value="Eqs 53">Eqs 53</option><option value="Eqs 580">Eqs 580</option><option value="Eqv 300 Vip">Eqv 300 Vip</option><option value="F12">F12</option><option value="F150 Raptor Shelby">F150 Raptor Shelby</option><option value="F40">F40</option><option value="F8 Spider">F8 Spider</option><option value="F8 Tributo">F8 Tributo</option><option value="Flying Spur">Flying Spur</option><option value="G 63 Amg Brabus 6X6">G 63 Amg Brabus 6X6</option><option value="G65 Amg">G65 Amg</option><option value="Gle 63 Brabus Rocket 900">Gle 63 Brabus Rocket 900</option><option value="Gt">Gt</option><option value="Gtc4 Lusso">Gtc4 Lusso</option><option value="Huayra">Huayra</option><option value="Huracán">Huracán</option><option value="I7">I7</option><option value="Jesko">Jesko</option><option value="Laferrari">Laferrari</option><option value="M1">M1</option><option value="M1 Coupe">M1 Coupe</option><option value="M2">M2</option><option value="M3 Cs">M3 Cs</option><option value="M3 E30">M3 E30</option><option value="M4 Cls">M4 Cls</option><option value="M5 Manhart Mh5 900">M5 Manhart Mh5 900</option><option value="M6">M6</option><option value="M8">M8</option><option value="Maybach Gls 600">Maybach Gls 600</option><option value="Mustang Boss 249">Mustang Boss 249</option><option value="Mustang Eleanor">Mustang Eleanor</option><option value="Mustang Mach-E">Mustang Mach-E</option><option value="Mustang Shelby Gt500">Mustang Shelby Gt500</option><option value="One-77">One-77</option><option value="Phantom">Phantom</option><option value="Portofino">Portofino</option><option value="Q7">Q7</option><option value="Q8 E-Tron">Q8 E-Tron</option><option value="R8 Cabrio">R8 Cabrio</option><option value="R8 Coupe">R8 Coupe</option><option value="Roma">Roma</option><option value="Rs Q8">Rs Q8</option><option value="Rs3">Rs3</option><option value="Rs6 Signature">Rs6 Signature</option><option value="Rs7">Rs7</option><option value="S 650 Maybach Pullman">S 650 Maybach Pullman</option><option value="Senna">Senna</option><option value="Sf90 Spider">Sf90 Spider</option><option value="Sf90 Stradale">Sf90 Stradale</option><option value="Sian Roadster">Sian Roadster</option><option value="Slr 722 Mso Mclaren Edition">Slr 722 Mso Mclaren Edition</option><option value="Slr Mclaren Stirling Moss Edition">Slr Mclaren Stirling Moss Edition</option><option value="Sls Amg Black Series">Sls Amg Black Series</option><option value="Speedtail">Speedtail</option><option value="Tt Rs">Tt Rs</option><option value="Urus Mansory Carbon">Urus Mansory Carbon</option><option value="Urus Mansory Venatus">Urus Mansory Venatus</option><option value="Vantage Db4">Vantage Db4</option><option value="Veyron 16.4">Veyron 16.4</option><option value="X5M">X5M</option><option value="X6M">X6M</option><option value="X7M">X7M</option><option value="Xm">Xm</option><option value="Carrera GT">Carrera GT</option><option value="918">918</option>
                 
                 
             </select>
@@ -644,28 +636,20 @@
         </div>
         <div class="coluna">
             <h5>Viaturas mais procurados</h5>
-            <a href="">1</a>
-            <a href="">2</a>
-            <a href="">3</a>
-            <a href="">4</a>
-            <a href="">5</a>
-            <a href="">6</a>
-            <a href="">7</a>
-            <a href="">8</a>
-            <a href="">9</a>
-            <a href="">0</a>
+            <a href="/alugar?id=13">Bugatti Chiron Super Sport</a>
+            <a href="/alugar?id=86">Lamborghini Aventador Svj Roadster</a>
+            <a href="/alugar?id=74">Ferrari Laferrari</a>
+            <a href="/alugar?id=81">Ferrari F8 Spider</a>
+            <a href="/alugar?id=10">Bentley Continental Gtc Speed W12</a>
         </div>
         <div class="coluna">
             <h5>Informações</h5>
             <a href="/sobre-nos">Sobre Nós</a>
             <a href="/contactos">Contactos</a>
-            <a href="">Perguntas Frequentes</a>
-            <a href="">Termos e Condições</a>
-            <a href="">Política de Privacidade</a>
+            <a href="/termos-condicoes">Termos e Condições</a>
+            <a href="/politicas-de-privacidade">Política de Privacidade</a>
         </div>
     </footer>
     <!-- Footer -->
-
-    
 </body>
 </html>

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://i.postimg.cc/sx18KHfy/favicon-16x16.png">
     <title>Sobre Nós | Luxury Wheels Portugal</title>
     <style>
         body{
@@ -158,6 +159,8 @@
         scrollbar-thumb:hover {
             background: #555; 
         }
+        /* Header */
+        /* Body*/
         .titulo-h1{
             color:#fff;
             background-color: #631726;
@@ -286,9 +289,8 @@
         <nav class="menu">
             <div><a href="/home" class="logo-botao"> <img class="logo" src="https://i.postimg.cc/RVp0FwZ5/logo2.png" alt="Logotipo"> </a></div>
             <div><a href="/cars" id="btn-menu">Veículos</a></div>
-            <div><a href="" id="btn-menu">Reservar</a></div>
-            <div><a href="" id="btn-menu">Agências</a></div>
-            <div><a href="" id="btn-menu">Serviços e Extras</a></div>
+            <div><a href="/servicos-extras" id="btn-menu">Serviços e Extras</a></div>
+            <div><a href="/contactos" id="btn-menu">Contactos</a></div>
             <div><a href="/sobre-nos" id="btn-menu">Sobre Nós</a></div>
             <div id="area-cliente-dropdown" class="dropdown">
                 <button id="btn-area-cliente" class="dropbtn">
@@ -304,6 +306,7 @@
                         <a href="/login">Login</a>
                         <a href="/registar">Registar</a>
                     {% else %}
+                        <a href="/alterar-reserva">Alterar Reserva</a>
                         <a href="/logout">Logout</a>
                     {% endif %}
                 </div>
@@ -353,19 +356,18 @@
         </div>
         <div class="coluna">
             <h5>Viaturas mais procurados</h5>
-            <a href="">1</a>
-            <a href="">2</a>
-            <a href="">3</a>
-            <a href="">4</a>
-            <a href="">5</a>
+            <a href="/alugar?id=13">Bugatti Chiron Super Sport</a>
+            <a href="/alugar?id=86">Lamborghini Aventador Svj Roadster</a>
+            <a href="/alugar?id=74">Ferrari Laferrari</a>
+            <a href="/alugar?id=81">Ferrari F8 Spider</a>
+            <a href="/alugar?id=10">Bentley Continental Gtc Speed W12</a>
         </div>
         <div class="coluna">
             <h5>Informações</h5>
             <a href="/sobre-nos">Sobre Nós</a>
             <a href="/contactos">Contactos</a>
-            <a href="">Perguntas Frequentes</a>
-            <a href="">Termos e Condições</a>
-            <a href="">Política de Privacidade</a>
+            <a href="/termos-condicoes">Termos e Condições</a>
+            <a href="/politicas-de-privacidade">Política de Privacidade</a>
         </div>
     </footer>
     <!-- Footer -->

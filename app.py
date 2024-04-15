@@ -1,9 +1,3 @@
-#         .\myenv\Scripts\activate
-#           #631726    vermelho
-#           #d6b884    dourado
-
-
-
 from flask import Flask, redirect, url_for, request, render_template, jsonify, render_template_string, send_file
 from flask_login import LoginManager, UserMixin, login_required, login_user, current_user, logout_user
 import os
@@ -15,7 +9,6 @@ import base64
 import smtplib
 from email.message import EmailMessage
 from sqlalchemy.orm import validates
-
 
 # Configurações
 app = Flask(__name__)
@@ -52,15 +45,7 @@ class Categoria_motos_Enum(Enum):
     motocross = "Motocross"
     todos = "Todos"
 
-class Estabelecimento_Enum(Enum):
-    centro_1 = "Rua Artilharia 1 105A, 1070-012 Lisboa"
-    centro_2 = "Rua São Francisco 582, 2645-019 Alcabideche"
-    norte_1 = "Avenida da Independência Lote1 1C, 4705-162 Braga"
-    norte_2 = "Rua Manuel Pinto de Azevedo 585, 4149-010 Porto"
-    sul_1 = "Estrada da Ribeira, Armazém 3 C, 2645-575 Alcabideche"
-    sul_2 = "N125 98.9, 8005-145 Faro"
-
-#Função para codificar a imagem  em Base64
+# Função para codificar a imagem  em Base64
 def encode_image(image_binary):
     if image_binary:
         encoded_image = base64.b64encode(image_binary).decode("utf-8")
@@ -68,7 +53,7 @@ def encode_image(image_binary):
     else:
         return None
 
-#Base de dados "MODELOS"
+# Base de dados "MODELOS"
 class Utilizador(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(100))
@@ -100,7 +85,6 @@ class Utilizador(UserMixin, db.Model):
         self.cvc = cvc
         self.nif = nif
         self.carteira_cripto = carteira_cripto
-        
 
 class Carro(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -215,14 +199,14 @@ class Gerenciamento(UserMixin, db.Model):
     data = db.Column(db.String(10)) 
     hora = db.Column(db.String(5))
     dias_alugados = db.Column(db.Integer)
-    estabelecimento_entrega = db.Column(db.Enum(Estabelecimento_Enum))
-    estabelecimento_devolucao = db.Column(db.Enum(Estabelecimento_Enum))
+    estabelecimento_entrega = db.Column(db.String)
+    estabelecimento_devolucao = db.Column(db.String)
     valor_total = db.Column(db.Float)
-    email_enviado = db.Column(db.LargeBinary)
-    recibo = db.Column(db.LargeBinary)
-    desconto = db.Column(db.String(5))
+    matricula = db.Column(db.String)
+    email = db.Column(db.String)
+    nome = db.Column(db.String)
 
-    def __init__(self, ref, data, hora, dias_alugados, estabelecimento_entrega, estabelecimento_devolucao, valor_total, email_enviado, recibo, desconto):
+    def __init__(self, ref, data, hora, dias_alugados, estabelecimento_entrega, estabelecimento_devolucao, valor_total, matricula, email, nome):
         self.ref = ref
         self.data = data
         self.hora = hora
@@ -230,33 +214,36 @@ class Gerenciamento(UserMixin, db.Model):
         self.estabelecimento_entrega = estabelecimento_entrega
         self.estabelecimento_devolucao = estabelecimento_devolucao
         self.valor_total = valor_total
-        self.email_enviado = email_enviado
-        self.recibo = recibo
-        self.desconto = desconto
-        
-#Rotas
+        self.matricula = matricula
+        self.email = email
+        self.nome = nome
+
+# Rotas
+
+# Carrega um usuário com base no ID fornecido pelo Flask-Login
 @login_manager.user_loader
 def load_user(user_id):
     return Utilizador.query.get(int(user_id))
 
+# Valida o tipo de usuário antes de atribuí-lo ao objeto
 @validates("tipo_user")
 def validate_tipo_user(self, key, tipo_user):
     tipos_permitidos = ["administrador", "proprietario", "colaborador", "cliente"]
     assert tipo_user in tipos_permitidos
     return tipo_user
 
+# Define uma rota para a raiz da aplicação
 @app.route("/")
 def normal():
     return redirect(url_for("home"))
 
-@app.route("/home", methods=["GET", "POST"])
+# Carrega a pagina Home
+@app.route("/home", methods=["GET"])
 def home():
-    if request.method == "POST":
-        pass
-    else:
         utilizador = current_user if current_user.is_authenticated else None
         return render_template("home.html", utilizador=utilizador)
 
+# Rota onde mostra os dados do utilizador e onde podemos alterar os dados e gravar
 @app.route("/perfil", methods=["GET", "POST"])
 @login_required
 def perfil():
@@ -280,8 +267,10 @@ def perfil():
             return redirect(url_for("perfil"))
 
     else:
-        return render_template("perfil.html", utilizador=current_user)
+        utilizador = current_user if current_user.is_authenticated else None
+        return render_template("perfil.html", utilizador=utilizador)
 
+# Aqui sõ temos o metodo POST que verifica os dados de pagamento no formulario e caso sejam diferentes guarda os novos na base de dados
 @app.route("/detalhes_pagamento", methods=["POST"])
 @login_required
 def detalhes_pagamento():
@@ -304,6 +293,7 @@ def detalhes_pagamento():
             
             return redirect(url_for("perfil"))
 
+# Rota que verifica os dados de login e compara na base de dados
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -320,9 +310,11 @@ def login():
         else:
             error = "Nome de usuário ou senha inválidos"
             return render_template("login.html", error=error)
-    
-    return render_template("login.html", error="", utilizador=current_user)
+        
+    utilizador = current_user if current_user.is_authenticated else None
+    return render_template("login.html", error="", utilizador=utilizador)
 
+# Rota que guarda novos utilizadores na base de dados
 @app.route("/registar", methods=["GET", "POST"])
 def registar_usuario():
     if request.method == "POST":
@@ -396,8 +388,10 @@ def registar_usuario():
             return redirect(url_for("home"))
 
     else:
-        return render_template("registar.html", utilizador=current_user)
+        utilizador = current_user if current_user.is_authenticated else None
+        return render_template("registar.html", utilizador=utilizador)
 
+# Rota que retorna todos os dados das tabelas Carro e Mota para o depois ser utilizado no front end
 @app.route("/dados_veiculos")
 def obter_dados_veiculos():
     carros = Carro.query.all()
@@ -440,6 +434,7 @@ def obter_dados_veiculos():
 
     return jsonify(dados_veiculos)
 
+# Rota que basicamente faz varios filtros na base de dados e carrega a rota Cars
 @app.route("/cars", methods=["GET", "POST"])
 def cars():
     if request.method == "POST":
@@ -478,13 +473,17 @@ def cars():
         else:
             carros = Carro.query.filter(Carro.marca != None).order_by(Carro.marca).all()
             motos = Mota.query.filter(Mota.marca != None).order_by(Mota.marca).all()
+            
+        utilizador = current_user if current_user.is_authenticated else None
+        return render_template("cars.html", carros=carros, motos=motos, encode_image=encode_image, utilizador=utilizador)
 
-        return render_template("cars.html", carros=carros, motos=motos, encode_image=encode_image)
-    
+# Rota que carrega a pagina sobre-nos 
 @app.route("/sobre-nos", methods=["GET"])
 def sobrenos():
-    return render_template("sobrenos.html", utilizador=current_user)
+    utilizador = current_user if current_user.is_authenticated else None
+    return render_template("sobrenos.html", utilizador=utilizador)
 
+# Rota que  carrega a pagina de contacto, e tem um formulario que ao colocar os dados envia um email com os mesmos
 @app.route("/contactos", methods=["GET", "POST"])
 def contactos():
     if request.method == "POST":
@@ -516,8 +515,10 @@ def contactos():
         except Exception as e:
             return jsonify({"success": False, "error": str(e)})
     else:
-        return render_template("contactos.html", utilizador=current_user)
+        utilizador = current_user if current_user.is_authenticated else None
+        return render_template("contactos.html", utilizador=utilizador)
 
+# Rota que faz logout dos utilizadores
 @app.route("/logout")
 def logout():
     if current_user.is_authenticated:
@@ -527,6 +528,7 @@ def logout():
     
     return redirect(url_for("home"))
 
+# Rota que guarda novos veiculos na base de dados
 @app.route("/guardar", methods=["GET", "POST"])
 @login_required
 def guardar():
@@ -629,9 +631,11 @@ def guardar():
             db.session.commit()
 
         return redirect(url_for("home"))
+    
+    utilizador = current_user if current_user.is_authenticated else None
+    return render_template("guardar.html", utilizador=utilizador)
 
-    return render_template("guardar.html", utilizador=current_user)
-
+# Rota que recebe dados do formulario de pagamento e os envia para a rota recibo
 @app.route("/alugar", methods=["GET", "POST"])
 def alugar_veiculo():
     if request.method == "POST":
@@ -653,8 +657,9 @@ def alugar_veiculo():
         cvc = request.form["cvc"]
         carteira_cripto = request.form["carteira_cripto"]
         network_cripto = request.form["network_cripto"]
-       
-        return redirect(url_for("recibo", data_inicio=data_inicio, data_fim=data_fim, valor_diario=valor_diario, tipo_pagamento=tipo_pagamento, nome_cartao=nome_cartao, nr_cartao=nr_cartao, validade_cartao=validade_cartao, cvc=cvc, carteira_cripto=carteira_cripto, network_cripto=network_cripto, marca=marca, modelo=modelo, ano=ano, potencia=potencia, estabelecimento_devolucao=estabelecimento_devolucao, matricula=matricula, valor_total=valor_total, estabelecimento_entrega=estabelecimento_entrega, utilizador=current_user))
+
+        utilizador = current_user if current_user.is_authenticated else None
+        return redirect(url_for("recibo", data_inicio=data_inicio, data_fim=data_fim, valor_diario=valor_diario, tipo_pagamento=tipo_pagamento, nome_cartao=nome_cartao, nr_cartao=nr_cartao, validade_cartao=validade_cartao, cvc=cvc, carteira_cripto=carteira_cripto, network_cripto=network_cripto, marca=marca, modelo=modelo, ano=ano, potencia=potencia, estabelecimento_devolucao=estabelecimento_devolucao, matricula=matricula, valor_total=valor_total, estabelecimento_entrega=estabelecimento_entrega, utilizador=utilizador))
     else:
         veiculo_id = request.args.get("id")   
 
@@ -662,16 +667,19 @@ def alugar_veiculo():
         if veiculo_carro:
             fotos = [veiculo_carro.foto_1, veiculo_carro.foto_2, veiculo_carro.foto_3, veiculo_carro.foto_4, veiculo_carro.foto_5, veiculo_carro.foto_6]
             fotos = [foto for foto in fotos if foto]  
-            return render_template("alugar.html", veiculo=veiculo_carro, fotos=fotos, encode_image=encode_image, utilizador=current_user, veiculo_id=veiculo_id)
+            utilizador = current_user if current_user.is_authenticated else None
+            return render_template("alugar.html", veiculo=veiculo_carro, fotos=fotos, encode_image=encode_image, utilizador=utilizador, veiculo_id=veiculo_id)
 
         veiculo_mota = Mota.query.filter_by(id=veiculo_id).first()
         if veiculo_mota:
             fotos = [veiculo_mota.foto_1, veiculo_mota.foto_2, veiculo_mota.foto_3, veiculo_mota.foto_4, veiculo_mota.foto_5, veiculo_mota.foto_6]
-            fotos = [foto for foto in fotos if foto]  
-            return render_template("alugar.html", veiculo=veiculo_mota, fotos=fotos, encode_image=encode_image, utilizador=current_user, veiculo_id=veiculo_id)
+            fotos = [foto for foto in fotos if foto] 
+            utilizador = current_user if current_user.is_authenticated else None 
+            return render_template("alugar.html", veiculo=veiculo_mota, fotos=fotos, encode_image=encode_image, utilizador=utilizador, veiculo_id=veiculo_id)
 
         return "Veículo não encontrado", 404
 
+# Rota onde mostra os dados adiquiridos no formualario e ao confirmar os dados envia um email personalizado com os dados do recibo e uma referencia unica, e ao confirmar tambem guarda os dados na base de dados
 @app.route("/recibo", methods=["GET", "POST"])
 @login_required
 def recibo():
@@ -696,13 +704,16 @@ def recibo():
         nr_cartao = request.form.get("nr_cartao")
         validade_cartao = request.form.get("validade_cartao")
         carteira_cripto = request.form.get("carteira_cripto")
+        nome = request.form.get("nome")
+        nif = request.form.get("nif")
         
 
         data_inicio = datetime.strptime(data_inicio_str, "%Y-%m-%d")
         data_fim = datetime.strptime(data_fim_str, "%Y-%m-%d")
         dias_alugados = (data_fim - data_inicio).days
         data_atual = datetime.now()
-        hora_atual = datetime.now().strftime('%H:%M')
+        hora_atual = datetime.now().strftime("%H:%M")
+
         
         novo_registo = Gerenciamento(
             ref = ref,
@@ -712,6 +723,9 @@ def recibo():
             hora=hora_atual,
             dias_alugados = dias_alugados,
             valor_total = valor_total,
+            nome = nome,
+            matricula = matricula,
+            email = email,
         )
 
         try:
@@ -721,42 +735,186 @@ def recibo():
             senha = "Alandiego1@" 
             assunto = "Confirmação de Reserva"
             mensagem = f"""
-            <html>
-            <body>
-            <p>Olá,</p>
-
-            <p>Obrigado por reservar conosco. Abaixo estão os detalhes da sua reserva:</p>
-
-            <p>Referência da Reserva: {ref}</p>
-            <p>Data de Início: {data_inicio_str}</p>
-            <p>Data de Fim: {data_fim_str}</p>
-            <!-- Inclua outros dados conforme necessário -->
-
-            <img src="https://i.postimg.cc/RVp0FwZ5/logo2.png" alt="Logo da Luxury Wheels">
-
-            <p>Atenciosamente,<br>
-            Sua equipe de Luxury Wheels</p>
-            </body>
-            </html>
-            """
+        <!DOCTYPE html>
+<html lang="PT-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Reserva Automóvel</title>
+</head>
+<body style="font-family: Arial, sans-serif;margin: 0;padding: 0;">
+    <header style="border-bottom: #d6b884 solid 4px;padding: 20px;text-align: center;">
+        <img style="max-width: 200px;display: flex;margin-left: auto;" src="https://i.postimg.cc/RVp0FwZ5/logo2.png" alt="Logo da Empresa">
+    </header>
+    
+    <div class="container" style="max-width: 800px;margin: 20px auto;padding: 20px;">
+        <h1 style="font-size: 1.7rem; color: #d6b884;">Obrigado {request.form["nome"]}! A reserva da dua viatura de sonho está confirmada.</h1>
+        <p><span style="color: rgb(20, 230, 20); margin-right: 10px;font-size: 24px;font-weight: bold;" >&#10003;</span><strong>{request.form["marca"]} {request.form["modelo"]}</strong> espera por si a <strong>{request.form["data_inicio"]}.</strong></p>
+        <p><span style="color: rgb(20, 230, 20); margin-right: 10px;font-size: 24px;font-weight: bold;" >&#10003;</span> Cancelamento <strong>gratuito</strong> até <strong>3 dias</strong> antes da data de recolha.</p>
+        <p><span style="color: rgb(20, 230, 20); margin-right: 10px;font-size: 24px;font-weight: bold;" >&#10003;</span> Utilize o link abaixo para <strong>alterar ou cancelar</strong> facilmente a sua reserva.</p>
+        <p><span style="font-size: 20px;margin-right: 10px; ">&#128274;</span>Por favor mantenha a sua <strong>referência</strong> cofidencial,  com ela é possível alterar ou cancelar a sua reserva</p>
+        <h2 style="font-size: 1.2rem; margin-top: 5%; color: #d6b884;">Detalhes da sua reserva:</h2>
+        <table style="width: 100%;border-collapse: collapse;margin-top: 5%;">
+            <tbody>
+                <tr style="background-color: #fff; color: #333;">
+                    <td>Referência da Reserva:</td>
+                    <td>{request.form["ref"]}</td>
+                </tr>
+                <tr style="background-color: #d6b884; color: #fff;">
+                    <td>Data de Início:</td>
+                    <td>{request.form["data_inicio"]}</td>
+                </tr>
+                <tr style="background-color: #fff; color: #333;">
+                    <td>Data de Fim:</td>
+                    <td>{request.form["data_fim"]}</td>
+                </tr>
+                <tr style="background-color: #d6b884; color: #fff;">
+                    <td>Estabelecimento de Entrega:</td>
+                    <td>{request.form["estabelecimento_entrega"]}</td>
+                </tr>
+                <tr style="background-color: #fff; color: #333;">
+                    <td>Estabelecimento de Devolução:</td>
+                    <td>{request.form["estabelecimento_devolucao"]}</td>
+                </tr>
+            </tbody>
+        </table>
+        <h2 style="font-size: 1.2rem; margin-top: 5%; color: #d6b884;">Detalhes da viatura:</h2>
+        <table style="width: 100%;border-collapse: collapse;margin-top: 5%;">
+            <tbody>
+                <tr style="background-color: #fff; color: #333;">
+                    <td>Marca:</td>
+                    <td>{request.form["marca"]}</td>
+                </tr>
+                <tr style="background-color: #d6b884; color: #fff;">
+                    <td>Modelo:</td>
+                    <td>{request.form["modelo"]}</td>
+                </tr>
+                <tr style="background-color: #fff; color: #333;">
+                    <td>Matrícula:</td>
+                    <td>{request.form["matricula"]}</td>
+                </tr>
+                <tr style="background-color: #d6b884; color: #fff;">
+                    <td>Potência:</td>
+                    <td>{request.form["potencia"]}Hp</td>
+                </tr>
+                <tr style="background-color: #fff; color: #333;">
+                    <td>Ano de Matrícula:</td>
+                    <td>{request.form["ano"]}</td>
+                </tr>
+            </tbody>
+        </table>
+        <h2 style="font-size: 1.2rem; margin-top: 5%; color: #d6b884;">Dados de pagamento:</h2>
+        <table style="width: 100%;border-collapse: collapse;margin-top: 5%;">
+            <tbody>
+                <tr style="background-color: #fff; color: #333;">
+                    <td>Nome:</td>
+                    <td>{request.form["nome"]}</td>
+                </tr>
+                <tr style="background-color: #d6b884; color: #fff;">
+                    <td>NIF:</td>
+                    <td>{request.form["nif"]}</td>
+                </tr>
+                <tr style="background-color: #fff; color: #333;">
+                    <td>Método de Pagamento:</td>
+                    <td>{request.form["tipo_pagamento"]}</td>
+                </tr>
+            </tbody>
+        </table>
+        <h2 style="font-size: 1.2rem; margin-top: 5%; color: #d6b884;">Detalhes do preço:</h2>
+        <table style="width: 100%;border-collapse: collapse;margin-top: 5%;">
+            <tbody>
+                <tr style="background-color: #fff; color: #333;">
+                    <td>Valor diário:</td>
+                    <td>{request.form["valor_diario"]}</td>
+                </tr>
+                <tr style="background-color: #d6b884; color: #fff;">
+                    <td>Dias alugados:</td>
+                    <td>{ dias_alugados }</td>
+                </tr>
+                <tr style="background-color: #fff; color: #333;">
+                    <td>Valor total:</td>
+                    <td>{request.form["valor_total"]}</td>
+                </tr>
+            </tbody>
+        </table>
+        <p style="font-size: 1.2rem; color: #d6b884;"><i style="margin-top: 5%; margin-right: 1%; color: #631726;" class="fas fa-info-circle"></i>Informações Importantes:</p>
+        <p style="font-size: 0.9rem;">• A viatura está restrita à condução exclusiva do cliente que a aluga.</p>
+        <p style="font-size: 0.9rem;">• Para cancelamentos realizados após o período de três dias antes da data de início do aluguer, será aplicada uma taxa equivalente a 30% do valor diário multiplicado pela metade dos dias originalmente contratados.</p>
+        <a style="text-decoration: none;color: #0071c2; font-size: 0.9rem; font-weight: 600;" href="http://127.0.0.1:5000//termos-condicoes">• Para mais informações por favor acesse ao nosso site</a>
+        <h2 style="font-size: 1.1rem; color: #d6b884; margin-top: 5%;">Faça alterações na sua reserva</h2>
+        <div style="display: flex; align-items: center;">
+            <p style="font-size: 0.9rem; display: flex; align-items: center;">
+                <img style="width: 50px; margin-right: 2%;" src="https://i.postimg.cc/yxKQq1Wj/calendar.png" alt="calendario">
+                É simples alterar ou cancelar a sua reserva. Dependendo das condições da reserva efetuada, podem aplicar-se custos de cancelamento.
+            </p>
+        </div>
+        <a style="text-decoration: none;color: #0071c2; font-size: 0.9rem; font-weight: 600; display: flex; justify-content: center; " href="http://127.0.0.1:5000//alterar-reserva">Alterar ou cancelar a sua reserva »</a>        
+        <h2 style="font-size: 1.1rem; color: #d6b884; margin-top: 5%;">Entre em contacto</h2>
+        <div style="display: flex; align-items: center;">
+            <p style="font-size: 0.9rem; display: flex; align-items: center;">
+                <img style="width: 50px; margin-right: 2%; height: 50px;" src="https://i.postimg.cc/kXQtnLy2/chat.png" alt="chat">
+                Tem uma questão ou pedido especial? Por favor contacnos pelos nossos meios de comunicação.<br>
+                <br>
+                • Telefone: +351 xxx xxx xxx
+            </p>
+        </div>
+        <a style="text-decoration: none;color: #0071c2; font-size: 0.9rem; font-weight: 600; display: flex; justify-content: center; " href="http://127.0.0.1:5000//contactos">Formulário de contacto »</a>  
+    </div>
+    
+    <footer style="background-color: #fff;color: #631726;padding: 20px;border-top: #d6b884 solid 4px;font-size: 0.9rem;">
+        <div style="display: flex; justify-content: center; align-items: center; gap: 150px;margin-right: 100px;">
+            <div>
+                <img src="https://i.postimg.cc/RVp0FwZ5/logo2.png" alt="Logotipo">
+                <p style="font-size: 1.2rem; color: #631726; font-weight: bold;">Copyright &copy; 2024 Luxury Wheels</p>
+                <div style="margin-right: 10px;">
+                    <a style="margin-right: 15%;" href="https://www.facebook.com" id="facebook" ><img src="https://i.postimg.cc/rs9yRfzj/face.png" alt="Facebook logo" class="rede-social"></a>
+                    <a style="margin-right: 15%;" href="https://www.instagram.com" id="instagram"><img src="https://i.postimg.cc/Z5np8MpC/insta.png" alt="Instagram logo" class="rede-social"></a>
+                    <a style="margin-right: 15%;" href="https://www.youtube.com" id="youtube"><img src="https://i.postimg.cc/vmv82QWh/youtube.png" alt="Youtube logo" class="rede-social"></a>
+                </div>
+            </div>
+            <div style="margin-top: 40px;  margin-left: auto;">
+                <p>Para mais informações, entre em contato:</p>
+                <p>Sua referência: {request.form["ref"]}</p>
+                <p>Email: Luxurywheels.pf@hotmail.com</p>
+                <p>Website: www.luxurywheels.com</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+"""
+            
+            destinatario_adicional = "luxurywheels.pf@hotmail.com"
             msg = EmailMessage()
             msg["From"] = email_origem
-            msg["To"] = email
+            msg["To"] = ", ".join([email, destinatario_adicional])
             msg["Subject"] = assunto
-            msg.add_alternative(mensagem, subtype='html')  
+            msg.add_alternative(mensagem, subtype="html")  
             with smtplib.SMTP(servidor_smtp, porta_smtp) as servidor:
                 servidor.starttls()
                 servidor.login(email_origem, senha)
                 servidor.send_message(msg)
+
+            db.session.add(novo_registo)
+            db.session.commit()
+
+            carro = Carro.query.filter_by(matricula = matricula).first()
+            if carro:
+                carro.data_inicio = data_inicio_str
+                carro.data_fim = data_fim_str
+                db.session.commit()
+            else:
+                mota = Mota.query.filter_by(matricula = matricula).first()
+                if mota:
+                    mota.data_inicio = data_inicio_str
+                    mota.data_fim = data_fim_str
+                    db.session.commit()
+
+            return redirect(url_for("home"))
         
         except Exception as e:
-            print("Erro ao enviar email de confirmação:", str(e))
-
-        db.session.add(novo_registo)
-        db.session.commit()
-
-        return redirect(url_for("home"))
-        
+            print("Erro ao processar o pedido:", str(e))
 
     else:
         marca = request.args.get("marca")
@@ -780,6 +938,112 @@ def recibo():
 
         return render_template("recibo.html", novo_registo=novo_registo, data_inicio=data_inicio, data_fim=data_fim, valor_diario=valor_diario, tipo_pagamento=tipo_pagamento, nome_cartao=nome_cartao, nr_cartao=nr_cartao, validade_cartao=validade_cartao, cvc=cvc, carteira_cripto=carteira_cripto, network_cripto=network_cripto, marca=marca, modelo=modelo, ano=ano, potencia=potencia, estabelecimento_devolucao=estabelecimento_devolucao, matricula=matricula, valor_total=valor_total, estabelecimento_entrega=estabelecimento_entrega, utilizador=current_user)
 
+# Rota que permite pesquisa pela referencia colocado no formualario do front end
+@app.route("/alterar-reserva", methods=["GET", "POST"])
+@login_required
+def alterar_reserva():
+    if request.method == "POST":
+        ref = request.form.get("ref")
+        gerenciamento = Gerenciamento.query.filter(Gerenciamento.ref == ref).first()
+
+    utilizador = current_user if current_user.is_authenticated else None
+    return render_template("alterar_reserva.html", utilizador=utilizador)
+
+# Rota que compara a referencia  do formulario com os dados da base de dados e caso exista envia dados para o front end
+@app.route("/verificar-reserva", methods=["POST"])
+def verificar_reserva():
+    ref = request.json.get("ref")
+    gerenciamento = Gerenciamento.query.filter(Gerenciamento.ref == ref).first()
+    if gerenciamento:
+        return jsonify({
+            "ref": gerenciamento.ref,
+            "matricula": gerenciamento.matricula,
+        })
+    else:
+        return jsonify(None)
+
+# Rota que ao encontrar a referencia pesquisa pela matricula que esta associada a mesma e mostra dados especificos da base de dados
+@app.route("/buscar-veiculo", methods=["POST"])
+def buscar_veiculo():
+    ref = request.json.get("ref")
+    gerenciamento = Gerenciamento.query.filter(Gerenciamento.ref == ref).first()
+    
+    if gerenciamento:
+        carro = Carro.query.filter_by(matricula=gerenciamento.matricula).first()
+        mota = Mota.query.filter_by(matricula=gerenciamento.matricula).first()
+
+        if carro:
+            return jsonify({
+                "tipo": "carro",
+                "marca": carro.marca,
+                "modelo": carro.modelo,
+                "ref": gerenciamento.ref,
+                "matricula": gerenciamento.matricula,
+                "data_inicio": carro.data_inicio,
+                "data_fim": carro.data_fim,
+            })
+        elif mota:
+            return jsonify({
+                "tipo": "mota",
+                "marca": mota.marca,
+                "modelo": mota.modelo,
+                "ref": gerenciamento.ref,
+                "matricula": gerenciamento.matricula,
+                "data_inicio": mota.data_inicio,
+                "data_fim": mota.data_fim,
+            })
+
+    return jsonify(None)
+
+# Rota que atualiza as datas da reserva e pode cancelar as mesmas
+@app.route("/atualizar-reserva", methods=["POST"])
+def atualizar_reserva():
+    ref = request.form.get("ref")
+    matricula = request.form.get("matricula")
+    nova_data_inicio = request.form.get("novaDataInicio")
+    nova_data_fim = request.form.get("novaDataFim")
+
+    carro = Carro.query.filter_by(matricula=matricula).first()
+    if carro:
+        carro.data_inicio = nova_data_inicio
+        carro.data_fim = nova_data_fim
+        db.session.commit()
+        return redirect(url_for("home"))
+    else:
+        mota = Mota.query.filter_by(matricula=matricula).first()
+        if mota:
+            mota.data_inicio = nova_data_inicio
+            mota.data_fim = nova_data_fim
+            db.session.commit()
+            return redirect(url_for("home"))
+        else:
+            return jsonify({"error": "Veículo não encontrado."}), 404
+
+# Rota que carrega a pagina termos e condicoes
+@app.route("/termos-condicoes", methods=["GET"])
+def termos_condicoes():
+    utilizador = current_user if current_user.is_authenticated else None
+    return render_template("termos_condicoes.html", utilizador=utilizador)
+
+# Rota que carrega a pagina politicas de privacidade
+@app.route("/politicas-de-privacidade", methods=["GET"])
+def politicas():
+    utilizador = current_user if current_user.is_authenticated else None
+    return render_template("politicas.html", utilizador=utilizador)
+
+# Rota que carrega a pagina de servicos e extras
+@app.route("/servicos-extras", methods=["GET"])
+def servicos_extras():
+    utilizador = current_user if current_user.is_authenticated else None
+    return render_template("servicos_extras.html", utilizador=utilizador)
+
+# Rota que carrega a pagina de como funicona o programa
+@app.route("/como-funciona", methods=[ "GET"])
+def como_funciona():
+    utilizador = current_user if current_user.is_authenticated else None
+    return render_template("ajuda.html", utilizador=utilizador)
+
+# Rota que calcula a diferenca de dias entre o inicio e o fim da reserva e faz o calculo total da reserva
 def calcular_valor_total(data_inicio, data_fim, valor_diario):
     data_inicio_obj = datetime.strptime(data_inicio, "%Y-%m-%d")
     data_fim_obj = datetime.strptime(data_fim, "%Y-%m-%d")
@@ -788,8 +1052,10 @@ def calcular_valor_total(data_inicio, data_fim, valor_diario):
     
     return valor_total
 
+# Rota que cria um utilizador do tipo administrador
 def criar_usuario_administrador():
     admin_existente = Utilizador.query.filter_by(username="admin").first()
+    print("Administrador, já existe.")
     if not admin_existente:
         novo_admin = Utilizador(
             nome="Administrador",
@@ -802,16 +1068,39 @@ def criar_usuario_administrador():
             nif="",  
             validade_cartao="",  
             cvc="",  
-            carteira_cripto=""  
+            carteira_cripto="",
+            nome_cartao = ""    
         )
         db.session.add(novo_admin)
         db.session.commit()
+        print("Administrador, criado com sucesso.")
+
+# Rota que cria um utilizador do tipo proprietario
+def criar_usuario_proprietario():
+    prop_existente = Utilizador.query.filter_by(username="prop").first()
+    print("Proprietário, já existe.")
+    if not prop_existente:
+        novo_prop = Utilizador(
+            nome="Proprietário",
+            username="prop",
+            password="prop",
+            email="",  
+            telefone="",  
+            tipo_user="proprietario",
+            nr_cartao="",  
+            nif="",  
+            validade_cartao="",  
+            cvc="",  
+            carteira_cripto="",
+            nome_cartao = ""  
+        )
+        db.session.add(novo_prop)
+        db.session.commit()
+        print("Proprietário, criado com sucesso.")
 
 # Codigo Run
 if __name__ == "__main__":
     with app.app_context():
         criar_usuario_administrador()
+        criar_usuario_proprietario()
     app.run(host="0.0.0.0", port=5000, debug=True)  
-    
-
-

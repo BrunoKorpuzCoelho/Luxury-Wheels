@@ -4,12 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" sizes="16x16" href="https://i.postimg.cc/sx18KHfy/favicon-16x16.png">
-    <title>Registar | Luxury Wheels Portugal</title>
+    <title>Termos e Condições | Luxury Wheels Portugal</title>
     <style>
         body{
-            background-image: url(https://i.postimg.cc/Pr8qvtDL/marbel.png);
-            background-repeat: no-repeat;
-            background-size: cover;
+            font-family: Georgia;
+            background-image: url("https://i.postimg.cc/Pr8qvtDL/marbel.png");
+            background-size: contain;
+            background-position: center;
+            padding: 20px;
+
         }
         /* Header */
         .container {
@@ -134,8 +137,6 @@
             background-size: contain;
             background-repeat: no-repeat;
         }
-        /* Header */
-        /* Scroll Bar */
         ::-webkit-scrollbar {
             width: 5px; 
         }
@@ -162,81 +163,57 @@
         scrollbar-thumb:hover {
             background: #555; 
         }
-        /* Scroll Bar */
-        .registar-container {
-            background-color: #ffffffb7;
-            text-align: center;
-            margin: 0 auto;
-            margin-top: 5%;
-            margin-bottom: 5%;
-            border: 3px solid #631726;
-            width: 400px;
+        /* Header */
+        /* Body */
+        .body-container{
+            margin: 2% auto;
             padding: 20px;
-            border-radius: 5px;
+            width: 80%;
+            height: auto;
+            border: solid 3px #631726;
+            border-radius: 25px;
+            margin-top: 2%;
+            margin-bottom: 2%;
         }
-        .registar label {
-            display: block;
-            margin-bottom: 10px;
-            font-size: 1rem;
-            color: #d6b884;
-        }
-        .registar input {
-            font-family: Georgia;
-            width: 90%;
-            padding: 8px;
-            font-size: 1.0rem;
-            margin-bottom: 15px;
-            text-align: center;
-            border: 2px solid #631726;
-            border-radius: 5px;
-        }
-        .registar button {
-            width: 90%;
-            font-size: 1.2rem;
-            padding: 10px;
-            color: #fff;
-            background-color: #d6b884;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;  
-        }
-        .registar button:hover {
-            color: #fff;
-            background-color: #631726;
-        }
-        .forms{
-            margin-top: 20px;
-        }
-        #btn-registar{
-            width: 45%;
-            font-size: 1.2rem;
-            font-family: Georgia;
-            color: #631726;
-            background-color: #d6b884;
-            transition: 1s;
-            border-radius: 5px;
-            padding: 10px;
-            cursor: pointer;
-        }
-        #btn-registar:hover{
-            color: #d6b884;
-            background-color: #631726;
-        }
-        .registar-container p{
-            color: #d6b884;
-            font-size: 1.1rem;
+        .titulo{
+            font-size: 1.5rem;
             text-decoration: underline;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            background-color: #631726;
+            border: #d6b884 solid 5px;
+            width: 300px;
+            margin: 2% auto;
+            margin-bottom: 3%;
+            border-bottom-right-radius: 35px;
+            border-top-left-radius: 35px;
+            box-shadow: 5px 5px 10px 5px #fff;
         }
-        .h1{
-            font-family: Georgia;
+        .paragrafo-1 h5{
+            padding: 10px;
+            font-size: 1.3rem;
             color: #d6b884;
-            font-size: 1.4rem;
+            background-color: #fff;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-left: 2%;
         }
+        .paragrafo-1 p{
+            padding: 3px 10px;
+            background-color: #ccc;
+            font-size: 1.1rem;
+            color: #fff;
+            margin-left: 2%;
+            margin-right: 2%;
+            border-radius: 5px;
+        }
+        /* Body */
         /* Footer */
         .footer {
             display: flex;
             justify-content: space-evenly;
-            width: 100%;
+            width: 100;
             height: auto;
             background-color: #fff;
             border-top: #d6b884 solid 5px;
@@ -342,52 +319,65 @@
         </nav>
     </div>
     <!-- Header -->
-    <div class="registar-container">
-        <h1 class="h1">Registar novo usuário</h1>
-        <div class="forms"></div>
-            <form id="registar-form" class="registar" action="/registar" method="post">
-
-                <label for="nome">Nome:</label>
-                <input type="text" id="nome" name="nome" required>
-
-                <label for="email">Email:</label>
-                <input type="text" id="email" name="email" required>
-
-                <label for="telefone">Telefone:</label>
-                <input type="text" id="telefone" name="telefone" required>
-
-                <label for="novo-username">Username:</label>
-                <input type="text" id="novo-username" name="username" required>
-
-                <label for="nova-password">Nova Password:</label>
-                <input type="password" id="nova-password" name="password" required>
-
-                <label for="tipo_user" style="display: none;"></label>
-                <input type="text" id="tipo_user" name="tipo_user" style="display: none;">
-
-                <label for="nome_cartao" style="display: none;"></label>
-                <input type="text" id="nome_cartao" name="nome_cartao" style="display: none;">
-
-                <label for="validade_cartao" style="display: none;">:</label>
-                <input type="text" id="validade_cartao" name="validade_cartao" style="display: none;">
-
-                <label for="cvc" style="display: none;"></label>
-                <input type="text" id="cvc" name="cvc" style="display: none;">
-
-                <label for="nif" style="display: none;"></label>
-                <input type="text" id="nif" name="nif" style="display: none;">
-
-                <label for="carteira_cripto" style="display: none;"></label>
-                <input type="text" id="carteira_cripto" name="carteira_cripto" style="display: none;">
-
-                <label for="nr_cartao" style="display: none;"></label>
-                <input type="text" id="nr_cartao" name="nr_cartao" style="display: none;">
-
-                <button type="submit" name="registar">Registar</button>
-                <p>Se já tiver conta.<button style="margin-top: 2%; width: 40%; margin-left: 5%;" id="botaoRedirecionar">Fazer Login</button></p>
-            </form>
+    <!-- Body-->
+        <h1 class="titulo">Termos e Condições</h1>
+    <div class="body-container">
+        <div class="paragrafo-1">
+            <h5 style="width: 25%;" >Termos e Condições de Utilização</h5>
+            <p>Bem-vindo aos Termos e Condições de Utilização do nosso serviço de aluguer de viaturas luxuosas e exclusivas. Ao utilizar os nossos serviços, concorda com os seguintes termos e condições. Por favor, leia-os atentamente.</p>
+        </div>
+        <div class="paragrafo-1">
+            <h5 style="width: 17%;" >1. Utilização do Serviço</h5>
+            <p style="width: 88%;">1.1 Ao utilizar o nosso serviço de aluguer de viaturas, concorda em cumprir todas as leis e regulamentos locais relacionados com a condução e utilização dos veículos.</p>
+            <p style="width: 71%;">1.2 É responsável por garantir que possui a idade mínima necessária e uma carta de condução válida para utilizar os nossos veículos.</p>
+            <p style="width: 65%;">1.3 Concorda em utilizar os veículos alugados apenas para fins legais e não os utilizar para atividades ilegais ou perigosas.</p>
+        </div>
+        <div class="paragrafo-1">
+            <h5 style="width: 19%;" >2. Reservas e Pagamentos</h5>
+            <p style="width: 37%;">2.1 Todas as reservas estão sujeitas a disponibilidade e confirmação.</p>
+            <p style="width: 65%;">2.2 O pagamento integral do aluguer deve ser feito no momento da reserva, a menos que seja especificado de outra forma.</p>
+            <p style="width: 53%;">2.3 Os pagamentos podem ser feitos através de métodos de pagamento aceites pela nossa empresa.</p>
+        </div>
+        <div class="paragrafo-1">
+            <h5 style="width: 26%;" >3. Responsabilidades do Utilizador</h5>
+            <p style="width: 64%;">3.1 O Utilizador é responsável por assegurar a segurança e proteção dos veículos alugados durante o período de locação.</p>
+            <p>3.2 O Utilizador compromete-se a restituir os veículos alugados em condições idênticas às da sua receção, sujeitos unicamente a um desgaste considerado normal no decurso do período de aluguer.</p>
+            <p>3.3 O Utilizador é integralmente responsável por quaisquer danos ou perdas ocorridos nos veículos durante o período de aluguer, excluindo-se danos decorrentes de desgaste normal.</p>
+        </div>
+        <div class="paragrafo-1">
+            <h5 style="width: 37%;" >4. Termos Específicos para Aluguer a Longo Prazo</h5>
+            <p style="width: 81%;">4.1 No decorrer do contrato de aluguer prolongado, é da responsabilidade do Utilizador manter a segurança e proteção contínuas dos veículos locados.</p>
+            <p>4.2 O Utilizador compromete-se a restituir os veículos alugados no mesmo estado em que foram recebidos, com exceção do desgaste normal, no final do período de aluguer a longo prazo.</p>
+            <p>4.3 Cabe ao Utilizador reparar, reembolsar ou substituir quaisquer danos ou perdas ocorridos nos veículos durante o período de aluguer prolongado, excluindo o desgaste considerado normal.</p>
+            <p>4.4 O Utilizador compromete-se a notificar imediatamente a empresa de aluguer no caso de qualquer anomalia ser detetada na viatura durante o período de locação.</p>
+            <p style="width: 76%;">4.5 É dever do Utilizador levar a viatura para realizar manutenções regulares de acordo com o cronograma estabelecido pela empresa Oficial.</p>
+            <p>4.6 O Utilizador tem o direito a um veículo de substituição sempre que a viatura estiver em oficina devido a manutenção ou reparação, sujeito às condições e termos específicos estipulados pela empresa de aluguer.</p>
+            <p>4.7 O Utilizador é obrigado a cumprir todas as cláusulas contratuais específicas acordadas para o aluguer a longo prazo, conforme estabelecido entre as partes contratantes.</p>
+        </div>
+        <div class="paragrafo-1">
+            <h5 style="width: 21%;" >5. Política de Cancelamento</h5>
+            <p style="width: 59%;">5.1 Cancelamentos devem ser feitos com pelo menos 3 dias de antecedência para receber um reembolso total.</p>
+            <p>5.2 Cancelamentos feitos com menos de 3 dias de antecedência estarão sujeitos a uma taxa de cancelamento, essa taxa varia de acordo com os termos do contrato estabelecido.</p>
+        </div>
+        <div class="paragrafo-1">
+            <h5 style="width: 25%;" >6. Limitação de Responsabilidade</h5>
+            <p>6.1 A Luxury Wheels não assume qualquer responsabilidade por danos pessoais ou materiais resultantes da utilização dos nossos veículos, salvo em situações de negligência grave.</p>
+            <p>6.2 Em caso de avaria ou acidente durante o período de aluguer, a Luxury Wheels fará todos os esforços razoáveis para providenciar assistência e resolver a situação de forma rápida e eficiente.</p>
+        </div>
+        <div class="paragrafo-1">
+            <h5 style="width: 28%;" >7. Alterações aos Termos e Condições</h5>
+            <p style="width: 93%;">7.1 Reservamo-nos o direito de alterar estes Termos e Condições a qualquer momento. Quaisquer alterações entrarão em vigor imediatamente após a publicação nesta página.</p>
+            <p style="width: 67%;">7.2 Recomendamos que consulte regularmente esta página para estar ciente de quaisquer alterações aos Termos e Condições.</p>
+        </div>
+        <div class="paragrafo-1">
+            <h5 style="width: 9%;" >8. Contacto</h5>
+            <p>8.1 Se surgir alguma dúvida ou preocupação acerca destes Termos e Condições, solicitamos que entre em contacto connosco por meio dos dados de contacto fornecidos no nosso website.</p>
+        </div>
+        <div class="paragrafo-1">
+            <p>Ao utilizar os nossos serviços, concorda com estes Termos e Condições. Obrigado por escolher [nome da sua empresa] para as suas necessidades de aluguer de viaturas luxuosas e exclusivas.</p>
         </div>
     </div>
+    <!-- Body-->
     <!-- Footer -->
     <footer class="footer">
         <div class="coluna">
@@ -415,15 +405,6 @@
     </footer>
     <!-- Footer -->
     <script>
-        function showDropdown() {
-            document.getElementById("area-cliente-dropdown-content").style.display = "block";
-        }
-    
-        function hideDropdown() {
-            document.getElementById("area-cliente-dropdown-content").style.display = "none";
-        }
-        document.getElementById("btn-area-cliente").addEventListener("mouseover", showDropdown);
-        document.getElementById("area-cliente-dropdown").addEventListener("mouseleave", hideDropdown);
         window.onscroll = function() {scrollFunction()};
 
         function scrollFunction() {
@@ -438,11 +419,18 @@
             document.body.scrollTop = 0;
             document.documentElement.scrollTop = 0; 
         }
+        window.onload = function() {
+            document.getElementById("area-cliente-dropdown").addEventListener("mouseenter", showDropdown);
+            document.getElementById("area-cliente-dropdown").addEventListener("mouseleave", hideDropdown);
+        };
 
-        document.getElementById("botaoRedirecionar").addEventListener("click", function() {
-    
-        window.location.href = "/login";
-    });
+        function showDropdown() {
+            document.getElementById("area-cliente-dropdown-content").style.display = "block";
+        }
+
+        function hideDropdown() {
+            document.getElementById("area-cliente-dropdown-content").style.display = "none";
+        }
     </script>
 </body>
 </html>

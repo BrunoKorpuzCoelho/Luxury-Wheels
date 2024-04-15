@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://i.postimg.cc/sx18KHfy/favicon-16x16.png">
+    <title>Alterar Reserva | Luxury Wheels Portugal</title>
+    <style>
+        /* Header */
+        .container {
+            width: 100%;
+            height: 96px;
+            top: 0;
+            left: 0;
+            background-color: #fff;
+            z-index: 1000;
+            border-bottom: #d6b884 solid 5px;
+        }
+        .logo-botao {
+            background-color: transparent;
+            border: #d6b884 solid 1px;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            transition: .5s;
+        }
+        .logo-botao:hover {
+            background-color: #d6b884;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            height: 100%;
+            padding: 0 20px;
+            margin-left: 30px;
+            margin-right: 50px;
+        }
+        .menu div {
+            display: inline-block;
+        }
+        .menu div:not(:last-child) {
+            margin-right: 2%;
+        }
+        .menu div:last-child {
+            margin-right: 0;
+            margin-left: auto;
+        }
+        #btn-menu {
+            font-family: Georgia;
+            text-decoration: none;
+            font-size: 22px;
+            color: #d6b884;
+            padding: 20px;
+            border-radius: 5px;
+            transition: .85s;
+        }
+        #btn-menu:hover {
+            color: #fff;
+            background-color: #631726;
+        }
+        .dropdown {
+        position: relative;
+        display: inline-block;
+        }
+        .dropbtn {
+            font-family: Georgia;
+            color: #d6b884;
+            background-color: #fff;
+            padding: 12px;
+            font-size: 22px;
+            border: none;
+            cursor: pointer;
+        }
+        .dropbtn:hover{
+            background-color: #631726;
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        .dropdown-content {
+            font-family: Georgia;
+            font-size: 18px;
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            z-index: 1;
+            right: 0;
+        }
+        .dropdown-content a {
+            color: #d6b884;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {
+            background-color: #631726;
+            color: #fff;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .dropdown-content button {
+            display: none;
+        }
+        .dropdown:hover .dropdown-content button {
+            display: inline-block;
+        }
+        #botaoTopo {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 50px;
+            background-color: transparent;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            z-index: 99;
+        }
+        #botaoTopo::before {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 40px;
+            background-image: url('https://i.postimg.cc/RZjDHfyJ/up-arrow-4889419.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        ::-webkit-scrollbar {
+            width: 5px; 
+        }
+        ::-webkit-scrollbar-track {
+            background:#fff; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background:#d6b884; 
+            border-radius: 5px; 
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555; 
+        }
+        scrollbar {
+            width: 5px; 
+        }
+        scrollbar-track {
+            background: #fff; 
+        }
+        scrollbar-thumb {
+            background: #d6b884; 
+            border-radius: 5px; 
+        }
+        scrollbar-thumb:hover {
+            background: #555; 
+        }
+        /* Header */
+        /* Body */
+        .body{
+            height: 560px;
+        }
+        .pesquisar{
+            border-radius: 15px;
+            padding: 20px;
+            width: 95%;
+            margin: 2% auto;
+            transition: 2s;
+            border: #631726 solid 3px;
+        }
+        .pesquisar:hover{
+            box-shadow: 10px 10px 15px #631726;
+        }
+        .pesquisar label{
+            font-size: 1rem;
+            background-color: #631726;
+            color: #fff;
+            margin-right: 1%;
+            margin-left: 2%;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .pesquisar input{
+            padding: 10px;
+            border-radius: 5px;
+            margin-right: 1%;
+            text-align: center;
+            font-family: Georgia;
+            border: #631726 solid 2px;
+        }
+        .pesquisar button{
+            font-size: 1rem;
+            text-align: center;
+            padding: 10px;
+            border-radius: 5px;
+            color: #fff;
+            background-color: #d6b884;
+            border-bottom: #631726 solid 5px;
+            cursor: pointer;
+            transition: 1s;
+            width: 7%;
+            border: none;
+        }
+        .pesquisar button:hover{
+            background-color: #631726;
+        }
+        .pesquisa-container{
+            display: block;
+            padding: 20px;
+            width: auto;
+            margin: 2% auto;
+            border: #631726 solid 3px;
+            border-radius: 5px;
+        }
+        .pesquisa-container label{
+            font-size: 1.1rem;
+            padding: 10px;
+            background-color: #631726;
+            border-radius: 5px;
+            color: #fff;
+            margin-right: 2%;
+            margin-left: 2%;
+        }
+        .alterar-data{
+            display: flex;
+            padding: 20px;
+            width: auto;
+            margin: 2% auto;
+            margin-top: 2%;
+            border: #631726 solid 3px;
+            border-radius: 5px;
+        }
+        .alterar-data h5{
+            color: #fff;
+            background-color: #631726;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            margin-left: 33%;
+            margin-top: 2%;
+            margin-bottom: 80px;
+            text-decoration: underline;
+            text-align: center;color: #fff;
+            background-color: #631726;
+            width: 22.5%;
+            
+        }
+        .alterar-data label{
+            font-size: 1rem;
+            background-color: #631726;
+            color: #fff;
+            margin-right: 1%;
+            margin-left: 2%;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .alterar-data input{
+            padding: 10px;
+            border-radius: 5px;
+            margin-right: 1%;
+            text-align: center;
+            font-family: Georgia;
+            border: #631726 solid 2px;
+        }
+        .alterar-data button{
+            font-family: Georgia;
+            padding: 10px;
+            margin: 2% auto;
+            margin-top: 5%;
+            margin-left: 2%;
+            border-radius: 5px;
+            background-color: #d6b884;
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 1s ease;
+            border: none;
+        }
+        .alterar-data button:hover {
+            transform: scale(1.3);
+            background-color: #ffd792;
+        }
+        .colunas {
+            display: flex;
+        }
+        .pesquisa-container, .alterar-data {
+            flex: 1; 
+            margin-right: 20px; 
+        }
+        /* Body */
+        /* Footer */
+        .footer {
+            display: flex;
+            justify-content: space-evenly;
+            width: 100%;
+            height: auto;
+            background-color: #fff;
+            border-top: #d6b884 solid 5px;
+            bottom: 0;
+            margin-top: auto;
+            margin-bottom: 0;
+        }
+        .coluna{
+            margin-top: 20px;
+            text-align: left;
+            justify-content: left;
+        }
+        .coluna a{
+            display: block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color:#631726;
+            font-size: 1.1rem;
+            transition: 1s;
+            text-align: center;
+        }
+        .coluna a:hover{
+            color: #d6b884;
+            background-color: #631726;
+            border-radius: 5px;
+            padding: 20px;
+        }
+        .coluna h5{
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+            color: #d6b884;
+            font-weight: bold;
+            width: auto;
+        }
+        .coluna p{
+            margin-bottom: 30px;
+            font-size: 1.2rem;
+            color: #631726;
+            font-weight: bold;
+        }
+        .rede-social{
+            width: 20px;
+            height: 20px;
+            margin-right: 5%;
+            vertical-align: middle;
+        }
+        #facebook{
+            background: -webkit-linear-gradient(#3b5998, #265994);
+            background: linear-gradient(#3b5998, #265994);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: left;
+        }
+        #instagram {
+            background: -webkit-linear-gradient(pink, purple);
+            background: linear-gradient(pink, purple);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: left;
+        }
+        #youtube {
+            background: -webkit-linear-gradient(red, #ff0000);
+            background: linear-gradient(red, #ff0000);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: left;
+        }
+        /* Footer */
+    </style>
+</head>
+<body>
+<!-- Header -->
+<button onclick="voltarParaTopo()" id="botaoTopo" title="Voltar para o Topo"></button>
+<div class="container">
+    <nav class="menu">
+        <div><a href="/home" class="logo-botao"> <img class="logo" src="https://i.postimg.cc/RVp0FwZ5/logo2.png" alt="Logotipo"> </a></div>
+        <div><a href="/cars" id="btn-menu">Veículos</a></div>
+        <div><a href="/servicos-extras" id="btn-menu">Serviços e Extras</a></div>
+        <div><a href="/contactos" id="btn-menu">Contactos</a></div>
+        <div><a href="/sobre-nos" id="btn-menu">Sobre Nós</a></div>
+        <div id="area-cliente-dropdown" class="dropdown">
+            <button id="btn-area-cliente" class="dropbtn">
+                {% if utilizador %}
+                    {{ utilizador.nome }}
+                {% else %}
+                    Área do Cliente
+                {% endif %}
+            </button>
+            <div id="area-cliente-dropdown-content" class="dropdown-content" style="display: none;">
+                <a href="/perfil">Perfil</a>
+                {% if not utilizador %}
+                    <a href="/login">Login</a>
+                    <a href="/registar">Registar</a>
+                {% else %}
+                    <a href="/alterar-reserva">Alterar Reserva</a>
+                    <a href="/logout">Logout</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+</div>
+<!-- Header -->
+<!-- Body -->
+    <div class="body">
+        <div class="pesquisar">
+            <div class="form">
+                <form id="formPesquisar" action="/alterar-reserva" method="POST">
+                    <label for="ref">Por favor insira a sua referência de reserva.</label>
+                    <input type="text" name="ref" id="ref" required>
+                    <button type="submit" id="pesquisarButton">Pesquisar</button>
+                </form>
+            </div>
+        </div>
+        <div class="colunas"> 
+            <div class="pesquisa-container"></div>
+            <div class="alterar-data" style="display: none;">
+                <h5>Alterar Datas de Reserva</h5>
+                <form id="formAlterar" action="/atualizar-reserva" method="POST">
+                    <input type="hidden" name="ref" id="refHidden">
+                    <label for="novaDataInicio">Nova Data de Início:</label>
+                    <input type="date" name="novaDataInicio" id="novaDataInicio" >
+                    <label for="novaDataFim">Nova Data de Fim:</label>
+                    <input type="date" name="novaDataFim" id="novaDataFim" >
+                    <input style="display: none;" type="text" name="matricula" id="matricula" readonly><br>
+                    <button type="submit" id="alterarButton">Alterar Datas</button>
+                    <button style="background-color :#c20303; margin-left: 225px;" type="submit" id="alterarButton">Cancelar Reserva</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+<!-- Body -->
+<!-- Footer -->
+<footer class="footer">
+    <div class="coluna">
+        <img src="https://i.postimg.cc/RVp0FwZ5/logo2.png" alt="Logotipo">
+        <p>Copyright &copy; 2024 Luxury Wheels</p>
+        <a href="https://www.facebook.com" id="facebook" ><img src="https://i.postimg.cc/rs9yRfzj/face.png" alt="Facebook logo" class="rede-social">Facebook</a>
+        <a href="https://www.instagram.com" id="instagram"><img src="https://i.postimg.cc/Z5np8MpC/insta.png" alt="Instagram logo" class="rede-social">Instagram </a>
+        <a href="https://www.youtube.com" id="youtube"><img src="https://i.postimg.cc/vmv82QWh/youtube.png" alt="Youtube logo" class="rede-social">Youtube </a>
+    </div>
+    <div class="coluna">
+        <h5>Viaturas mais procurados</h5>
+        <a href="/alugar?id=13">Bugatti Chiron Super Sport</a>
+        <a href="/alugar?id=86">Lamborghini Aventador Svj Roadster</a>
+        <a href="/alugar?id=74">Ferrari Laferrari</a>
+        <a href="/alugar?id=81">Ferrari F8 Spider</a>
+        <a href="/alugar?id=10">Bentley Continental Gtc Speed W12</a>
+    </div>
+    <div class="coluna">
+        <h5>Informações</h5>
+        <a href="/sobre-nos">Sobre Nós</a>
+        <a href="/contactos">Contactos</a>
+        <a href="/termos-condicoes">Termos e Condições</a>
+        <a href="/politicas-de-privacidade">Política de Privacidade</a>
+    </div>
+</footer>
+<!-- Footer -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('formPesquisar').addEventListener('submit', function (event) {
+            event.preventDefault(); 
+            var ref = document.getElementById('ref').value;
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/verificar-reserva', true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    var data = JSON.parse(xhr.responseText);
+                    if (data) {
+                        buscar_veiculo(data.ref);
+                        document.querySelector('.alterar-data').style.display = 'block';
+                    } else {
+                        document.querySelector('.pesquisa-container').innerHTML = '<p>Nenhuma reserva encontrada.</p>';
+                        document.querySelector('.alterar-data').style.display = 'none';
+                    }
+                } else {
+                    console.error('Erro ao verificar reserva.');
+                }
+            };
+            xhr.send(JSON.stringify({ ref: ref }));
+        });
+    });
+    function buscar_veiculo(ref) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/buscar-veiculo', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                var data = JSON.parse(xhr.responseText);
+                if (data) {
+                    document.querySelector('.pesquisa-container').innerHTML = `
+                        <form>
+                            <label><strong>Referência:</strong> ${data.ref}</label><br>
+                            <p></p><br>
+                            <label><strong>Matrícula:</strong> ${data.matricula}</label><br>
+                            <p></p><br>
+                            <label><strong>Marca:</strong> ${data.marca}</label><br>
+                            <p></p><br>
+                            <label><strong>Modelo:</strong> ${data.modelo}</label><br>
+                            <p></p><br>
+                            <label><strong>Data de Início:</strong> ${data.data_inicio}</label><br>
+                            <p></p><br>
+                            <label><strong>Data de Fim:</strong> ${data.data_fim}</label>
+                        </form>
+                    `;
+                    document.getElementById('matricula').value = data.matricula;
+                } else {
+                    
+                    document.querySelector('.pesquisa-container').innerHTML = '<p>Nenhum veículo encontrado.</p>';
+                }
+            } else {
+                console.error('Erro ao buscar veículo.');
+            }
+        };
+        xhr.send(JSON.stringify({ ref: ref }));
+    }
+    window.onscroll = function() {scrollFunction()};
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("botaoTopo").style.display = "block";
+            } else {
+                document.getElementById("botaoTopo").style.display = "none";
+            }
+        }
+        function voltarParaTopo() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0; 
+        }
+        function showDropdown() {
+            document.getElementById("area-cliente-dropdown-content").style.display = "block";
+        }
+        function hideDropdown() {
+            document.getElementById("area-cliente-dropdown-content").style.display = "none";
+        }
+        document.getElementById("btn-area-cliente").addEventListener("mouseover", showDropdown);
+        document.getElementById("area-cliente-dropdown").addEventListener("mouseleave", hideDropdown);
+    </script>
+</body>
+</html>

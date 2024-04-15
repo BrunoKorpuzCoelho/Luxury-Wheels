@@ -4,14 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" sizes="16x16" href="https://i.postimg.cc/sx18KHfy/favicon-16x16.png">
-    <title>Perfil | Luxury Wheels Portugal</title>
+    <title>Política de Privacidade | Luxury Wheels Portugal</title>
     <style>
         body{
-            font-family: Georgia;
-            background-image: url(https://i.postimg.cc/Pr8qvtDL/marbel.png);
+            background-image: url("https://i.postimg.cc/Pr8qvtDL/marbel.png");
+            background-size: contain;
             background-position: center;
-            background-size: cover;
-            background-repeat: no-repeat;    
+            font-family: Georgia;
         }
         /* Header */
         .container {
@@ -85,6 +84,7 @@
             color: #fff;
             border-radius: 5px;
         }
+
         .dropdown-content {
             font-family: Georgia;
             font-size: 18px;
@@ -115,71 +115,99 @@
         .dropdown:hover .dropdown-content button {
             display: inline-block;
         }
+        #botaoTopo {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 50px;
+            background-color: transparent;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            z-index: 99;
+        }
+        #botaoTopo::before {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 40px;
+            background-image: url('https://i.postimg.cc/RZjDHfyJ/up-arrow-4889419.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        ::-webkit-scrollbar {
+            width: 5px; 
+        }
+        ::-webkit-scrollbar-track {
+            background:#fff; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background:#d6b884; 
+            border-radius: 5px; 
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555; 
+        }
+        scrollbar {
+            width: 5px; 
+        }
+        scrollbar-track {
+            background: #fff; 
+        }
+        scrollbar-thumb {
+            background: #d6b884; 
+            border-radius: 5px; 
+        }
+        scrollbar-thumb:hover {
+            background: #555; 
+        }
         /* Header */
         /* Body */
-        .perfil-containers{
-            display: flex;
-            align-items: center;
-            justify-content: space-evenly;
+        .body-container{
             margin: 2% auto;
             padding: 20px;
-            width: 90%;
-            height: 487px;
-            border-radius: 5px;
+            width: 80%;
+            height: auto;
+            border: solid 3px #631726;
+            border-radius: 25px;
+            margin-top: 2%;
+            margin-bottom: 2%;
         }
-        .info-container{
-            background-color: #fff;
-            display: flex;
-            align-items: flex-start;
-            border: #631726 3px solid;
-            border-radius: 15px;
-            width: 450px;
-            padding: 20px;
-            flex-direction: column;
-        }
-        .info-container h1{
-            margin: 2% auto;
-            margin-bottom: 40px;
+        .titulo{
             font-size: 1.5rem;
-            color: #631726;
-        }
-        .info-container label{
-            color: #d6b884;
-            width: auto;
-            text-align: left;
-            font-size: 1.3rem;
-            margin-right: 20px;
-            margin-bottom: 10px;
-            justify-content: center;
-            align-items: center;
-            
-        }
-        .info-container input{
-            font-family: Georgia;
-            font-size: 1.0rem;
-            text-align: center;
-            width: 200px;
-            height: 10px;
-            margin-top: 10px;
-            margin-bottom: 15px;
-            padding: 10px;
-            border-radius: 5px;
-            border: #631726 2px solid;
-        }
-        #btn-atualizar{
-            font-size: 1rem;
-            width: 50%;
-            display: block;
-            margin: 2% auto;
-            padding: 10px;
-            background-color: #631726;
+            text-decoration: underline;
             color: #fff;
-            border-radius: 5px;
-            transition: 0.8s;
-            cursor: pointer;
+            text-align: center;
+            padding: 20px;
+            background-color: #631726;
+            border: #d6b884 solid 5px;
+            width: 300px;
+            margin: 2% auto;
+            margin-bottom: 3%;
+            border-bottom-right-radius: 35px;
+            border-top-left-radius: 35px;
+            box-shadow: 5px 5px 10px 5px #fff;
         }
-        #btn-atualizar:hover{
-            background-color: #d6b884;
+        .paragrafo-1 h5{
+            padding: 10px;
+            font-size: 1.3rem;
+            color: #d6b884;
+            background-color: #fff;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-left: 2%;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+        .paragrafo-1 p{
+            padding: 3px 10px;
+            background-color: #ccc;
+            font-size: 1.1rem;
+            color: #fff;
+            margin-left: 2%;
+            margin-right: 2%;
+            border-radius: 5px;
+            font-weight: bold;
         }
         /* Body */
         /* Footer */
@@ -258,38 +286,11 @@
             text-align: left;
         }
         /* Footer */
-        /* Scroll Bar */
-        ::-webkit-scrollbar {
-            width: 5px; 
-        }
-        ::-webkit-scrollbar-track {
-            background:#fff; 
-        }
-        ::-webkit-scrollbar-thumb {
-            background:#d6b884; 
-            border-radius: 5px; 
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #555; 
-        }
-        scrollbar {
-            width: 5px; 
-        }
-        scrollbar-track {
-            background: #fff; 
-        }
-        scrollbar-thumb {
-            background: #d6b884; 
-            border-radius: 5px; 
-        }
-        scrollbar-thumb:hover {
-            background: #555; 
-        }
-        /* Scroll Bar */
     </style>
 </head>
 <body>
     <!-- Header -->
+    <button onclick="voltarParaTopo()" id="botaoTopo" title="Voltar para o Topo"></button>
     <div class="container">
         <nav class="menu">
             <div><a href="/home" class="logo-botao"> <img class="logo" src="https://i.postimg.cc/RVp0FwZ5/logo2.png" alt="Logotipo"> </a></div>
@@ -319,62 +320,44 @@
         </nav>
     </div>
     <!-- Header -->
-    <!-- Body-->
-    <div class="perfil-containers">
-        <div class="info-container">
-            <h1>Informação Pessoal</h1>
-            <form action="/perfil" method="POST">
-                <div class="info">
-                    <label for="nome">Nome:</label>
-                    <input type="text" id="nome" name="nome" value="{{ utilizador.nome }}">
-                </div>
-                <div class="info">
-                    <label for="nif">NIF:</label>
-                    <input type="text" id="nif" name="nif" value="{{ utilizador.nif }}">
-                </div>
-                <div class="info">
-                    <label for="email">Email:</label>
-                    <input type="text" id="email" name="email" value="{{ utilizador.email }}">
-                </div>
-                <div class="info">
-                    <label for="contacto">Contacto:</label>
-                    <input type="text" id="contacto" name="contacto" value="{{ utilizador.telefone }}">
-                </div>
-                <div class="password">
-                    <label for="password">Nova password:</label>
-                    <input type="password" id="password" name="password">
-                </div>
-                <button id="btn-atualizar" type="submit" name="atualizar" >Atualizar</button>
-            </form>   
+    <!-- Body -->
+    <h1 class="titulo">Política de Privacidade</h1>
+    <div class="body-container">
+        <div class="paragrafo-1">
+            <h5 style="width: 17%;" >Política de Privacidade</h5>
+            <p>A Luxury Wheels está comprometida em proteger a privacidade dos nossos utilizadores. Esta Política de Privacidade descreve como recolhemos, utilizamos, divulgamos e protegemos as informações pessoais que possamos obter através do nosso website e dos nossos serviços relacionados.</p>
         </div>
-        <div class="info-container">
-            <h1>Detalhes de Pagamento</h1>
-            <form action="/detalhes_pagamento" method="POST">
-                <div class="info">
-                    <label for="nome_cartao">Nome no cartão:</label>
-                    <input type="text" id="nome_cartao" name="nome_cartao" value="{{ utilizador.nome_cartao }}">
-                </div>
-                <div class="info">
-                    <label for="nr_cartao">Numero do cartão:</label>
-                    <input type="text" id="nr_cartao" name="nr_cartao" value="{{ utilizador.nr_cartao }}">
-                </div>
-                <div class="info">
-                    <label for="validade_cartao">Validade cartão:</label>
-                    <input type="text" id="validade_cartao" name="validade_cartao" value="{{ utilizador.validade_cartao }}">
-                </div>
-                <div class="info">
-                    <label for="cvc">CVC:</label>
-                    <input type="text" id="cvc" name="cvc" value="{{ utilizador.cvc }}">
-                </div>
-                <div class="info">
-                    <label for="carteira_cripto">Carteira de Bitcoin:</label>
-                    <input type="text" id="carteira_cripto" name="carteira_cripto" value="{{ utilizador.carteira_cripto }}">
-                </div>
-                <button id="btn-atualizar" type="submit" name="detalhes_pagamento" >Atualizar</button>
-            </form>
+        <div class="paragrafo-1">
+            <h5 style="width: 19%;" >1. Informações Recolhidas</h5>
+            <p>Podemos recolher informações pessoais, tais como nome, endereço de e-mail, número de telefone, morada e outras informações relevantes, quando os utilizadores interagem com o nosso website, preenchem formulários de contacto ou utilizam os nossos serviços.</p>
+        </div>
+        <div class="paragrafo-1">
+            <h5 style="width: 22%;" >2. Utilização das Informações</h5>
+            <p style="width: 53%;">As informações pessoais recolhidas podem ser utilizadas para os seguintes propósitos:</p>
+            <p style="width: 24%;">• Fornecer e manter os nossos serviços;</p>
+            <p style="width: 33%;">• Responder a consultas e fornecer suporte ao cliente;</p>
+            <p style="width: 33%;">• Personalizar e melhorar a experiência do utilizador;</p>
+            <p style="width: 74%;">• Comunicar-nos com os utilizadores, incluindo o envio de informações importantes relacionadas com os nossos serviços;</p>
+            <p style="width: 30%;">• Cumprir obrigações legais ou regulamentares.</p>
+        </div>
+        <div class="paragrafo-1">
+            <h5 style="width: 21%;" >3. Proteção das Informações</h5>
+            <p>A Luxury Wheels implementa medidas de segurança razoáveis para proteger as informações pessoais dos utilizadores contra acesso não autorizado, alteração, divulgação ou destruição não autorizada. No entanto, nenhuma transmissão de dados pela Internet ou método de armazenamento eletrónico é completamente seguro, e não podemos garantir a segurança absoluta dos dados.</p>
+        </div>
+        <div class="paragrafo-1">
+            <h5 style="width: 22%;" >4. Divulgação de Informações</h5>
+            <p>Não iremos vender, trocar ou transferir informações pessoais dos utilizadores para terceiros sem o seu consentimento, exceto quando necessário para fornecer os nossos serviços ou cumprir requisitos legais.</p>
+        </div>
+        <div class="paragrafo-1">
+            <h5 style="width: 31%;" >5. Alterações a esta Política de Privacidade</h5>
+            <p>Podemos atualizar esta Política de Privacidade periodicamente. Recomendamos que os utilizadores revejam esta página regularmente para se manterem informados sobre quaisquer alterações. A continuação do uso dos nossos serviços após quaisquer alterações a esta Política de Privacidade será considerada como aceitação dessas alterações.</p>    
+        </div>
+        <div class="paragrafo-1">
+            <h5 style="width: 9%;" >6. Contacto</h5>
+            <p>Se tiver alguma dúvida sobre esta Política de Privacidade ou sobre as práticas de privacidade da Luxury Wheels, por favor entre em contacto connosco através dos dados fornecidos no nosso website.</p>
         </div>
     </div>
-    <!-- Body-->
+    <!-- Body -->
     <!-- Footer -->
     <footer class="footer">
         <div class="coluna">
@@ -402,10 +385,21 @@
     </footer>
     <!-- Footer -->
     <script>
+        window.onscroll = function() {scrollFunction()};
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("botaoTopo").style.display = "block";
+            } else {
+                document.getElementById("botaoTopo").style.display = "none";
+            }
+        }
+        function voltarParaTopo() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0; 
+        }
         function showDropdown() {
             document.getElementById("area-cliente-dropdown-content").style.display = "block";
         }
-
         function hideDropdown() {
             document.getElementById("area-cliente-dropdown-content").style.display = "none";
         }

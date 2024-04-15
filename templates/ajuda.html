@@ -4,12 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" sizes="16x16" href="https://i.postimg.cc/sx18KHfy/favicon-16x16.png">
-    <title>Registar | Luxury Wheels Portugal</title>
+    <title>Como Funciona | Luxury Wheels Portugal</title>
     <style>
         body{
-            background-image: url(https://i.postimg.cc/Pr8qvtDL/marbel.png);
-            background-repeat: no-repeat;
-            background-size: cover;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .body-container{
+            display: block;
+            width: 80%;
+            justify-content: center;
+            align-items: center;
+            margin: 2% auto;
+            margin-top: 5%;
+            margin-bottom: 5%;
+            border:  double 3px #631726;
+            border-radius: 15px;
+            padding: 20px;
+        }
+        .body-container h5{
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #d6b884;
+            background-color: #631726;
+            width: fit-content;
+            padding: 10px;
+            border: #d6b884 3px solid;
+            border-radius: 15px;
+            text-decoration: underline;
+        }
+        .body-container p{
+            font-size: 1rem;
         }
         /* Header */
         .container {
@@ -126,16 +150,14 @@
             z-index: 99;
         }
         #botaoTopo::before {
-            content: '';
+            content: "";
             display: block;
             width: 40px;
             height: 40px;
-            background-image: url('https://i.postimg.cc/RZjDHfyJ/up-arrow-4889419.png');
+            background-image: url("https://i.postimg.cc/RZjDHfyJ/up-arrow-4889419.png");
             background-size: contain;
             background-repeat: no-repeat;
         }
-        /* Header */
-        /* Scroll Bar */
         ::-webkit-scrollbar {
             width: 5px; 
         }
@@ -161,76 +183,6 @@
         }
         scrollbar-thumb:hover {
             background: #555; 
-        }
-        /* Scroll Bar */
-        .registar-container {
-            background-color: #ffffffb7;
-            text-align: center;
-            margin: 0 auto;
-            margin-top: 5%;
-            margin-bottom: 5%;
-            border: 3px solid #631726;
-            width: 400px;
-            padding: 20px;
-            border-radius: 5px;
-        }
-        .registar label {
-            display: block;
-            margin-bottom: 10px;
-            font-size: 1rem;
-            color: #d6b884;
-        }
-        .registar input {
-            font-family: Georgia;
-            width: 90%;
-            padding: 8px;
-            font-size: 1.0rem;
-            margin-bottom: 15px;
-            text-align: center;
-            border: 2px solid #631726;
-            border-radius: 5px;
-        }
-        .registar button {
-            width: 90%;
-            font-size: 1.2rem;
-            padding: 10px;
-            color: #fff;
-            background-color: #d6b884;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;  
-        }
-        .registar button:hover {
-            color: #fff;
-            background-color: #631726;
-        }
-        .forms{
-            margin-top: 20px;
-        }
-        #btn-registar{
-            width: 45%;
-            font-size: 1.2rem;
-            font-family: Georgia;
-            color: #631726;
-            background-color: #d6b884;
-            transition: 1s;
-            border-radius: 5px;
-            padding: 10px;
-            cursor: pointer;
-        }
-        #btn-registar:hover{
-            color: #d6b884;
-            background-color: #631726;
-        }
-        .registar-container p{
-            color: #d6b884;
-            font-size: 1.1rem;
-            text-decoration: underline;
-        }
-        .h1{
-            font-family: Georgia;
-            color: #d6b884;
-            font-size: 1.4rem;
         }
         /* Footer */
         .footer {
@@ -342,52 +294,62 @@
         </nav>
     </div>
     <!-- Header -->
-    <div class="registar-container">
-        <h1 class="h1">Registar novo usuário</h1>
-        <div class="forms"></div>
-            <form id="registar-form" class="registar" action="/registar" method="post">
+    <!-- Body -->
+    <div class="body-container">
+        <h5>Disclamer!:</h5>
+        <p>Este website é alimentado por uma base de dados contendo informações sobre todas as viaturas apresentadas. Caso haja algum problema ao carregar ou enviar o projeto final e as viaturas não sejam corretamente guardadas na base de dados, isso pode afetar o funcionamento adequado do website. É fundamental ressaltar que o website depende das viaturas carregadas na base de dados para operar de maneira eficiente. Além disso, ao carregar novas viaturas para teste, é importante considerar que os links para viaturas em destaque e as mais procuradas podem não funcionar corretamente, uma vez que os identificadores (IDs) dos links estão diretamente correlacionados com as viaturas disponíveis na base de dados. Em caso de dúvidas ou questões, por favor, não hesite em entrar em contato para que possamos resolver qualquer problema de forma ágil e eficaz.</p>
 
-                <label for="nome">Nome:</label>
-                <input type="text" id="nome" name="nome" required>
+        <h5>Todas as viaturas apresentadas neste website são provenientes das seguintes fontes:</h5>
+        <p>Autoscout24 (https://www.autoscout24.com)</p>
 
-                <label for="email">Email:</label>
-                <input type="text" id="email" name="email" required>
+        <p>Para facilitar a comunicação e garantir o acesso irrestrito ao projeto, um endereço de e-mail exclusivo foi criado:</p>
+        <p><strong>E-mail: luxurywheels.pf@hotmail.com</strong></p>
+        <p><strong>Senha: Alandiego1@</strong></p>
 
-                <label for="telefone">Telefone:</label>
-                <input type="text" id="telefone" name="telefone" required>
+        <p>Na maioria das páginas do website, apresento um menu e um rodapé com as seguintes funcionalidades:</p>
+        <h5>Menu:</h5>
+        <p>O logotipo da Luxury Wheels funciona como um botão que nos leva sempre de volta à página inicial "Home".</p>
+        <p>Dispoem de botões para "Veículos", "Serviços e Extras", "Contactos" e "Sobre Nós", que ao serem clicados redirecionam para as páginas correspondentes.</p>
+        <p>Na área Cliente, os utilizadores podem realizar o Login, Registar um novo cliente e, uma vez autenticados, aceder ao seu perfil. Caso sejam administradores, têm acesso à página para adicionar novas viaturas à base de dados.</p>
 
-                <label for="novo-username">Username:</label>
-                <input type="text" id="novo-username" name="username" required>
+        <h5>Rodapé:</h5>
+        <p>Ofereco botões de acesso às redes sociais. Estes botões direcionam os utilizadores para as páginas iniciais das redes sociais associadas.</p>
+        <p>Apresento também um link direto para as "Viaturas Mais Procuradas", permitindo aos utilizadores acederem facilmente a esta categoria.</p>
+        <p>Outras opções no rodapé incluem "Sobre Nós", "Contactos", "Termos e Condições" e "Política de Privacidade", que ao serem clicados redirecionam para as páginas correspondentes.</p>
 
-                <label for="nova-password">Nova Password:</label>
-                <input type="password" id="nova-password" name="password" required>
+        <h5>Página "Home":</h5>
+        <p>Ao clicar no botão "Procurar", os utilizadores serão redirecionados para a página que apresenta a lista completa dos veículos disponíveis.</p>
+        <p>Na secção de "Veículos em Destaque", cada veículo apresenta um botão que direciona diretamente para a sua página específica.</p>
+        <p>Esta é a única página em que, quando um administrador ou proprietário está autenticado, é possível adicionar novas viaturas à base de dados.</p>
 
-                <label for="tipo_user" style="display: none;"></label>
-                <input type="text" id="tipo_user" name="tipo_user" style="display: none;">
+        <h5>Página "Cars":</h5>
+        <p>Nesta página, logo abaixo do menu principal, apresenta-se um sistema de filtragem por data. Ao aplicar o filtro de data, apenas os veículos disponíveis para as datas selecionadas serão exibidos.</p>
+        <p>Logo abaixo do sistema de filtragem, encontra-se um container que permite filtrar os veículos por diversos critérios. Ao selecionar um filtro e clicar em "Filtrar", apenas os veículos que correspondem aos filtros escolhidos serão mostrados.</p>
+        <p>Cada veículo na base de dados é exibido nesta página, organizados em ordem alfabética da marca, de A a Z. Cada veículo é acompanhado por detalhes relevantes e a primeira foto associada na base de dados. É importante ressaltar que todas as informações são extraídas diretamente da base de dados.</p>
+        <p>Todos os containers de veículos possuem um botão "Alugar Agora", que ao ser clicado redireciona o utilizador para a página específica do veículo, onde podem ser encontradas mais informações e a possibilidade de realizar a reserva.</p>
 
-                <label for="nome_cartao" style="display: none;"></label>
-                <input type="text" id="nome_cartao" name="nome_cartao" style="display: none;">
+        <h5>Página "Alugar:id":</h5>
+        <p>Nesta página, uma das mais abrangentes, encontramos uma estrutura complexa que proporciona uma experiência detalhada aos utilizadores:</p>
+        <p>Do lado direito, exibimos a foto principal da viatura, sendo que o JavaScript percorre a base de dados para mostrar até um máximo de 5 fotos adicionais.</p>
+        <p>No lado esquerdo, apresento todas as características detalhadas da viatura, todas elas carregadas diretamente da base de dados.</p>
+        <p>Abaixo das fotos, à direita, encontra-se um container destinado à realização de reservas.</p>
+        <p>Começando pelas datas, é necessário preencher ambas as datas para que o botão "Avançar" seja exibido. Caso o botão não apareça, indica que a viatura está indisponível para alguma das datas selecionadas.</p>
+        <p>Logo abaixo das datas, são listados os estabelecimentos predefinidos pela Luxury Wheels, onde os utilizadores podem escolher o local para retirada do veículo.</p>
+        <p>Em seguida, temos opções de pagamento: pagamento no balcão, onde basta clicar em "Avançar"; pagamento com cartão, onde é necessário preencher os dados solicitados; ou pagamento com criptomoeda, seguindo o mesmo procedimento de preenchimento dos dados.</p>
+        <p>É importante notar que a data de validade do cartão deve ser inserida no formato MM/AA.</p>
+        <p>Por fim, apresento o valor diário do aluguer, que corresponde ao valor presente na base de dados, e o valor total, que varia de acordo com o número de dias selecionados para o aluguer da viatura.</p>
 
-                <label for="validade_cartao" style="display: none;">:</label>
-                <input type="text" id="validade_cartao" name="validade_cartao" style="display: none;">
+        <h5>Página "Recibo: [Número da Reserva]":</h5>
+        <p>Nesta página, os utilizadores têm a oportunidade de revisar e confirmar os detalhes da sua reserva anteriormente preenchidos.</p>
+        <p>Após verificar os dados, os utilizadores podem clicar no botão "Confirmar Dados" para validar a reserva.</p>
+        <p>Uma vez confirmados, os dados da reserva são enviados automaticamente para o endereço de e-mail do cliente. O e-mail de confirmação é totalmente estilizado e inclui todos os detalhes relevantes da reserva. Por favor, note que, devido a limitações técnicas, a exibição correta das imagens no e-mail pode variar dependendo do provedor de e-mail utilizado. Até o momento, a formatação do e-mail funciona de forma ideal no Gmail, mas podem ocorrer problemas de exibição em outros provedores de e-mail, especialmente na versão para PC do Hotmail. Isso pode estar relacionado ao uso de imagens armazenadas em nuvem.</p>
+        <p>Após a submissão dos dados, todas as informações relevantes são gravadas na tabela de gerenciamento, enquanto as datas de início e término da reserva são registradas na tabela do veículo correspondente.</p>
+        
+        <h5>Página "Registar:"</h5>
+        <p>Nesta página efetuamos o registo de um novo cliente, ao criar o novo cliente o email introduzido receberá os dados de login para ficarem guardados</p>
 
-                <label for="cvc" style="display: none;"></label>
-                <input type="text" id="cvc" name="cvc" style="display: none;">
-
-                <label for="nif" style="display: none;"></label>
-                <input type="text" id="nif" name="nif" style="display: none;">
-
-                <label for="carteira_cripto" style="display: none;"></label>
-                <input type="text" id="carteira_cripto" name="carteira_cripto" style="display: none;">
-
-                <label for="nr_cartao" style="display: none;"></label>
-                <input type="text" id="nr_cartao" name="nr_cartao" style="display: none;">
-
-                <button type="submit" name="registar">Registar</button>
-                <p>Se já tiver conta.<button style="margin-top: 2%; width: 40%; margin-left: 5%;" id="botaoRedirecionar">Fazer Login</button></p>
-            </form>
-        </div>
     </div>
+    <!-- Body -->
     <!-- Footer -->
     <footer class="footer">
         <div class="coluna">
@@ -415,15 +377,6 @@
     </footer>
     <!-- Footer -->
     <script>
-        function showDropdown() {
-            document.getElementById("area-cliente-dropdown-content").style.display = "block";
-        }
-    
-        function hideDropdown() {
-            document.getElementById("area-cliente-dropdown-content").style.display = "none";
-        }
-        document.getElementById("btn-area-cliente").addEventListener("mouseover", showDropdown);
-        document.getElementById("area-cliente-dropdown").addEventListener("mouseleave", hideDropdown);
         window.onscroll = function() {scrollFunction()};
 
         function scrollFunction() {
@@ -438,11 +391,15 @@
             document.body.scrollTop = 0;
             document.documentElement.scrollTop = 0; 
         }
+        function showDropdown() {
+            document.getElementById("area-cliente-dropdown-content").style.display = "block";
+        }
 
-        document.getElementById("botaoRedirecionar").addEventListener("click", function() {
-    
-        window.location.href = "/login";
-    });
+        function hideDropdown() {
+            document.getElementById("area-cliente-dropdown-content").style.display = "none";
+        }
+        document.getElementById("btn-area-cliente").addEventListener("mouseover", showDropdown);
+        document.getElementById("area-cliente-dropdown").addEventListener("mouseleave", hideDropdown);
     </script>
 </body>
 </html>

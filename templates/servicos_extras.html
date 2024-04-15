@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://i.postimg.cc/sx18KHfy/favicon-16x16.png">
+    <title>Serviços extras | Luxury Wheels Portugal</title>
+    <style>
+        body{
+            background-color: #ccc;
+            font-family: Georgia;
+        }
+        /* Header */
+        .container {
+            width: 100%;
+            height: 96px;
+            top: 0;
+            left: 0;
+            background-color: #fff;
+            z-index: 1000;
+            border-bottom: #d6b884 solid 5px;
+        }
+        .logo-botao {
+            background-color: transparent;
+            border: #d6b884 solid 1px;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            transition: .5s;
+        }
+        .logo-botao:hover {
+            background-color: #d6b884;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            height: 100%;
+            padding: 0 20px;
+            margin-left: 30px;
+            margin-right: 50px;
+        }
+        .menu div {
+            display: inline-block;
+        }
+        .menu div:not(:last-child) {
+            margin-right: 2%;
+        }
+        .menu div:last-child {
+            margin-right: 0;
+            margin-left: auto;
+        }
+        #btn-menu {
+            font-family: Georgia;
+            text-decoration: none;
+            font-size: 22px;
+            color: #d6b884;
+            padding: 20px;
+            border-radius: 5px;
+            transition: .85s;
+        }
+        #btn-menu:hover {
+            color: #fff;
+            background-color: #631726;
+        }
+        .dropdown {
+        position: relative;
+        display: inline-block;
+        }
+        .dropbtn {
+            font-family: Georgia;
+            color: #d6b884;
+            background-color: #fff;
+            padding: 12px;
+            font-size: 22px;
+            border: none;
+            cursor: pointer;
+        }
+        .dropbtn:hover{
+            background-color: #631726;
+            color: #fff;
+            border-radius: 5px;
+        }
+        .dropdown-content {
+            font-family: Georgia;
+            font-size: 18px;
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            z-index: 1;
+            right: 0;
+        }
+        .dropdown-content a {
+            color: #d6b884;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {
+            background-color: #631726;
+            color: #fff;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .dropdown-content button {
+            display: none;
+        }
+        .dropdown:hover .dropdown-content button {
+            display: inline-block;
+        }
+        #botaoTopo {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 50px;
+            background-color: transparent;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            z-index: 99;
+        }
+        #botaoTopo::before {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 40px;
+            background-image: url('https://i.postimg.cc/RZjDHfyJ/up-arrow-4889419.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        ::-webkit-scrollbar {
+            width: 5px; 
+        }
+        ::-webkit-scrollbar-track {
+            background:#fff; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background:#d6b884; 
+            border-radius: 5px; 
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555; 
+        }
+        scrollbar {
+            width: 5px; 
+        }
+        scrollbar-track {
+            background: #fff; 
+        }
+        scrollbar-thumb {
+            background: #d6b884; 
+            border-radius: 5px; 
+        }
+        scrollbar-thumb:hover {
+            background: #555; 
+        }
+        /* Body */
+        .titulo{
+            margin: 2% auto;
+            width: 80%;
+        }
+        .titulo h1{
+            padding: 10px;
+            width: 40%;
+            font-size: 1.5rem;
+            background-color: #631726;
+            color: #fff;
+            border-top-right-radius: 50px;
+            border:#d6b884 solid 3px;
+            text-decoration: underline;
+        }
+        .titulo p{
+            background-color: #ccc;
+            font-size: 1rem;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .titulo h5{
+            background-color: #631726;
+            padding: 10px;
+            color: #fff;
+            border: #d6b884 3px solid;
+            width: 22%;
+            border-radius: 10px;
+            font-size: 1.2rem;
+        }
+        .body-container {
+            padding: 20px;
+            width: 80%;
+            height: auto;
+            display: block;
+            justify-content: space-between;
+            align-items: center;
+            margin: 2% auto;
+            margin-bottom: 2%;
+        }
+
+        .paragrafo {
+            margin-top: 0;
+            margin-bottom: 3%;
+            display: flex;
+            align-items: center;
+            border-bottom: #fff solid 3px;
+            border-radius: 15px;
+        }
+
+        .paragrafo img {
+            background-color: #631726;
+            border-radius: 20%;
+            width: 150px;
+            margin-right: 30px; 
+            box-shadow: 2px 2px 15px 8px #d6b884;
+        }
+
+        .paragrafo div {
+            flex-grow: 1;
+        }
+
+        .paragrafo h5 {
+            background-color: #631726;
+            padding: 10px;
+            color: #fff;
+            border: #d6b884 3px solid;
+            width: 38%;
+            border-radius: 10px;
+            font-size: 1.2rem;
+        }
+        .paragrafo p{
+            font-size: 0.9rem;
+            color: #fff;
+            padding: 15px;
+            border-radius: 15px;
+            font-weight: bold;
+        }
+        /* Body */
+        /* Footer */
+        .footer {
+            display: flex;
+            justify-content: space-evenly;
+            width: 100%;
+            height: auto;
+            background-color: #fff;
+            border-top: #d6b884 solid 5px;
+            bottom: 0;
+            margin-top: auto;
+            margin-bottom: 0;
+        }
+        .coluna{
+            margin-top: 20px;
+            text-align: left;
+            justify-content: left;
+        }
+        .coluna a{
+            display: block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color:#631726;
+            font-size: 1.1rem;
+            transition: 1s;
+            text-align: center;
+        }
+        .coluna a:hover{
+            color: #d6b884;
+            background-color: #631726;
+            border-radius: 5px;
+            padding: 20px;
+        }
+        .coluna h5{
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+            color: #d6b884;
+            font-weight: bold;
+            width: auto;
+        }
+        .coluna p{
+            margin-bottom: 30px;
+            font-size: 1.2rem;
+            color: #631726;
+            font-weight: bold;
+        }
+        .rede-social{
+            width: 20px;
+            height: 20px;
+            margin-right: 5%;
+            vertical-align: middle;
+        }
+        #facebook{
+            background: -webkit-linear-gradient(#3b5998, #265994);
+            background: linear-gradient(#3b5998, #265994);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: left;
+        }
+        #instagram {
+            background: -webkit-linear-gradient(pink, purple);
+            background: linear-gradient(pink, purple);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: left;
+        }
+        #youtube {
+            background: -webkit-linear-gradient(red, #ff0000);
+            background: linear-gradient(red, #ff0000);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: left;
+        }
+        /* Footer */
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <button onclick="voltarParaTopo()" id="botaoTopo" title="Voltar para o Topo"></button>
+    <div class="container">
+        <nav class="menu">
+            <div><a href="/home" class="logo-botao"> <img class="logo" src="https://i.postimg.cc/RVp0FwZ5/logo2.png" alt="Logotipo"> </a></div>
+            <div><a href="/cars" id="btn-menu">Veículos</a></div>
+            <div><a href="/servicos-extras" id="btn-menu">Serviços e Extras</a></div>
+            <div><a href="/contactos" id="btn-menu">Contactos</a></div>
+            <div><a href="/sobre-nos" id="btn-menu">Sobre Nós</a></div>
+            <div id="area-cliente-dropdown" class="dropdown">
+                <button id="btn-area-cliente" class="dropbtn">
+                    {% if utilizador %}
+                        {{ utilizador.nome }}
+                    {% else %}
+                        Área do Cliente
+                    {% endif %}
+                </button>
+                <div id="area-cliente-dropdown-content" class="dropdown-content" style="display: none;">
+                    <a href="/perfil">Perfil</a>
+                    {% if not utilizador %}
+                        <a href="/login">Login</a>
+                        <a href="/registar">Registar</a>
+                    {% else %}
+                        <a href="/alterar-reserva">Alterar Reserva</a>
+                        <a href="/logout">Logout</a>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!-- Header -->
+    <!-- Body-->
+    <div class="titulo">
+        <h1>Bem-vindo à nossa Página de Serviços e Extras</h1>
+        <p>Aqui na Luxury Wheels, estamos comprometidos em proporcionar uma experiência excepcional aos nossos clientes, não apenas através dos nossos serviços de aluguer de viaturas, mas também com uma gama de extras premium, tudo desenhado para tornar a sua jornada ainda mais conveniente e memorável.</p>
+        <h5>Serviços de Aluguer de Viaturas:</h5>
+    </div>
+    <div class="body-container">
+        <div class="paragrafo">
+            <img src="https://i.postimg.cc/xT4pWdRK/parking-area-1.png" alt="Levantamento veículo">
+            <div>
+                <h5 style="width: 31%;" >Entrega e Levantamento Personalizados:</h5>
+                <p>É com imenso prazer que disponibilizamos aos nossos estimados clientes o nosso serviço excecional de entrega e recolha de viaturas, cobrindo qualquer localidade à sua escolha, sem quaisquer custos adicionais. Este compromisso reflete o nosso cuidado pela comodidade e facilidade dos nossos clientes, assegurando uma experiência de aluguer de viaturas verdadeiramente incomparável. A nossa equipa altamente dedicada e profissional está pronta para satisfazer as suas necessidades de transporte, seja para compromissos de negócios, momentos de lazer ou aventuras familiares, com a máxima eficiência e cortesia. Permita-nos ser o seu parceiro de confiança em todas as suas viagens, enquanto nos empenhamos continuamente em elevar o padrão de excelência no setor de aluguer de viaturas.</p>
+            </div>
+        </div>
+        <div class="paragrafo">
+            <img src="https://i.postimg.cc/TYfTptMk/technician-1.png" alt="Revisão automóvel">
+            <div>
+                <h5 style="width: 27%;">Coleta e Recolha para Manutenção:</h5>
+                <p>Para os nossos contratos de aluguer de longa duração, estamos orgulhosamente comprometidos em disponibilizar aos nossos clientes um serviço abrangente e conveniente de recolha e entrega da viatura para manutenção preventiva ou reparação, sem incorrer em quaisquer custos adicionais. Reconhecemos a importância da manutenção regular para garantir o desempenho e a segurança contínuos do seu veículo, e é por isso que assumimos a responsabilidade de tornar este processo o mais simples e livre de preocupações possível. Através deste serviço, garantimos que a sua viatura seja recolhida no local de sua escolha, levada para a manutenção necessária e devolvida a si, tudo isso sem que tenha de enfrentar quaisquer encargos adicionais. Esta abordagem reflete o nosso compromisso em proporcionar uma experiência de aluguer de viaturas verdadeiramente holística e sem complicações, onde o seu conforto e satisfação estão sempre no centro das nossas operações.</p>
+            </div>
+        </div>
+        <div class="paragrafo">
+            <img src="https://i.postimg.cc/ZqVdMWPm/ipo.png" alt="IPO">
+            <div>
+                <h5 style="width: 41%;">Assistência em Inspeção Periódica Obrigatória (IPO):</h5>
+                <p>Simplifique as suas obrigações de uma forma verdadeiramente descomplicada. Na nossa missão de tornar a sua experiência de aluguer de viaturas o mais tranquila possível, oferecemos o serviço de levar a sua viatura ao centro de inspeção, sem qualquer custo extra para si. Este compromisso reflete o nosso empenho em proporcionar um serviço completo e conveniente, onde cuidamos de todos os detalhes para garantir que a sua viatura esteja sempre em conformidade com os regulamentos e pronto para a estrada.</p>
+            </div>
+        </div>
+        <div class="paragrafo">
+            <img src="https://i.postimg.cc/LXjwBMKr/clean-car.png" alt="Lavagem automóvel">
+            <div>
+                <h5 style="width: 21%;">Lavagem Semanal Gratuita:</h5>
+                <p>Mantenha a sua viatura sempre com uma aparência impecável. Como parte do nosso compromisso em garantir a sua satisfação total, disponibilizamos uma lavagem semanal gratuita num dos nossos centros. Este serviço exclusivo é oferecido sem qualquer custo adicional, demonstrando a nossa dedicação em proporcionar-lhe uma experiência de aluguer de viaturas verdadeiramente completa e livre de preocupações. Confie em nós para cuidar do seu veículo, garantindo que ele esteja sempre reluzente e pronto para enfrentar qualquer aventura nas estradas.</p>
+            </div>
+        </div>
+        <div class="paragrafo">
+            <img src="https://i.postimg.cc/bvRgvs5v/book.png" alt="Detalhe automóvel">
+            <div>
+                <h5 style="width: 16%;">Detailing Profundo:</h5>
+                <p>Proporcione ao seu veículo um tratamento de excelência com o nosso serviço de detalhe profundo, realizado a cada três meses, sem qualquer custo adicional. Durante este serviço meticuloso, garantimos a disponibilização de uma viatura de substituição, sem encargos adicionais. Este compromisso reflete a nossa busca pela perfeição e dedicação em exceder as expectativas dos nossos clientes. Confie em nós para manter o seu veículo sempre no seu melhor estado, enquanto desfruta da comodidade de uma viatura de substituição durante o serviço.</p>
+            </div>
+        </div>
+        <div class="paragrafo">
+            <img src="https://i.postimg.cc/02GkWvKs/premium.png" alt="Serviço Premium">
+            <div>
+                <h5 style="width: 26%;">Assistência em Viagem Premium:</h5>
+                <p>Perante uma eventual avaria ou emergência durante a sua viagem, o nosso serviço de assistência em viagem premium assegura uma resposta célere e eficaz. Caso necessário, disponibilizamos uma viatura de substituição e coordenamos o encaminhamento da sua viatura para uma oficina parceira. Este compromisso demonstra a nossa prioridade em garantir a sua segurança e tranquilidade em todas as circunstâncias. Confie em nós para estar ao seu lado, proporcionando uma experiência de condução sem preocupações.</p>
+            </div>
+        </div>
+        <div class="titulo">
+            <h5 style="width: 14%;" >Serviços Extras:</h5>
+            <p>Além dos nossos serviços de aluguer de viaturas, oferecemos uma série de extras exclusivos para tornar a sua experiência ainda mais especial:</p>
+        </div>
+        <div class="paragrafo">
+            <img src="https://i.postimg.cc/NFKW3W4B/chauffeur.png" alt="Serviço chauffeur">
+            <div>
+                <h5 style="width: 24%;">Motorista Privado (Chauffeur):</h5>
+                <p>Para os seus alugueres, sejam eles a curto ou longo prazo, colocamos à sua disposição um motorista privado para o seu conforto e comodidade. Este serviço exclusivo visa proporcionar-lhe uma experiência de condução luxuosa e sem preocupações, onde pode desfrutar da viagem enquanto nos encarregamos do resto. Conte connosco para elevar o seu transporte a um nível superior, garantindo uma jornada verdadeiramente memorável e sem complicações.</p>
+            </div>
+        </div>
+        <div class="paragrafo">
+            <img src="https://i.postimg.cc/P5qvDy2Y/parking.png" alt="Parque grátis">
+            <div>
+                <h5 style="width: 20%;">Estacionamento Gratuito:</h5>
+                <p>Desfrute da total liberdade de estacionamento em qualquer parque do país, sem quaisquer custos adicionais. Este benefício exclusivo visa proporcionar-lhe conveniência e tranquilidade, permitindo-lhe estacionar a sua viatura onde for mais conveniente para si, sem se preocupar com taxas ou encargos adicionais. Na nossa busca contínua por excelência no serviço, comprometemo-nos a tornar a sua experiência de condução o mais conveniente e livre de preocupações possível.</p>
+            </div>
+        </div>
+        <div class="paragrafo">
+            <img src="https://i.postimg.cc/qRSHkZKG/vip.png" alt="VIP">
+            <div>
+                <h5 style="width: 10%;">Entrada VIP:</h5>
+                <p>Desfrute de acesso privilegiado a uma variedade de eventos, jantares e estabelecimentos com a nossa entrada VIP exclusiva. Este benefício exclusivo oferece-lhe a oportunidade de desfrutar de momentos especiais com estilo e distinção, proporcionando-lhe uma experiência verdadeiramente única e memorável. Conte connosco para tornar cada ocasião ainda mais especial, enquanto nos esforçamos para lhe oferecer o melhor em termos de conforto, conveniência e prestígio.</p>
+            </div>
+        </div>
+        <div class="paragrafo">
+            <div>
+                <p style="font-size: 1rem;">Na Luxury Wheels, colocamos o seu conforto e satisfação em primeiro lugar. Não hesite em contactar-nos para obter mais informações sobre os nossos serviços e extras, e deixe-nos tornar a sua próxima viagem uma experiência verdadeiramente memorável. Estamos ao seu dispor para responder a todas as suas questões e para proporcionar um serviço personalizado que atenda às suas necessidades e expectativas. Aguardamos com expectativa o seu contacto e a oportunidade de servi-lo com excelência.</p>
+            </div>
+        </div>
+    </div>
+    <!-- Body-->
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="coluna">
+            <img src="https://i.postimg.cc/RVp0FwZ5/logo2.png" alt="Logotipo">
+            <p>Copyright &copy; 2024 Luxury Wheels</p>
+            <a href="https://www.facebook.com" id="facebook" ><img src="https://i.postimg.cc/rs9yRfzj/face.png" alt="Facebook logo" class="rede-social">Facebook</a>
+            <a href="https://www.instagram.com" id="instagram"><img src="https://i.postimg.cc/Z5np8MpC/insta.png" alt="Instagram logo" class="rede-social">Instagram </a>
+            <a href="https://www.youtube.com" id="youtube"><img src="https://i.postimg.cc/vmv82QWh/youtube.png" alt="Youtube logo" class="rede-social">Youtube </a>
+        </div>
+        <div class="coluna">
+            <h5>Viaturas mais procurados</h5>
+            <a href="/alugar?id=13">Bugatti Chiron Super Sport</a>
+            <a href="/alugar?id=86">Lamborghini Aventador Svj Roadster</a>
+            <a href="/alugar?id=74">Ferrari Laferrari</a>
+            <a href="/alugar?id=81">Ferrari F8 Spider</a>
+            <a href="/alugar?id=10">Bentley Continental Gtc Speed W12</a>
+        </div>
+        <div class="coluna">
+            <h5>Informações</h5>
+            <a href="/sobre-nos">Sobre Nós</a>
+            <a href="/contactos">Contactos</a>
+            <a href="/termos-condicoes">Termos e Condições</a>
+            <a href="/politicas-de-privacidade">Política de Privacidade</a>
+        </div>
+    </footer>
+    <!-- Footer -->
+    <script>
+        window.onscroll = function() {scrollFunction()};
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("botaoTopo").style.display = "block";
+            } else {
+                document.getElementById("botaoTopo").style.display = "none";
+            }
+        }
+
+        function voltarParaTopo() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0; 
+        }
+        function showDropdown() {
+            document.getElementById("area-cliente-dropdown-content").style.display = "block";
+        }
+
+        function hideDropdown() {
+            document.getElementById("area-cliente-dropdown-content").style.display = "none";
+        }
+        document.getElementById("btn-area-cliente").addEventListener("mouseover", showDropdown);
+        document.getElementById("area-cliente-dropdown").addEventListener("mouseleave", hideDropdown);
+    </script>
+</body>
+</html>
